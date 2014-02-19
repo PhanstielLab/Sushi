@@ -7,7 +7,7 @@ plotBed(beddata, chrom, chromstart, chromend, type = "region",
   rownumber = NULL, row = "auto", height = 0.4, plotbg = "white",
   wiggle = 0.02, splitstrand = FALSE, numbins = 200, binsmoothing = 10,
   palettes = topo.colors, rowlabels = NULL, rowlabelcol = "dodgerblue2",
-  rowlabelfont = 2, rowlabelcex = 1, maxrows = 1000000,
+  rowlabelfont = 2, rowlabelcex = 1, maxrows = 1e+06,
   color = "dodgerblue4", xaxt = "none", yaxt = "none", xlab = "",
   ylab = "", xaxs = "i", yaxs = "i", bty = "n", border = NA, ...)
 }
