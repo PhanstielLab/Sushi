@@ -1,0 +1,19 @@
+\docType{data}
+\name{Sushi_ChIPSeq_pol2.bed}
+\alias{Sushi_ChIPSeq_pol2.bed}
+\title{Sushi_ChIPSeq_pol2.bed}
+\format{bed format}
+\source{
+Consortium, T. E. P. An integrated encyclopedia of DNA
+elements in the human genome. Nat. Methods 489, 57–74
+(2012).
+}
+\usage{
+Sushi_ChIPSeq_pol2.bed
+}
+\description{
+This data set describes aligned sequencing reads for Pol2
+in K562 cells as determined by ChIP-seq with coordinates
+based on the NCBI36 / hg18 genome build.
+}
+

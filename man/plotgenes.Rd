@@ -1,0 +1,96 @@
+\name{plotgenes}
+\alias{plotgenes}
+\title{plots gene structure or transcript structures}
+\usage{
+plotgenes(transcripts, chrom = NULL, chromstart = NULL, chromend = NULL,
+  col = "dodgerblue2", bheight = 0.3, lheight = 0.3, bentline = TRUE,
+  packrow = TRUE, maxrows = 10000, colorby = NULL, colorbyrange = NULL,
+  colorbycol = colorRampPalette(c("blue", "red")), types = "exon",
+  plotgenetype = "box", arrowlength = 0.005, wigglefactor = 0.05,
+  labeltext = TRUE, labeloffset = 0.4, fontsize = 0.7, fonttype = 2,
+  labelat = "middle", ...)
+}
+\arguments{
+  \item{transcripts}{gene info stored in a bed-like format}
+
+  \item{chrom}{chromosome of region to be plotted}
+
+  \item{chromstart}{start position}
+
+  \item{chromend}{end position}
+
+  \item{col}{single value or vector specifying colors of
+  gene structures}
+
+  \item{colorby}{vector to scale colors by}
+
+  \item{colorbycol}{palette to apply color scale to (only
+  valid when colorby is not NULL)}
+
+  \item{colorbyrange}{the range of values to apply the
+  color scale to.  Values outside that range will be set to
+  the limits of the range.}
+
+  \item{bheight}{the height of the boxes drawn for exons}
+
+  \item{lheight}{the height of the bent line is bent is set
+  to TRUE}
+
+  \item{bentline}{TRUE/FALSE indicating whether lines
+  between exons should be bent}
+
+  \item{packrow}{TRUE / FALSE indicating whether genes
+  should be packed or whether each gene should be plotted
+  on its own row}
+
+  \item{types}{single value or vector specifying types of
+  elements (acceptable values are 'exon','utr')}
+
+  \item{plotgenetype}{String specifying whether the genes
+  should resemble a 'box' or a 'arrow'}
+
+  \item{arrowlength}{value (between 0 and 1) specifying the
+  length of the tail of each arrow as a fraction of the
+  total plot width (only valid when plotgenetype is set to
+  "arrow")}
+
+  \item{wigglefactor}{the fraction of the plot to leave
+  blank on either side of each element to avoid
+  overcrowding.}
+
+  \item{maxrows}{The maximum number of rows to plot on the
+  y-axis}
+
+  \item{labeltext}{TRUE/FALSE indicating whether genes
+  should be labeled}
+
+  \item{labeloffset}{value (between 0 and 1) specifying the
+  vertical offset of gene labels}
+
+  \item{fontsize}{font size of gene labels}
+
+  \item{fonttype}{font type of gene labels}
+
+  \item{labelat}{postion along gene to place labels
+  (acceptable values are "middle","start",and "end")}
+
+  \item{...}{values to be passed to \code{\link{plot}}}
+}
+\description{
+plots gene structure or transcript structures
+}
+\examples{
+data(Sushi_genes.bed)
+
+chrom            = "chr15"
+chromstart       = 72998000
+chromend         = 73020000
+chrom_biomart    = 15
+
+plotgenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
+     maxrows=1,height=0.5,plotgenetype="arrow",bentline=FALSE,col="blue",
+     labeloffset=1,fontsize=1.2)
+
+labelgenome( chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
+}
+

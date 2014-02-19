@@ -1,0 +1,46 @@
+\name{plotHic}
+\alias{plotHic}
+\title{plots HiC interactio matrix}
+\usage{
+plotHic(hicdata, chrom, chromstart, chromend, max_y = 30, zrange = NULL,
+  palette = topo.colors, flip = FALSE)
+}
+\arguments{
+  \item{hicdata}{interaction matrix representing HiC data.
+  Row and column names should be postions along a
+  chromosome}
+
+  \item{chrom}{chromosome of region to be plotted}
+
+  \item{chromstart}{start position}
+
+  \item{chromend}{end position}
+
+  \item{max_y}{The maximum bin distance to plot}
+
+  \item{zrange}{The range of interaction scores to plot
+  (more extreme value will be set to the max or min)}
+
+  \item{palette}{color palette to use for representing
+  interaction scores}
+
+  \item{flip}{TRUE/FALSE whether plot should be flipped
+  over the x-axis}
+}
+\description{
+plots HiC interactio matrix
+}
+\examples{
+data(Sushi_HiC.matrix)
+
+chrom            = "chr11"
+chromstart       = 500000
+chromend         = 5050000
+
+phic = plotHic(Sushi_HiC.matrix,chrom,chromstart,chromend,max_y = 20,zrange=c(0,28),palette = topo.colors,flip=FALSE)
+
+labelgenome(chrom,chromstart,chromend,side=1,scipen=20,n=4,scale="Mb",edgeblankfraction=0.20,line=.18,chromline=.5,scaleline=0.5)
+
+addlegend(phic[[1]],palette=phic[[2]],title="score",side="right",bottominset=0.4,topinset=0,xoffset=-.035,labelside="left",width=0.025,title.offset=0.035)
+}
+

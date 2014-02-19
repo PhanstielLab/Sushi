@@ -1,0 +1,19 @@
+\docType{data}
+\name{Sushi_HiC.matrix}
+\alias{Sushi_HiC.matrix}
+\title{Sushi_HiC.matrix}
+\format{matrix}
+\source{
+Dixon, J. R. et al. Topological domains in mammalian
+genomes identified by analysis of chromatin interactions.
+Nature (2012). doi:10.1038/nature11082
+}
+\usage{
+Sushi_HiC.matrix
+}
+\description{
+Bed data representing results from a GWAS study of blood
+pressure and cardiovascular disease risk with coordinates
+based on the NCBI36 / hg18 genome build.
+}
+

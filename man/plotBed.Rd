@@ -1,0 +1,143 @@
+\name{plotBed}
+\alias{plotBed}
+\title{plots data stored in bed file format}
+\usage{
+plotBed(beddata, chrom, chromstart, chromend, type = "region",
+  colorby = NULL, colorbycol = NULL, colorbyrange = NULL,
+  rownumber = NULL, row = "auto", height = 0.4, plotbg = "white",
+  wiggle = 0.02, splitstrand = FALSE, numbins = 200, binsmoothing = 10,
+  palettes = topo.colors, rowlabels = NULL, rowlabelcol = "dodgerblue2",
+  rowlabelfont = 2, rowlabelcex = 1, maxrows = 1000000,
+  color = "dodgerblue4", xaxt = "none", yaxt = "none", xlab = "",
+  ylab = "", xaxs = "i", yaxs = "i", bty = "n", border = NA, ...)
+}
+\arguments{
+  \item{beddata}{genomic data to be plotted (in bed
+  format)}
+
+  \item{chrom}{chromosome of region to be plotted}
+
+  \item{chromstart}{start position}
+
+  \item{chromend}{end position}
+
+  \item{type}{type of plot ('region','circles','density')}
+
+  \item{colorby}{vector to scale colors by}
+
+  \item{colorbycol}{palette to apply color scale to (only
+  valid when colorby is not NULL)}
+
+  \item{colorbyrange}{the range of values to apply the
+  color scale to.  Values outside that range will be set to
+  the limits of the range.}
+
+  \item{rownumber}{vector giving the row numbers of each
+  bed element to be plotted.}
+
+  \item{row}{How row number should be determined.
+  Appropriate values are 'auto' or 'supplied'}
+
+  \item{height}{Value, typically between 0 and 1, that sets
+  the height of each bed element}
+
+  \item{plotbg}{The background color of the plot}
+
+  \item{wiggle}{the fraction of the plot to leave blank on
+  either side of each element to avoid overcrowding.}
+
+  \item{splitstrand}{TRUE/FALSE indicating whether reverse
+  strnad bed elements shold be plotted below the x axis.
+  (only valid when row is set to 'auto')}
+
+  \item{numbins}{The number of bins to divide the region
+  into when type is set to density (only valid when type is
+  set to 'density')}
+
+  \item{binsmoothing}{umber of bins to sum together when
+  type is set to density (only valid when type is set to
+  'density')}
+
+  \item{palettes}{list of color palettes used for density
+  plots.  Each row can have a unique palette (only valid
+  when type is set to 'density')}
+
+  \item{rowlabels}{labels for the y-axis}
+
+  \item{rowlabelcol}{color of the y-axis labels}
+
+  \item{rowlabelfont}{font of the y-axis labels}
+
+  \item{rowlabelcex}{font size of the y-axis labels}
+
+  \item{maxrows}{The maximum number of rows to plot on the
+  y-axis}
+
+  \item{color}{single color or vector of colors to use to
+  plot the points or regions (not valid when type is set to
+  'density')}
+
+  \item{xaxt}{A character which specifies the x axis type.
+  See \code{\link{par}}}
+
+  \item{yaxt}{A character which specifies the y axis type.
+  See \code{\link{par}}}
+
+  \item{xlab}{Label for the x-axis}
+
+  \item{ylab}{Label for the y-axis}
+
+  \item{xaxs}{Must be set to 'i' for appropriate
+  integration into Sushi plots.  See \code{\link{par}}}
+
+  \item{yaxs}{Must be set to 'i' for appropriate
+  integration into Sushi plots.  See \code{\link{par}}}
+
+  \item{bty}{A character string which determined the type
+  of box which is drawn about plots.  See
+  \code{\link{par}}}
+
+  \item{border}{border color drawn around each bed element
+  or density bin.  Set to 'n' for none.}
+
+  \item{...}{values to be passed to other functions}
+}
+\description{
+plots data stored in bed file format
+}
+\examples{
+data(Sushi_ChIPSeq_severalfactors.bed)
+chrom            = "chr15"
+chromstart      = 72800000
+chromend         = 73100000
+Sushi_ChIPSeq_severalfactors.bed$color = heat.colors(max(Sushi_ChIPSeq_severalfactors.bed$row))[Sushi_ChIPSeq_severalfactors.bed$row]
+plotBed(beddata    = Sushi_ChIPSeq_severalfactors.bed,chrom = chrom,chromstart = chromstart,chromend =chromend,
+        rownumber  = Sushi_ChIPSeq_severalfactors.bed$row, type = "circles",color=Sushi_ChIPSeq_severalfactors.bed$color,row="given",plotbg="grey95",
+        rowlabels=unique(Sushi_ChIPSeq_severalfactors.bed$name),rowlabelcol=unique(Sushi_ChIPSeq_severalfactors.bed$color),rowlabelcex=0.75)
+
+Sushi_ChIPSeq_severalfactors.bed$color = heat.colors(max(Sushi_ChIPSeq_severalfactors.bed$row))[Sushi_ChIPSeq_severalfactors.bed$row]
+
+plotBed(beddata    = Sushi_ChIPSeq_severalfactors.bed,chrom = chrom,chromstart = chromstart,chromend =chromend,
+        rownumber  = Sushi_ChIPSeq_severalfactors.bed$row, type = "region",color=Sushi_ChIPSeq_severalfactors.bed$color,row="given",plotbg="grey95",
+        rowlabels=unique(Sushi_ChIPSeq_severalfactors.bed$name),rowlabelcol=unique(Sushi_ChIPSeq_severalfactors.bed$color),rowlabelcex=0.75)
+
+colors = c("dodgerblue1","firebrick2","violet","yellow",
+        "dodgerblue1","firebrick2","violet","yellow",
+        "dodgerblue1","firebrick2","violet")
+plotBed(beddata    = Sushi_ChIPSeq_severalfactors.bed,chrom = chrom,chromstart = chromstart,chromend =chromend,
+         rownumber  = Sushi_ChIPSeq_severalfactors.bed$row, type = "density",row="supplied",
+         rowlabels=unique(Sushi_ChIPSeq_severalfactors.bed$name),rowlabelcol=colors,rowlabelcex=0.75,
+         palettes=list(
+         colorRampPalette(c("black",colors[1])),
+         colorRampPalette(c("black",colors[2])),
+         colorRampPalette(c("black",colors[3])),
+         colorRampPalette(c("black",colors[4])),
+         colorRampPalette(c("black",colors[5])),
+         colorRampPalette(c("black",colors[6])),
+         colorRampPalette(c("black",colors[7])),
+         colorRampPalette(c("black",colors[8])),
+         colorRampPalette(c("black",colors[9])),
+         colorRampPalette(c("black",colors[10])),
+         colorRampPalette(c("black",colors[11]))))
+}
+

@@ -1,0 +1,19 @@
+\docType{data}
+\name{Sushi_ChIPSeq_CTCF.bedgraph}
+\alias{Sushi_ChIPSeq_CTCF.bedgraph}
+\title{Sushi_ChIPSeq_CTCF.bedgraph}
+\format{bedgraph format}
+\source{
+Consortium, T. E. P. An integrated encyclopedia of DNA
+elements in the human genome. Nat. Methods 489, 57–74
+(2012).
+}
+\usage{
+Sushi_ChIPSeq_CTCF.bedgraph
+}
+\description{
+This data set describes read depths across the genomce
+resulting from a CTCF ChIP seq experiment in K562 cells
+with coordinates based on the NCBI36 / hg18 genome build.
+}
+

@@ -1,0 +1,71 @@
+\name{labelgenome}
+\alias{labelgenome}
+\title{Adds genome coordinates to the x-axis of a Sushi plot}
+\usage{
+labelgenome(chrom, chromstart, chromend, genome = NULL, space = 0.01,
+  scale = "bp", side = 1, scipen = 20, n = 5, chromfont = 1.2,
+  chromadjust = 0.015, chromcex = 1, chromline = 1, scalefont = 1.2,
+  scaleadjust = 0.985, scalecex = 1, scaleline = 1, line = 0,
+  edgeblankfraction = 0.1)
+}
+\arguments{
+  \item{chrom}{chromosome to plot}
+
+  \item{chromstart}{start position}
+
+  \item{chromend}{end position}
+
+  \item{genome}{a genome object (2 columns: column 1 =
+  chromosome name, column 2 = length of chromosome). Only
+  for multi chromosomal plots}
+
+  \item{space}{the space in between each chromosome as a
+  fraction of the width of the plot.  Only for multi
+  chromosomal plots}
+
+  \item{scale}{Scale of the plot ('bp','Kb','Mb')}
+
+  \item{side}{Side of the scale to add the plot to.  Only
+  tested for sides 1 and 3.}
+
+  \item{scipen}{higher values decrease the likelihood of
+  using scientific for the position labels.}
+
+  \item{n}{Desired number of ticks}
+
+  \item{chromfont}{font type of chromosome label}
+
+  \item{chromadjust}{position, as a fraction of the width
+  of the plot, of the chomosome label}
+
+  \item{chromcex}{font size of the chomosome label}
+
+  \item{chromline}{vertical offset of the chomosome label}
+
+  \item{scalefont}{font type of scale label}
+
+  \item{scaleadjust}{position, as a fraction of the width
+  of the plot, of the scale label}
+
+  \item{scalecex}{font size of the scale label}
+
+  \item{scaleline}{vertical offset of the scale label}
+
+  \item{line}{vertical offset of position labels}
+
+  \item{edgeblankfraction}{percent of the edges to leave
+  black for chromosome and scale labels}
+}
+\description{
+Adds genome coordinates to the x-axis of a Sushi plot
+}
+\examples{
+data(Sushi_DNaseI.bedgraph)
+# set the genomic regions
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom="chr11",chromstart=1650000,chromend=2350000,transparency=1.0,color="#5900E5",lwd=1,linecol="#5900E5")
+labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,side=1,scipen=20,n=4,line=.18,chromline=.5,scaleline=0.5,scale="Mb")
+axis(side=2,las=2,tcl=.2)
+mtext("Read Depth",side=2,line=1.75,cex=.75,font=2)
+}
+

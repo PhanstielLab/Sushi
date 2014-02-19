@@ -1,0 +1,89 @@
+\name{plotbedpe}
+\alias{plotbedpe}
+\title{plots data stored in bed file format}
+\usage{
+plotbedpe(bedpedata, chrom, chromstart, chromend, heights, color = "black",
+  colorby = NULL, colorbycol = NULL, colorbyrange = NULL, lwdby = NULL,
+  lwdrange = c(1, 5), offset = 0, flip = FALSE, lwd = 1, xaxt = "n",
+  yaxt = "n", bty = "n", plottype = "loops", maxrows = 10000,
+  height = 0.3, ...)
+}
+\arguments{
+  \item{bedpedata}{bed paired end data to be plotted}
+
+  \item{chrom}{chromosome of region to be plotted}
+
+  \item{chromstart}{start position}
+
+  \item{chromend}{end position}
+
+  \item{heights}{single value or vector specifying the
+  height of the arches to be plotted (only valid when
+  plottype is set to "loops" )}
+
+  \item{color}{single value or vector specifying colors of
+  bedpe elements}
+
+  \item{colorby}{vector to scale colors by}
+
+  \item{colorbycol}{palette to apply color scale to (only
+  valid when colorby is not NULL)}
+
+  \item{colorbyrange}{the range of values to apply the
+  color scale to.  Values outside that range will be set to
+  the limits of the range.}
+
+  \item{lwdby}{vector to scale line widths by}
+
+  \item{lwdrange}{the range of values to apply the line
+  width scale to.  Values outside that range will be set to
+  the limits of the range.}
+
+  \item{offset}{offset of bedpe elements from the x-axis}
+
+  \item{flip}{TRUE/FALSE whether the plot should be flipped
+  over the x-axis}
+
+  \item{lwd}{linewidth for bedpe elements (only valid when
+  colorby is not NULL)}
+
+  \item{xaxt}{A character which specifies the x axis type.
+  See \code{\link{par}}}
+
+  \item{yaxt}{A character which specifies the y axis type.
+  See \code{\link{par}}}
+
+  \item{plottype}{type of plot (acceptable values are
+  'loops' and 'lines')}
+
+  \item{maxrows}{The maximum number of rows to plot on the
+  y-axis}
+
+  \item{height}{the height of the boxes at either end of a
+  bedpe element if plottype is set to 'lines'. Typical
+  vaues range form 0 to 1.  (only valid when plottype is
+  set to 'lines')}
+
+  \item{bty}{A character string which determined the type
+  of box which is drawn about plots.  See
+  \code{\link{par}}}
+
+  \item{...}{values to be passed to See \code{\link{plot}}}
+}
+\description{
+plots data stored in bed file format
+}
+\examples{
+data(Sushi_5C.bedpe)
+
+chrom            = "chr11"
+chromstart       = 1650000
+chromend         = 2350000
+pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
+lwd=1,plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=topo.colors)
+labelgenome(chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
+legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),col=c(topo.colors(3)),pch=19,bty='n',text.font=2)
+axis(side=2,las=2,tcl=.2)
+mtext("Z-score",side=2,line=1.75,cex=.75,font=2)
+}
+

@@ -1,0 +1,19 @@
+\docType{data}
+\name{Sushi_ChIAPET_pol2.bedpe}
+\alias{Sushi_ChIAPET_pol2.bedpe}
+\title{Sushi_ChIAPET_pol2.bedpe}
+\format{bedpe format}
+\source{
+Li, G. et al. Extensive Promoter-Centered Chromatin
+Interactions Provide a Topological Basis for Transcription
+Regulation. Cell 148, 84–98 (2012).
+}
+\usage{
+Sushi_ChIAPET_pol2.bedpe
+}
+\description{
+This data set list the genomic locations of Pol2 ChIA PET
+interactions in K562 cells with coordinates based on the
+NCBI36 / hg18 genome build.
+}
+
