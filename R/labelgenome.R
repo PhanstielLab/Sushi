@@ -31,8 +31,8 @@
 #' 
 labelgenome <-
 function(chrom, chromstart,chromend,genome=NULL,space=0.01,scale="bp",side=1,scipen=20,n=5,
-                        chromfont=1.2,chromadjust=0.015,chromcex=1,chromline=1,
-                        scalefont=1.2,scaleadjust=0.985,scalecex=1,scaleline=1,line=0,edgeblankfraction=0.10)
+                        chromfont=2,chromadjust=0.015,chromcex=1,chromline=1,
+                        scalefont=2,scaleadjust=0.985,scalecex=1,scaleline=1,line=0,edgeblankfraction=0.10)
 {
   
   minxpos = par('usr')[1]

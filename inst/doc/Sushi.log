@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  19 FEB 2014 22:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  20 FEB 2014 12:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -289,36 +289,93 @@ File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <10> not available
 (Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 19.
-
-<Sushi-002.pdf, id=2, 433.62pt x 433.62pt>
-File: Sushi-002.pdf Graphic file (type pdf)
- <use Sushi-002.pdf>
-Package pdftex.def Info: Sushi-002.pdf used on input line 41.
-(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
  [1
 
-{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2 <./S
-ushi-002.pdf>] (./Sushi.aux) ) 
+{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<Sushi-003.pdf, id=14, 433.62pt x 433.62pt>
+File: Sushi-003.pdf Graphic file (type pdf)
+ <use Sushi-003.pdf>
+Package pdftex.def Info: Sushi-003.pdf used on input line 60.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+ [2 <./Sushi-003.pdf>] <Sushi-005.pdf, id=24, 433.62pt x 433.62pt>
+File: Sushi-005.pdf Graphic file (type pdf)
+ <use Sushi-005.pdf>
+Package pdftex.def Info: Sushi-005.pdf used on input line 107.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+ [3]
+<Sushi-006.pdf, id=28, 433.62pt x 433.62pt>
+File: Sushi-006.pdf Graphic file (type pdf)
+ <use Sushi-006.pdf>
+Package pdftex.def Info: Sushi-006.pdf used on input line 132.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+ [4 <./Sushi-005.pdf>] [5 <./Sushi-006.pdf>] <Sushi-008.pdf, id=47, 433.62pt x 
+433.62pt>
+File: Sushi-008.pdf Graphic file (type pdf)
+
+<use Sushi-008.pdf>
+Package pdftex.def Info: Sushi-008.pdf used on input line 186.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.189 ...ent Z-scores by setting colorby = "Sushi_
+                                                  5C.bedpe$score".
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 189.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 189.
+[6 <./Sushi-008.pdf>] <Sushi-009.pdf, id=57, 433.62pt x 433.62pt>
+File: Sushi-009.pdf Graphic file (type pdf)
+
+<use Sushi-009.pdf>
+Package pdftex.def Info: Sushi-009.pdf used on input line 209.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+ [7 <./Sushi-009.pdf>]
+<Sushi-011.pdf, id=70, 433.62pt x 433.62pt>
+File: Sushi-011.pdf Graphic file (type pdf)
+ <use Sushi-011.pdf>
+Package pdftex.def Info: Sushi-011.pdf used on input line 255.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+ [8] [9 <./Sushi-011.pdf>] <Sushi-012.pdf, id=83, 433.62pt x 433.62pt>
+File: Sushi-012.pdf Graphic file (type pdf)
+ <use Sushi-012.pdf>
+Package pdftex.def Info: Sushi-012.pdf used on input line 283.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+
+[10 <./Sushi-012.pdf>] <Sushi-013.pdf, id=96, 433.62pt x 433.62pt>
+File: Sushi-013.pdf Graphic file (type pdf)
+
+<use Sushi-013.pdf>
+Package pdftex.def Info: Sushi-013.pdf used on input line 319.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+ [11 <./Sushi-013.pdf>] (./Sushi.aux) ) 
 Here is how much of TeX's memory you used:
- 2723 strings out of 493315
- 39494 string characters out of 6137904
+ 2761 strings out of 493315
+ 40601 string characters out of 6137904
  90362 words of memory out of 5000000
- 6114 multiletter control sequences out of 15000+600000
- 20917 words of font info for 49 fonts, out of 8000000 for 9000
+ 6144 multiletter control sequences out of 15000+600000
+ 21085 words of font info for 50 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,6n,23p,487b,284s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvi
-ps/cm-super/cm-super-ts1.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr17.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsltt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/c
-m-super/sfst1000.pfb>
-Output written on Sushi.pdf (2 pages, 1559349 bytes).
+ 37i,6n,23p,487b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2013/texmf-dist/font
+s/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2013/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsltt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
+ic/cm-super/sfst1000.pfb>
+Output written on Sushi.pdf (11 pages, 1820227 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
+ 140 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 10 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
