@@ -4,6 +4,8 @@ Sushi_data = data(package = 'Sushi')
 data(list = Sushi_data$results[,3]) 
 makepdf = FALSE
 
+
+
 ############################################################################
 #                                                                          #
 #                             DEFAULT PALETTES                             #
