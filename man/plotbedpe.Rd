@@ -68,7 +68,7 @@ plotbedpe(bedpedata, chrom, chromstart, chromend, heights, color = "black",
   of box which is drawn about plots.  See
   \code{\link{par}}}
 
-  \item{...}{values to be passed to See \code{\link{plot}}}
+  \item{...}{values to be passed to \code{\link{plot}}}
 }
 \description{
 plots data stored in bed file format

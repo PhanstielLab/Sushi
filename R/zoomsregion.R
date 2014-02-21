@@ -68,7 +68,7 @@
 #' legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),fill=c(finalcolor1,finalcolor2),border=c("blue","#E5001B"),text.font=2,cex=0.75)
 #' 
 zoomsregion <-
-function(region,chrom=NULL,genome=NULL,space=0.01,padding=0.005,col=NA,zoomborder="grey",lty=2,lwd=1,extend=0,wideextend=0.1,offsets=c(0,0),highlight=FALSE)
+function(region,chrom=NULL,genome=NULL,space=0.01,padding=0.005,col=NA,zoomborder="black",lty=2,lwd=1,extend=0,wideextend=0.1,offsets=c(0,0),highlight=FALSE)
 {
   if (is.null(genome) == FALSE)
   {

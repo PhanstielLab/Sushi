@@ -8,7 +8,7 @@
 #' @param range y-range to plpt ( c(min,max) )
 #' @param color color of signal track  
 #' @param lwd color of line outlining signal track.  (only valid if linecol is not NA)
-#' @param linecol color of line outlining signal track.  use NA for no outline
+#' @param linecolor color of line outlining signal track.  use NA for no outline
 #' @param addscale TRUE/FALSE whether to add a y-axis
 #' @param overlay TRUE / FALSE whether this data should be plotted on top of an existing plot
 #' @param rescaleoverlay TRUE/FALSE whether the new plot shold be rescaled based on the maximum value to match the existing plot (only valid when overlay is set to 'TRUE')   
@@ -45,10 +45,14 @@
 #' legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),fill=c(finalcolor1,finalcolor2),border=c("blue","#E5001B"),text.font=2,cex=0.75)
 plotBedgraph <-
 function(signal,chrom,chromstart,chromend,range=NULL,color="dodgerblue4",
-                         lwd=1,linecol=NA,addscale=FALSE,overlay=FALSE,rescaleoverlay=FALSE,transparency=1.0,
+                         lwd=1,linecolor=NA,addscale=FALSE,overlay=FALSE,rescaleoverlay=FALSE,transparency=1.0,
                          flip=FALSE, xaxt='none',yaxt='none',xlab="",ylab="",xaxs="i",yaxs="i",bty='n',
                          ...)
 {
+  if(is.na(linecolor ) == TRUE)
+  {
+    linecolor = color
+  }
   
   # ensure that the chromosome is a character
   signal[,1] = as.character(signal[,1])
@@ -139,7 +143,7 @@ function(signal,chrom,chromstart,chromend,range=NULL,color="dodgerblue4",
   finalcolor = rgb(rgbcol[1],rgbcol[2],rgbcol[3],alpha=transparency * 255,maxColorValue = 255)
   
   # plot the signal track
-  polygon(signaltrack,col=finalcolor,border=linecol,lwd=lwd)
+  polygon(signaltrack,col=finalcolor,border=linecolor,lwd=lwd)
   
   # add scale to upper right corner
   if (addscale == TRUE)

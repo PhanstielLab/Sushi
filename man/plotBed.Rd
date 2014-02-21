@@ -59,8 +59,10 @@ plotBed(beddata, chrom, chromstart, chromend, type = "region",
   'density')}
 
   \item{palettes}{list of color palettes used for density
-  plots.  Each row can have a unique palette (only valid
-  when type is set to 'density')}
+  plots.  Each row can have a unique palette.  number of
+  palettes is less than the number of rows then only the
+  first palette is used (only valid when type is set to
+  'density')}
 
   \item{rowlabels}{labels for the y-axis}
 

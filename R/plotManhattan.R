@@ -27,11 +27,13 @@
 #' 
 #' 
 plotManhattan <-
-function(bedfile, chrom=NULL,chromstart=NULL,chromend=NULL,pvalues,genome=NULL,col,space=0.01,...)
+function(bedfile, chrom=NULL,chromstart=NULL,chromend=NULL,pvalues,genome=NULL,col=topo.colors,space=0.01,...)
 {
   if (is.null(genome) == FALSE)
   {
     chromoffsets = chromOffsets(genome,space)
+    
+    col = col(nrow(chromoffsets))
     
     # remove data from chroms not in genome
     bedfile = bedfile[bedfile[,1]%in%chromoffsets[,1],]

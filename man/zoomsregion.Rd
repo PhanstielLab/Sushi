@@ -3,7 +3,7 @@
 \title{Adds a zoom region to a plot}
 \usage{
 zoomsregion(region, chrom = NULL, genome = NULL, space = 0.01,
-  padding = 0.005, col = NA, zoomborder = "grey", lty = 2, lwd = 1,
+  padding = 0.005, col = NA, zoomborder = "black", lty = 2, lwd = 1,
   extend = 0, wideextend = 0.1, offsets = c(0, 0), highlight = FALSE)
 }
 \arguments{

@@ -3,7 +3,7 @@
 \title{plots data stored in bed file format}
 \usage{
 plotBedgraph(signal, chrom, chromstart, chromend, range = NULL,
-  color = "dodgerblue4", lwd = 1, linecol = NA, addscale = FALSE,
+  color = "dodgerblue4", lwd = 1, linecolor = NA, addscale = FALSE,
   overlay = FALSE, rescaleoverlay = FALSE, transparency = 1,
   flip = FALSE, xaxt = "none", yaxt = "none", xlab = "", ylab = "",
   xaxs = "i", yaxs = "i", bty = "n", ...)

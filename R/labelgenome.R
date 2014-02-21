@@ -19,6 +19,7 @@
 #' @param scaleline vertical offset of the scale label
 #' @param line vertical offset of position labels
 #' @param edgeblankfraction percent of the edges to leave black for chromosome and scale labels
+#' @param ... values to be passed to \code{\link{axis}}
 #' @export 
 #' @examples
 #' data(Sushi_DNaseI.bedgraph)
@@ -31,8 +32,8 @@
 #' 
 labelgenome <-
 function(chrom, chromstart,chromend,genome=NULL,space=0.01,scale="bp",side=1,scipen=20,n=5,
-                        chromfont=1.2,chromadjust=0.015,chromcex=1,chromline=1,
-                        scalefont=1.2,scaleadjust=0.985,scalecex=1,scaleline=1,line=0,edgeblankfraction=0.10)
+                        chromfont=2,chromadjust=0.015,chromcex=1,chromline=0.5,
+                        scalefont=2,scaleadjust=0.985,scalecex=1,scaleline=0.5,line=0.18,edgeblankfraction=0.10,...)
 {
   
   minxpos = par('usr')[1]
@@ -50,7 +51,7 @@ function(chrom, chromstart,chromend,genome=NULL,space=0.01,scale="bp",side=1,sci
     # label the chromsomes
     chromcenters = (chromoffsets[,3] + chromoffsets[,4]) / 2
     labels = gsub("chr", "", chromoffsets[,1]) 
-    axis(side=side,at=chromcenters,labels=labels)  
+    axis(side=side,at=chromcenters,labels=labels,...)  
 }
 
   if(is.null(genome) ==TRUE)
@@ -83,8 +84,7 @@ function(chrom, chromstart,chromend,genome=NULL,space=0.01,scale="bp",side=1,sci
     labels = labels[2:(length(labels)-1)]
     
     #plot the axis
-    axis(side=side,at = c(par('usr')[1]-range,labels*fact,par('usr')[2]+range), labels=c("",labels,""),line=line)
-    
+    axis(side=side,at = c(par('usr')[1]-range,labels*fact,par('usr')[2]+range), labels=c("",labels,""),line=line,...)
     mtext(chrom,side=side,font=chromfont,adj=chromadjust,line=chromline + line,cex=chromcex)
     mtext(scale,side=side,font=chromfont,adj=scaleadjust,line=scaleline + line,cex=scalecex)
   }
