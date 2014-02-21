@@ -1,7 +1,7 @@
 %\VignetteIndexEntry{Sushi}
 \documentclass{article}
 \title{Sushi: An R/Bioconductor package for visualizing genomic data}
-\author{Douglas H Phanstiel, Alan Boyle, Carlos Araya, and Mike Snyder}
+\author{Douglas H Phanstiel, Alan P Boyle, Carlos L Araya, and Mike Snyder}
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 
@@ -13,7 +13,7 @@ options(continue=" ")
 \maketitle
 \section{Introduction}
 
-Sushi is an R package for plotting genomic data stored in multiple common genomic formats including bed, bedpe, bedgraph format. The flexible code allows for integration of the plots into multipanel figures that can include plots made by sushi, R basecode, or other R packages.  Sushi allows for simple flexible plotting of gene structures, transcript structures, sequencing tracks, ChIP seq peaks, chromatin interactions, GWAS results and other commen genomic data types.   
+Sushi is an R package for plotting genomic data stored in multiple common genomic formats including bed, bedpe, bedgraph format. The flexible code allows for integration of the plots into multipanel figures that can include plots made by Sushi, R basecode, or other R packages.  Sushi allows for simple flexible plotting of gene structures, transcript structures, sequencing tracks, ChIP-seq peaks, chromatin interactions, GWAS results and other commen genomic data types.   
 
 \section{Data types}
 Sushi accepts 4 types of genomic data as input.  These include:
@@ -26,12 +26,12 @@ Sushi accepts 4 types of genomic data as input.  These include:
 \end{itemize}
 
 \paragraph
-** strands are represented as 1 or -1 (instead of the standard "+" and "-".
+** strands are represented as 1 or -1 (instead of the standard "+" and "-").
 \paragraph
 ** Some functions may require additional information depending on the plot and features desired.
 
 \section{Functions}
-Sushi functions can be broken down into 3 categories: plotting, annotating, and zooming.  Plotting functions plot the data. Annotating functions add information to the plots such as an x-axis labeling the gneomic region or a legend describing the values represented by different colors. Zooming functions allow for highlighting and zooming of genomic regions, which are of particular use for multipanel plots generated with base R functions mfrow or layout.
+Sushi functions can be broken down into 3 categories: plotting, annotating, and zooming.  Plotting functions generate a basic plot object using the data. Annotating functions add information to the plots such as an x-axis labeling the genomic region or a legend describing the values represented by different colors. Zooming functions allow for highlighting and zooming of genomic regions, which are of particular use for multipanel plots generated with base R functions \texttt{mfrow()} or \texttt{layout()}.
 
 \begin{itemize}
 
@@ -44,10 +44,10 @@ Sushi functions can be broken down into 3 categories: plotting, annotating, and 
 
 
 \subsection{Non-Sushi Functions}
-An important characteristic of Sushi plots is their compatibility with all base R functions and their ability to be combined into complex multipanel figures.  Two of the most usefule base R functions for creating multipanel figures are layout and mfrow.  Basic R plotting functions such as axis, mtext, and legend are also particularly well suited to combine with Sushi plots.  A familiarity with these functions will greatly improve your ability to create Sushi plots.
+An important characteristic of Sushi plots is their compatibility with all base R functions and their ability to be combined into complex multipanel figures.  Two of the most usefule base R functions for creating multipanel figures are \texttt{layout()} and \texttt{mfrow()}.  Basic R plotting functions such as \texttt{axis()}, \texttt{mtext()}, and \texttt{legend()} are also particularly well suited to combine with Sushi plots.  A familiarity with these functions will greatly improve your ability to create Sushi plots.
 
 \section{Example datasets}
-To illustrate how Sushi works, we have included several publicaly available data sets in the package Sushi. The data types include RNA-seq, ChIP-seq, ChIA-PET, and HiC data and can be loaded using the following commands
+To illustrate how Sushi works, we have included several publicaly available data sets in the package Sushi. The data types include RNA-seq, ChIP-seq, ChIA-PET, and HiC data and can be loaded using the following commands:
 
 <<dataLoading>>=
 library('Sushi')
@@ -67,13 +67,13 @@ Sushi_data$results[,3]
 
 \section{plotBedgraph and basic Sushi usage}
 
-Signal tracks can be plotted using the plotBedgraph.  The input requires data in bedgraph format.  We will use bedgraph data representing a DNaseI hypersensitivity experiment in K562 cells.
+Signal tracks can be plotted using \texttt{plotBedgraph()}.  The input requires data in bedgraph format.  We will demonstrate this using bedgraph data representing a DNaseI hypersensitivity experiment in K562 cells.
 
 << fig = FALSE , echo = TRUE ,height=5,width=9>>=
   head(Sushi_DNaseI.bedgraph)
 @
 
-The 'plotBedgraph' function is used to plot the data.  As with most Sushi functions the basic required arguments include the data to be plotted, the chromosome, and a start and stop position.
+The \texttt{plotBedgraph()} function is used to plot the data.  As with most Sushi functions the basic required arguments include the data to be plotted, the chromosome, and a start and stop position.
 
 
 \begin{center}
@@ -86,7 +86,7 @@ plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend)
 @
 \end{center}
 
-To annotate the genome postion we use the 'labelgenome' function.  "n = 4" specifies the desired number of tickmarks.  And the scale is set to "Mb" (other options are "Kb" or "bp").
+To annotate the genome postion we use the \texttt{labelgenome()} function.  \texttt{"n = 4"} specifies the desired number of tickmarks.  And the scale is set to "Mb" (other options are "Kb" or "bp").
 
 \begin{center}
 << fig = FALSE , echo = TRUE, eval=FALSE >>=
@@ -103,7 +103,7 @@ labelgenome(chrom,chromstart,chromend,n=4,scale="Mb")
 \end{center}
 
 
-The y-axis can be added using basic R functions 'mtext' and 'axis'.
+The y-axis can be added using basic R functions \texttt{mtext()} and \texttt{axis()}.
 
 \begin{center}
 
@@ -123,7 +123,7 @@ axis(side=2,las=2,tcl=.2)
 @
 \end{center}
 
-Multiple bedgraph tracks can be plotted on the same plot by setting overlay=TRUE.  Transparencies can be added for easier viewing by adjusting the transcparency value.  The second plot can be rescaled to the maximum of the first plot by setting rescaleoverlay=TRUE.
+Multiple bedgraph tracks can be plotted on the same plot by setting \texttt{overlay=TRUE}.  Transparencies can be added for easier viewing by adjusting the transcparency value.  The second plot can be rescaled to the maximum of the first plot by setting \texttt{rescaleoverlay=TRUE}.
 
 \begin{center}
 << fig = TRUE , echo = TRUE,height=5,width=9 >>=
@@ -139,7 +139,7 @@ labelgenome(chrom,chromstart,chromend,n=3,scale="Kb")
 @
 \end{center}
 
-Then we can use the base R function legend to add a legend to the plot.  First we need ot use the rgb function to add transparency to the colors in order to match out plot.
+Then we can use the base R function \texttt{legend()} to add a legend to the plot.  First we need to use the rgb function to add transparency to the colors in order to match out plot.
 
 \begin{center}
 
@@ -177,7 +177,7 @@ legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),
 
 \end{center}
 
-Setting flip=TRUE is another method that can be used to compare tracks.  First, we will use mfrow to divided the plotting divice into two vertically stacked regions.
+Setting \texttt{flip=TRUE} is another method that can be used to compare tracks.  First, we will use mfrow to divided the plotting divice into two vertically stacked regions.
 
 \begin{center}
 << fig = FALSE , echo = TRUE ,eval=FALSE>>=
@@ -221,7 +221,7 @@ legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),
 @
 \end{center}
 
-Finally, we add the second plot with flip=TRUE.  We will also label the x-axis using labelgenome and label the y-axis using mtext and axis.
+Finally, we add the second plot with \texttt{flip=TRUE}.  We will also label the x-axis using labelgenome and label the y-axis using mtext and axis.
 
 \begin{center}
 << fig = FALSE , echo = TRUE ,eval=FALSE>>=
@@ -285,7 +285,7 @@ HiC interaction plots can be plotted given an interaction matrix in which row an
   Sushi_HiC.matrix[100:105,100:105]
 @
 
-The 'plotHiC' function is used to plot the data while the 'labelgenome' function is used to add the genome labels to the x-axis.  'plotHiC' returns an object indicating the color palette and data range that can be fed into 'addlegend' to create a legend.
+The \texttt{plotHiC()} function is used to plot the data while the \texttt{labelgenome()} function is used to add the genome labels to the x-axis.  \texttt{plotHiC()} returns an object indicating the color palette and data range that can be fed into \texttt{addlegend()} to create a legend.
 
 \begin{center}
 
@@ -301,11 +301,11 @@ labelgenome(chrom,chromstart,chromend,n=4,scale="Mb",edgeblankfraction=0.20)
 @
 \end{center}
 
-plotHic has a number of customizable options.  The plot can be flipped over the x-axis by setting flip = TRUE.  The color palette can be changed by the palette argument. 
+\texttt{plotHiC()} has a number of customizable options.  The plot can be flipped over the x-axis by setting \texttt{flip = TRUE}.  The color palette can be changed by the palette argument. 
 
-addlegend also has customizable features.  The legend can be moved to the left side of the plot by setting side = "left" and the labeling canbe moved to the right side of the lenged buy setting labelside = "right".  The vertical position of the legend can be adjusted by changing the topinset and bottominset.
+\texttt{addlegend()} also has customizable features.  The legend can be moved to the left side of the plot by setting \texttt{side = "left"} and the labeling canbe moved to the right side of the lenged buy setting \texttt{labelside = "right"}.  The vertical position of the legend can be adjusted by changing the \texttt{topinset} and \texttt{bottominset}.
 
-Finally, the x-axis label can be moved to the top of the plot by setting side = 3 in the labelgenome function.
+Finally, the x-axis label can be moved to the top of the plot by setting \texttt{side = 3} in the \texttt{labelgenome()} function.
 
 \begin{center}
 
@@ -328,13 +328,13 @@ labelgenome(chrom,chromstart,chromend,side=3,n=4,scale="Mb",edgeblankfraction=0.
 
 \section{plotBedpe}
 
-plotBedpe allows for data in bedpe format to be plotted in multiple fashions.  To illustrate this we will use 5C data formatted in the following way.
+\texttt{plotBedpe()} allows for data in bedpe format to be plotted in multiple fashions.  To illustrate this we will use 5C data formatted in the following way.
 
 << fig = FALSE , echo = TRUE >>=
   head(Sushi_5C.bedpe)
 @
 
-plotBedpe can plot bedpe as arches.  The height, linewidth, and color of each arch can be scaled to represent different aspects of the data.  Here the height of the arches represents the Z-score of the 5C interaction, the color represents the cell line each interaction was detected in, and the line widths are kept constant.
+\texttt{plotBedpe()} can plot bedpe as arches.  The height, linewidth, and color of each arch can be scaled to represent different aspects of the data.  Here the height of the arches represents the Z-score of the 5C interaction, the color represents the cell line each interaction was detected in, and the line widths are kept constant.
 
 \begin{center}
 
@@ -353,7 +353,7 @@ mtext("Z-score",side=2,line=1.75,cex=.75,font=2)
 @
 \end{center}
 
-The plot can be flipped over the x-axis by setting flip = TRUE,  Bedpe elements can be represented by boxes and straight lines by setting plottype = "lines".  And colors can be used to represent Z-scores by setting colorby = "Sushi_5C.bedpe$score". 
+The plot can be flipped over the x-axis by setting \texttt{flip = TRUE},  Bedpe elements can be represented by boxes and straight lines by setting \texttt{plottype = "lines"}.  And colors can be used to represent Z-scores by setting \texttt{colorby = "Sushi\_5C.bedpe\$score"}. 
 
 \begin{center}
 
@@ -399,7 +399,7 @@ legend("topright",inset=0,legend=c("reverse","forward"),fill=SushiColors("two")(
 @
 \end{center}
 
-Setting splitstrand = TRUE plots reads from different strands in two separate vertical regions.
+Setting \texttt{splitstrand = TRUE} plots reads from different strands in two separate vertical regions.
 
 \begin{center}
 << fig = TRUE , echo = TRUE ,height=4,width=9>>=
