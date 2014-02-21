@@ -21,7 +21,7 @@
 #' @param maxrows The maximum number of rows to plot on the y-axis
 #' @param height the height of the boxes at either end of a bedpe element if plottype is set to 'lines'. Typical vaues range form 0 to 1.  (only valid when plottype is set to 'lines')
 #' @param bty A character string which determined the type of box which is drawn about plots.  See \code{\link{par}}
-#' @param ... values to be passed to See \code{\link{plot}}
+#' @param ... values to be passed to \code{\link{plot}}
 #' @examples
 #' 
 #' data(Sushi_5C.bedpe)

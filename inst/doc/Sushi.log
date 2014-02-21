@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  20 FEB 2014 12:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  21 FEB 2014 14:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -261,121 +261,203 @@ e
 ))
 (./Sushi-concordance.tex)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 8.
+(Font)              <12> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 8.
+(Font)              <8> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 8.
+(Font)              <6> on input line 10.
 
-Overfull \hbox (5.02519pt too wide) in paragraph at lines 8--8
+Overfull \hbox (5.02519pt too wide) in paragraph at lines 10--10
  [][] 
  []
 
-LaTeX Font Info:    Try loading font information for T1+aett on input line 18.
+LaTeX Font Info:    Try loading font information for TS1+aer on input line 19.
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/ts1aer.fd
+File: ts1aer.fd 
+)
+LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <10> not available
+(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 19.
+
+[1
+
+{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for T1+aett on input line 50.
+
 (/usr/local/texlive/2013/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 19.
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 51.
 
 
 (/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 19.
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 51.
 
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <10> not available
-(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 19.
- [1
-
-{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<Sushi-003.pdf, id=14, 433.62pt x 433.62pt>
-File: Sushi-003.pdf Graphic file (type pdf)
- <use Sushi-003.pdf>
-Package pdftex.def Info: Sushi-003.pdf used on input line 60.
-(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
- [2 <./Sushi-003.pdf>] <Sushi-005.pdf, id=24, 433.62pt x 433.62pt>
+(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 51.
+ [2]
+<Sushi-005.pdf, id=19, 433.62pt x 433.62pt>
 File: Sushi-005.pdf Graphic file (type pdf)
  <use Sushi-005.pdf>
-Package pdftex.def Info: Sushi-005.pdf used on input line 107.
+Package pdftex.def Info: Sushi-005.pdf used on input line 110.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
- [3]
-<Sushi-006.pdf, id=28, 433.62pt x 433.62pt>
-File: Sushi-006.pdf Graphic file (type pdf)
- <use Sushi-006.pdf>
-Package pdftex.def Info: Sushi-006.pdf used on input line 132.
+ [3 <./Sushi-005.pdf>] <Sushi-007.pdf, id=26, 433.62pt x 433.62pt>
+File: Sushi-007.pdf Graphic file (type pdf)
+ <use Sushi-007.pdf>
+Package pdftex.def Info: Sushi-007.pdf used on input line 122.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
- [4 <./Sushi-005.pdf>] [5 <./Sushi-006.pdf>] <Sushi-008.pdf, id=47, 433.62pt x 
-433.62pt>
-File: Sushi-008.pdf Graphic file (type pdf)
 
-<use Sushi-008.pdf>
-Package pdftex.def Info: Sushi-008.pdf used on input line 186.
+<Sushi-009.pdf, id=27, 433.62pt x 433.62pt>
+File: Sushi-009.pdf Graphic file (type pdf)
+ <use Sushi-009.pdf>
+Package pdftex.def Info: Sushi-009.pdf used on input line 137.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+ [4 <./Sushi-007.pdf>] <Sushi-010.pdf, id=37, 650.43pt x 361.35pt>
+File: Sushi-010.pdf Graphic file (type pdf)
+ <use Sushi-010.pdf>
+Package pdftex.def Info: Sushi-010.pdf used on input line 156.
+(pdftex.def)             Requested size: 276.00105pt x 153.33739pt.
+ [5 <./Sushi-009.pdf>] <Sushi-012.pdf, id=47, 650.43pt x 361.35pt>
+File: Sushi-012.pdf Graphic file (type pdf)
+ <use Sushi-012.pdf>
+Package pdftex.def Info: Sushi-012.pdf used on input line 174.
+(pdftex.def)             Requested size: 276.00105pt x 153.33739pt.
+
+[6 <./Sushi-010.pdf> <./Sushi-012.pdf>]
+<Sushi-015.pdf, id=69, 433.62pt x 433.62pt>
+File: Sushi-015.pdf Graphic file (type pdf)
+ <use Sushi-015.pdf>
+Package pdftex.def Info: Sushi-015.pdf used on input line 205.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+
+<Sushi-017.pdf, id=70, 650.43pt x 361.35pt>
+File: Sushi-017.pdf Graphic file (type pdf)
+ <use Sushi-017.pdf>
+Package pdftex.def Info: Sushi-017.pdf used on input line 225.
+(pdftex.def)             Requested size: 276.00105pt x 153.33739pt.
+ [7 <./Sushi-015.pdf>] <Sushi-019.pdf, id=84, 650.43pt x 289.08pt>
+File: Sushi-019.pdf Graphic file (type pdf)
+ <use Sushi-019.pdf>
+Package pdftex.def Info: Sushi-019.pdf used on input line 264.
+(pdftex.def)             Requested size: 276.00105pt x 122.66989pt.
+ [8 <./Sushi-017.pdf>] <Sushi-020.pdf, id=97, 650.43pt x 289.08pt>
+File: Sushi-020.pdf Graphic file (type pdf)
+ <use Sushi-020.pdf>
+Package pdftex.def Info: Sushi-020.pdf used on input line 287.
+(pdftex.def)             Requested size: 276.00105pt x 122.66989pt.
+
+[9 <./Sushi-019.pdf> <./Sushi-020.pdf>]
+<Sushi-022.pdf, id=113, 650.43pt x 361.35pt>
+File: Sushi-022.pdf Graphic file (type pdf)
+ <use Sushi-022.pdf>
+Package pdftex.def Info: Sushi-022.pdf used on input line 337.
+(pdftex.def)             Requested size: 276.00105pt x 153.33739pt.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.189 ...ent Z-scores by setting colorby = "Sushi_
+l.340 ...ent Z-scores by setting colorby = "Sushi_
                                                   5C.bedpe$score".
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 189.
+(Font)              <7> on input line 340.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 189.
-[6 <./Sushi-008.pdf>] <Sushi-009.pdf, id=57, 433.62pt x 433.62pt>
-File: Sushi-009.pdf Graphic file (type pdf)
+(Font)              <5> on input line 340.
+[10 <./Sushi-022.pdf>] <Sushi-023.pdf, id=123, 650.43pt x 433.62pt>
+File: Sushi-023.pdf Graphic file (type pdf)
 
-<use Sushi-009.pdf>
-Package pdftex.def Info: Sushi-009.pdf used on input line 209.
+<use Sushi-023.pdf>
+Package pdftex.def Info: Sushi-023.pdf used on input line 357.
+(pdftex.def)             Requested size: 276.00105pt x 184.00485pt.
+ [11 <./Sushi-023.pdf>]
+<Sushi-025.pdf, id=135, 650.43pt x 289.08pt>
+File: Sushi-025.pdf Graphic file (type pdf)
+ <use Sushi-025.pdf>
+Package pdftex.def Info: Sushi-025.pdf used on input line 397.
+(pdftex.def)             Requested size: 276.00105pt x 122.66989pt.
+
+<Sushi-026.pdf, id=136, 650.43pt x 289.08pt>
+File: Sushi-026.pdf Graphic file (type pdf)
+ <use Sushi-026.pdf>
+Package pdftex.def Info: Sushi-026.pdf used on input line 416.
+(pdftex.def)             Requested size: 276.00105pt x 122.66989pt.
+ [12 <./Sushi-025.pdf> <./Sushi-026.pdf>] <Sushi-027.pdf, id=152, 650.43pt x 36
+1.35pt>
+File: Sushi-027.pdf Graphic file (type pdf)
+
+<use Sushi-027.pdf>
+Package pdftex.def Info: Sushi-027.pdf used on input line 440.
+(pdftex.def)             Requested size: 276.00105pt x 153.33739pt.
+ [13 <./Sushi-027.pdf>]
+<Sushi-028.pdf, id=164, 650.43pt x 361.35pt>
+File: Sushi-028.pdf Graphic file (type pdf)
+ <use Sushi-028.pdf>
+Package pdftex.def Info: Sushi-028.pdf used on input line 464.
+(pdftex.def)             Requested size: 276.00105pt x 153.33739pt.
+
+<Sushi-029.pdf, id=165, 578.16pt x 144.54pt>
+File: Sushi-029.pdf Graphic file (type pdf)
+ <use Sushi-029.pdf>
+Package pdftex.def Info: Sushi-029.pdf used on input line 490.
+(pdftex.def)             Requested size: 276.00105pt x 68.99905pt.
+ [14 <./Sushi-028.pdf> <./Sushi-029.pdf>] <Sushi-031.pdf, id=181, 578.16pt x 43
+3.62pt>
+File: Sushi-031.pdf Graphic file (type pdf)
+
+<use Sushi-031.pdf>
+Package pdftex.def Info: Sushi-031.pdf used on input line 528.
+(pdftex.def)             Requested size: 276.00105pt x 206.9972pt.
+ [15 <./Sushi-031.pdf>]
+<Sushi-034.pdf, id=191, 433.62pt x 433.62pt>
+File: Sushi-034.pdf Graphic file (type pdf)
+ <use Sushi-034.pdf>
+Package pdftex.def Info: Sushi-034.pdf used on input line 574.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
- [7 <./Sushi-009.pdf>]
-<Sushi-011.pdf, id=70, 433.62pt x 433.62pt>
-File: Sushi-011.pdf Graphic file (type pdf)
- <use Sushi-011.pdf>
-Package pdftex.def Info: Sushi-011.pdf used on input line 255.
+ [16]
+<Sushi-036.pdf, id=195, 433.62pt x 433.62pt>
+File: Sushi-036.pdf Graphic file (type pdf)
+ <use Sushi-036.pdf>
+Package pdftex.def Info: Sushi-036.pdf used on input line 589.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
- [8] [9 <./Sushi-011.pdf>] <Sushi-012.pdf, id=83, 433.62pt x 433.62pt>
-File: Sushi-012.pdf Graphic file (type pdf)
- <use Sushi-012.pdf>
-Package pdftex.def Info: Sushi-012.pdf used on input line 283.
+ [17 <./Sushi-034.pdf>] <Sushi-038.pdf, id=205, 433.62pt x 433.62pt>
+File: Sushi-038.pdf Graphic file (type pdf)
+ <use Sushi-038.pdf>
+Package pdftex.def Info: Sushi-038.pdf used on input line 615.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
 
-[10 <./Sushi-012.pdf>] <Sushi-013.pdf, id=96, 433.62pt x 433.62pt>
-File: Sushi-013.pdf Graphic file (type pdf)
-
-<use Sushi-013.pdf>
-Package pdftex.def Info: Sushi-013.pdf used on input line 319.
-(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
- [11 <./Sushi-013.pdf>] (./Sushi.aux) ) 
+[18 <./Sushi-036.pdf>] [19 <./Sushi-038.pdf>] (./Sushi.aux) ) 
 Here is how much of TeX's memory you used:
- 2761 strings out of 493315
- 40601 string characters out of 6137904
- 90362 words of memory out of 5000000
- 6144 multiletter control sequences out of 15000+600000
- 21085 words of font info for 50 fonts, out of 8000000 for 9000
+ 2856 strings out of 493315
+ 42597 string characters out of 6137904
+ 91362 words of memory out of 5000000
+ 6213 multiletter control sequences out of 15000+600000
+ 27352 words of font info for 62 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,6n,23p,487b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/font
-s/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2013/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsltt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publ
-ic/cm-super/sfst1000.pfb>
-Output written on Sushi.pdf (11 pages, 1820227 bytes).
+ 37i,6n,23p,487b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texliv
+e/2013/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive
+/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2
+013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/20
+13/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2013
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2013/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2013/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2013/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsltt10.pfb></usr/local/texlive/2013/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2013/texmf-
+dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2013/texmf-di
+st/fonts/type1/public/cm-super/sfst1000.pfb>
+Output written on Sushi.pdf (19 pages, 2073198 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 100 compressed objects within 1 object stream
+ 262 PDF objects out of 1000 (max. 8388607)
+ 187 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 105 words of extra memory for PDF output out of 10000 (max. 10000000)
 

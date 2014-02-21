@@ -3,7 +3,7 @@
 \title{plots a Manhattan plot}
 \usage{
 plotManhattan(bedfile, chrom = NULL, chromstart = NULL, chromend = NULL,
-  pvalues, genome = NULL, col, space = 0.01, ...)
+  pvalues, genome = NULL, col = topo.colors, space = 0.01, ...)
 }
 \arguments{
   \item{bedfile}{bedfile for Manhattan plot}

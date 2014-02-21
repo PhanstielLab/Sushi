@@ -348,7 +348,6 @@ mtext("H)    GWAS",side=3, adj=-0.065,line=0.5,font=2)
 
 # set the margins
 par(mar=c(3,4,1.8,2))
-par(mar=c(3,4,1.8,2))
 
 # set the genomic regions
 chrom            = "chr15"

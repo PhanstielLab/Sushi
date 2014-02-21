@@ -17,7 +17,7 @@
 #' @param splitstrand TRUE/FALSE indicating whether reverse strnad bed elements shold be plotted below the x axis.  (only valid when row is set to 'auto')
 #' @param numbins  The number of bins to divide the region into when type is set to density (only valid when type is set to 'density')
 #' @param binsmoothing  umber of bins to sum together when type is set to density  (only valid when type is set to 'density')
-#' @param palettes list of color palettes used for density plots.  Each row can have a unique palette (only valid when type is set to 'density')
+#' @param palettes list of color palettes used for density plots.  Each row can have a unique palette.  number of palettes is less than the number of rows then only the first palette is used (only valid when type is set to 'density')
 #' @param rowlabels labels for the y-axis
 #' @param rowlabelcol color of the y-axis labels
 #' @param rowlabelfont font of the y-axis labels

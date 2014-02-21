@@ -3,10 +3,10 @@
 \title{Adds genome coordinates to the x-axis of a Sushi plot}
 \usage{
 labelgenome(chrom, chromstart, chromend, genome = NULL, space = 0.01,
-  scale = "bp", side = 1, scipen = 20, n = 5, chromfont = 1.2,
-  chromadjust = 0.015, chromcex = 1, chromline = 1, scalefont = 1.2,
-  scaleadjust = 0.985, scalecex = 1, scaleline = 1, line = 0,
-  edgeblankfraction = 0.1)
+  scale = "bp", side = 1, scipen = 20, n = 5, chromfont = 2,
+  chromadjust = 0.015, chromcex = 1, chromline = 0.5, scalefont = 2,
+  scaleadjust = 0.985, scalecex = 1, scaleline = 0.5, line = 0.18,
+  edgeblankfraction = 0.1, ...)
 }
 \arguments{
   \item{chrom}{chromosome to plot}
@@ -55,6 +55,8 @@ labelgenome(chrom, chromstart, chromend, genome = NULL, space = 0.01,
 
   \item{edgeblankfraction}{percent of the edges to leave
   black for chromosome and scale labels}
+
+  \item{...}{values to be passed to \code{\link{axis}}}
 }
 \description{
 Adds genome coordinates to the x-axis of a Sushi plot
