@@ -3,3 +3,6 @@
 .RData
 .DS_Store
 inst/doc/Sushi-*.pdf
+inst/doc/Sushi.log
+inst/doc/Sushi.synctex.gz
+inst/doc/Sushi-concordance.tex
