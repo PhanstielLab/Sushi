@@ -1,4 +1,4 @@
-#' adds a legend to a Sushi plot update
+#' adds a legend to a Sushi plot
 #'
 #' This function adds a legend to Sushi plots that have a colorby function (e.g. plotHic, plotGenes, and plotBedpe)
 #'
