@@ -22,6 +22,12 @@ options(continue=" ")
 @
 
 \maketitle
+
+%%Include original paper figure?
+%<< fig = TRUE , echo = TRUE ,height=5,width=9>>=
+%source('../../PaperFigure.R')
+%@
+
 \tableofcontents
 \section{Introduction}
 
