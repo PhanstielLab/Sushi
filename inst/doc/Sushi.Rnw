@@ -1,7 +1,18 @@
 %\VignetteIndexEntry{Sushi}
 \documentclass{article}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\setlength{\parindent}{0cm}
+
 \title{Sushi: An R/Bioconductor package for visualizing genomic data}
-\author{Douglas H Phanstiel, Alan P Boyle, Carlos L Araya, and Mike Snyder}
+\author{Douglas H. Phanstiel\footnote{Corresponding contact: doug.phanstiel@gmail.com}, Alan P. Boyle, Carlos L. Araya, and Mike Snyder}
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 
@@ -11,9 +22,10 @@ options(continue=" ")
 @
 
 \maketitle
+\tableofcontents
 \section{Introduction}
 
-Sushi is an R package for plotting genomic data stored in multiple common genomic formats including bed, bedpe, bedgraph format. The flexible code allows for integration of the plots into multipanel figures that can include plots made by Sushi, R basecode, or other R packages.  Sushi allows for simple flexible plotting of gene structures, transcript structures, sequencing tracks, ChIP-seq peaks, chromatin interactions, GWAS results and other commen genomic data types.   
+Sushi is an R package for plotting genomic data stored in multiple common genomic formats including bed, bedpe, bedgraph format. The package was designed to be very flexible to allow for combinations of plots into multipanel figures that can include plots made by Sushi, R basecode, or other R packages.  Sushi allows for simple flexible plotting of gene structures, transcript structures, sequencing tracks, ChIP-seq peaks, chromatin interactions, GWAS results and other commen genomic data types. This vignette shows some examples of the functions included in Sushi to get you started with plotting these diverse data types.
 
 \section{Data types}
 Sushi accepts 4 types of genomic data as input.  These include:
@@ -35,11 +47,11 @@ Sushi functions can be broken down into 3 categories: plotting, annotating, and 
 
 \begin{itemize}
 
-\item Plotting functions: plotBed, plotBedgraph, plotbedpe, plotgenes, plotHiC, and plotManhattan.
+\item Plotting functions: \texttt{plotBed()}, \texttt{plotBedgraph()}, \texttt{plotbedpe()}, \texttt{plotgenes()}, \texttt{plotHiC()}, and \texttt{plotManhattan()}
 
-\item Annotating functions: labelgenome and addlegend
+\item Annotating functions: \texttt{labelgenome()} and \texttt{addlegend()}
 
-\item Zooming functions: zoomsregion and zoombox
+\item Zooming functions: \texttt{zoomsregion()} and \texttt{zoombox()}
 \end{itemize}
 
 
@@ -61,7 +73,7 @@ To see which data sets are loaded
 Sushi_data$results[,3]
 @
 
-
+%%We should include citations for the data sets here.
 
 
 
@@ -86,7 +98,7 @@ plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend)
 @
 \end{center}
 
-To annotate the genome postion we use the \texttt{labelgenome()} function.  \texttt{"n = 4"} specifies the desired number of tickmarks.  And the scale is set to "Mb" (other options are "Kb" or "bp").
+To annotate the genome postion we use the \texttt{labelgenome()} function. We us \texttt{n = 4} to specify the desired number of tickmarks.  The scale is set to \texttt{Mb} (other options are \texttt{Kb} or \texttt{bp}).
 
 \begin{center}
 << fig = FALSE , echo = TRUE, eval=FALSE >>=
@@ -149,7 +161,7 @@ finalcolor1 = rgb(col2rgb("blue")[1],col2rgb("blue")[2],col2rgb("blue")[3],
 finalcolor2 = rgb(col2rgb("#E5001B")[1],col2rgb("#E5001B")[2],col2rgb("#E5001B")[3],
                   alpha=.5 * 255,max = 255)
 
-legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
        fill=c(finalcolor1,finalcolor2),border=c("blue","#E5001B"),text.font=2,
        cex=1.0)
 @
@@ -164,14 +176,14 @@ plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,
              rescaleoverlay=TRUE)
 labelgenome(chrom,chromstart,chromend,n=3,scale="Kb")
 
-finalcolor1 = rgb(col2rgb("blue")[1],col2rgb("blue")[2],col2rgb("blue")[3],
-                  alpha=.5 * 255,max = 255)
-finalcolor2 = rgb(col2rgb("#E5001B")[1],col2rgb("#E5001B")[2],col2rgb("#E5001B")[3],
-                  alpha=.5 * 255,max = 255)
+finalcolor1 = rgb(col2rgb("blue")[1], col2rgb("blue")[2], 
+                  col2rgb("blue")[3], alpha=.5 * 255, max = 255)
+finalcolor2 = rgb(col2rgb("#E5001B")[1], col2rgb("#E5001B")[2],
+                  col2rgb("#E5001B")[3], alpha=.5 * 255, max = 255)
 
-legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),
-       fill=c(finalcolor1,finalcolor2),border=c("blue","#E5001B"),text.font=2,
-       cex=1.0)
+legend("topright",inset=0.025, legend=c("DNaseI","ChIP-seq (CTCF)"),
+       fill=c(finalcolor1,finalcolor2), border=c("blue","#E5001B"),
+       text.font=2, cex=1.0)
 
 @
 
@@ -193,7 +205,7 @@ plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,chromstart,chromend,transparency=
              color="blue",linecol="blue")
 axis(side=2,las=2,tcl=.2)
 mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
-legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
        fill=c(finalcolor1,finalcolor2),border=c("blue","#E5001B"),text.font=2)
 @
 \end{center}
@@ -216,17 +228,17 @@ axis(side=2,las=2,tcl=.2)
 mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
 
 # add legend
-legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
        fill=c(finalcolor1,finalcolor2),border=c("blue","#E5001B"),text.font=2)
 @
 \end{center}
 
-Finally, we add the second plot with \texttt{flip=TRUE}.  We will also label the x-axis using labelgenome and label the y-axis using mtext and axis.
+Finally, we add the second plot with \texttt{flip=TRUE}.  We will also label the x-axis using \texttt{labelgenome()} and label the y-axis using \texttt{mtext()} and \texttt{axis()}.
 
 \begin{center}
 << fig = FALSE , echo = TRUE ,eval=FALSE>>=
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,transparency=.50,
-             flip=TRUE,color="#E5001B")
+plotBedgraph(Sushi_DNaseI.bedgraph, chrom, chromstart, chromend,
+             transparency=.50, flip=TRUE, color="#E5001B")
 labelgenome(chrom,chromstart,chromend,side=3,n=3,scale="Kb")
 axis(side=2,las=2,tcl=.2,at=pretty(par("yaxp")[c(1,2)]),
              labels=-1*pretty(par("yaxp")[c(1,2)]))
@@ -244,15 +256,15 @@ chromstart       = 1955000
 chromend         = 1960000
 
 # plot chip-seq data
-plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,chromstart,chromend,transparency=.50,
-             color="blue",linecol="blue")
+plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph ,chrom, chromstart, chromend,
+             transparency=.50, color="blue", linecol="blue")
 
 # add y-axis
 axis(side=2,las=2,tcl=.2)
 mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
 
 # add legend
-legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
        fill=c(finalcolor1,finalcolor2),border=c("blue","#E5001B"),text.font=2)
 
 # plot dnaseI data
@@ -277,7 +289,7 @@ finalcolor2 = rgb(col2[1],col2[2],col2[3],alpha=transparency * 255,max = 255)
 \end{center}
 
 
-\section{plotHiC}
+\section{plotHic}
 
 HiC interaction plots can be plotted given an interaction matrix in which row and column names are genomic coordiates and matrix values are some tye of interaction score.
 
@@ -285,7 +297,7 @@ HiC interaction plots can be plotted given an interaction matrix in which row an
   Sushi_HiC.matrix[100:105,100:105]
 @
 
-The \texttt{plotHiC()} function is used to plot the data while the \texttt{labelgenome()} function is used to add the genome labels to the x-axis.  \texttt{plotHiC()} returns an object indicating the color palette and data range that can be fed into \texttt{addlegend()} to create a legend.
+The \texttt{plotHic()} function is used to plot the data while the \texttt{labelgenome()} function is used to add the genome labels to the x-axis.  \texttt{plotHic()} returns an object indicating the color palette and data range that can be fed into \texttt{addlegend()} to create a legend.
 
 \begin{center}
 
@@ -293,15 +305,17 @@ The \texttt{plotHiC()} function is used to plot the data while the \texttt{label
 chrom            = "chr11"
 chromstart       = 500000
 chromend         = 5050000
-phic = plotHic(Sushi_HiC.matrix,chrom,chromstart,chromend,max_y = 20,
-               zrange=c(0,28),palette=SushiColors("fire"))
-addlegend(phic[[1]],palette=phic[[2]],title="score",side="right",bottominset=0.4,
-          topinset=0,xoffset=-.035,labelside="left",width=0.025,title.offset=0.035)
-labelgenome(chrom,chromstart,chromend,n=4,scale="Mb",edgeblankfraction=0.20)
+phic = plotHic(Sushi_HiC.matrix, chrom,chromstart, chromend, max_y = 20,
+               zrange=c(0,28), palette=SushiColors("fire"))
+addlegend(phic[[1]], palette=phic[[2]], title="score", side="right",
+          bottominset=0.4, topinset=0, xoffset=-.035, labelside="left",
+          width=0.025, title.offset=0.035)
+labelgenome(chrom, chromstart, chromend, n=4, scale="Mb",
+            edgeblankfraction=0.20)
 @
 \end{center}
 
-\texttt{plotHiC()} has a number of customizable options.  The plot can be flipped over the x-axis by setting \texttt{flip = TRUE}.  The color palette can be changed by the palette argument. 
+\texttt{plotHic()} has a number of customizable options.  The plot can be flipped over the x-axis by setting \texttt{flip = TRUE}.  The color palette can be changed by the palette argument. 
 
 \texttt{addlegend()} also has customizable features.  The legend can be moved to the left side of the plot by setting \texttt{side = "left"} and the labeling canbe moved to the right side of the lenged buy setting \texttt{labelside = "right"}.  The vertical position of the legend can be adjusted by changing the \texttt{topinset} and \texttt{bottominset}.
 
@@ -342,8 +356,9 @@ labelgenome(chrom,chromstart,chromend,side=3,n=4,scale="Mb",edgeblankfraction=0.
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,
-                 plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,
+pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,
+                 heights = Sushi_5C.bedpe$score,plottype="loops",
+                 colorby=Sushi_5C.bedpe$samplenumber,
                  colorbycol=SushiColors("three"))
 labelgenome(chrom, chromstart,chromend,n=3,scale="Mb")
 legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),
