@@ -25,8 +25,8 @@ plotBedgraph(signal, chrom, chromstart, chromend, range = NULL,
   \item{lwd}{color of line outlining signal track.  (only
   valid if linecol is not NA)}
 
-  \item{linecol}{color of line outlining signal track.  use
-  NA for no outline}
+  \item{linecolor}{color of line outlining signal track.
+  use NA for no outline}
 
   \item{addscale}{TRUE/FALSE whether to add a y-axis}
 

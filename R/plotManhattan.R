@@ -19,7 +19,7 @@
 #' chromstart1       = 500000
 #' chromend1         = 5050000
 #' 
-#' plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],genome=Sushi_hg18_genome,col=topo.colors(nrow(Sushi_hg18_genome)),cex=0.75)
+#' plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],genome=Sushi_hg18_genome,col=topo.colors,cex=0.75)
 #' labelgenome(genome=Sushi_hg18_genome,side=1,scipen=20,n=4,scale="Mb",edgeblankfraction=0.20,line=.18,chromline=.5,scaleline=0.5)
 #' axis(side=2,las=2,tcl=.2)
 #' mtext("log10(P)",side=2,line=1.75,cex=.75,font=2)
