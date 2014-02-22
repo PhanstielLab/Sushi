@@ -5,6 +5,7 @@
 #' @param col color palette to which to be mapped
 #' @param num number of bins of colors
 #' @param range range of values to map
+#' @export
 #' @examples
 #' plot((1:10),col=maptocolors(vec=(1:10),colorRampPalette(c("blue","red"))),pch=19,cex=4)
 maptocolors <-
