@@ -45,9 +45,9 @@ Sushi accepts 4 types of genomic data as input.  These include:
 \item interaction matrix: This is matrix in which row and column names are genomic coordiates and matrix values are some tye of interaction score.
 \end{itemize}
 
-\paragraph
+\paragraph{}
 ** strands are represented as 1 or -1 (instead of the standard "+" and "-").
-\paragraph
+\paragraph{}
 ** Some functions may require additional information depending on the plot and features desired.
 
 \subsection{Example datasets}
@@ -598,7 +598,7 @@ mtext("Gene Density",side=3, adj=0,line=0.20,font=2)
 
 \texttt{plotManhattan()} differs from most other Sushi functions in that it can plot multiple chromosomes in a single plot.  Because of this plotManhattan requires some additional inputs.  It requires an object in bed format describing the location of data points as well as vector of p-values (typically one of the columns of the bed file).  But it also requires an genome object that describes which chromosomes to plot and their sizes (in bp).  The genome object is very similar to the genome files used for bedtools.
 
-\paragraph
+\paragraph{}
 The bed data should look something like this:
 
 << fig = FALSE , echo = TRUE >>=
@@ -630,7 +630,7 @@ mtext("chromosome",side=1,line=1.75,cex=1,font=2)
 
 A critical characteristic of the Sushi package is its ability to create highly customizable, publication-ready, multi-panel figures.  Here, we will create a basic three panel figure and demonstrate how the zoom functions work (\texttt{zoomsregion} and \texttt{zoombox}).  To illustrate these feature we will use the \texttt{plotBedgraph()} function to plot bedgrpah data representing a DNaseI hypersensitivity experiment in K562 cells.
 
-\paragraph
+\paragraph{}
 In order to make a multipanel figure we will use the R function layout.  Layout divides the device into rows and columns accoriding to a matrix you provide.  The matrix also tells it which plots will appear on which parts of the plotting device.  Below we make a 2 by 2 matrix.  The entire top row will be used to plot the first plot while the bottom row with contain two plots.  For more info on layout try \texttt{?layout}.
 
 <<fig = FALSE, eval=FALSE , echo = TRUE>>=
@@ -770,9 +770,11 @@ axis(side=2,las=2,tcl=.2)
 \end{center}
 
 
-\subsection{Color functions}
+\subsection{SushiColors}
 
 Sushi includes three functions to assist in the generating of R colors and color palettes: \texttt{SushiColors()}, \texttt{maptocolors()}, \texttt{opaque()}.
+
+\subsubsection{Color functions}
 
 \paragraph{}
 \texttt{SushiColors()} provides default color palettes for the Sushi package.
@@ -784,6 +786,63 @@ To see a list of available color palettes:
 SushiColors(palette='list')
 @
 
+To view the color palettes:
+
+<<fig = TRUE , echo = TRUE,height=4,width=9>>=
+plot(1,xlab='',xaxt='n',ylab='',yaxt='n',xlim=c(0.5,7.5),
+     ylim=c(2,7.5),type='n')
+for (i in (2:7))
+{
+  for (j in (1:i))
+  {
+    rect(j-.5,i,j+.5,i+.5,col=SushiColors(i)(i)[j])
+  }
+}
+
+axis(side=2,at=(2:7),labels=(2:7),las=2)
+axis(side=1,at=(1:7),labels=(1:7))
+mtext("SushiColors",side=3,font=2, line=1, cex=1.5)
+mtext("colors",side=1,font=2, line=2)
+mtext("palette",side=2,font=2, line=2)
+@
+
+\subsubsection{opaque}
+
+\texttt{opaque()} takes any color or vector of colors and makes themp opaque.  The degree of transparency is determined by the argument \texttt{transparency} which is a value between 0 and 1. 
+
+<<fig = TRUE , echo = TRUE,height=4,width=9>>=
+plot(1,xlab='',xaxt='n',ylab='',yaxt='n',bty='n',type='n',
+     xlim=c(-.15,1.05),ylim=c(-1,2))
+for (i in seq(0,1,by=0.1))
+{
+    rect(i-.05,-1,i+.05,1,col=opaque("red",transparency=i))
+    rect(i-.05,0,i+.05,2,col=opaque("blue",transparency=1-i))
+}
+axis(side=1,at=seq(0,1,by=0.1),labels=seq(0,1,by=0.1))
+mtext("red transparency",side=1,font=2, line=2)
+axis(side=3,at=seq(0,1,by=0.1),labels=seq(1,0,by=-0.1))
+mtext("blue transparency",side=3,font=2, line=2)
+text(-0.075,1.5,labels="blue",font=2,adj=1)
+text(-0.075,0.5,labels="overlap",font=2,adj=1)
+text(-0.075,-.5,labels="red",font=2,adj=1)
+@
+
+\subsubsection{maptocolors}
+
+\texttt{maptocolors()} takes a vector of values and maps them to a color palette which can be used for plotting. 
+
+<<fig = TRUE , echo = TRUE,height=9,width=9>>=
+set.seed(3)
+values = rnorm((1:10))
+colorpalette = SushiColors(5)
+plot(x=(1:10),y=values,col=maptocolors(values,colorpalette),
+     pch=19,cex=4,xlab="data points",yaxt='n',ylim=range(values)*1.2)
+addlegend(range(values),title="key",palette=colorpalette,
+          side='left',xoffset = -0.125,width=0.03,bottominset = 0.5, topinset = 0.025)
+axis(side=2,las=2)
+@
 
 \end{document}
+
+
 

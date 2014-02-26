@@ -2,7 +2,7 @@
 \alias{opaque}
 \title{makes colors transparent (or opaque)}
 \usage{
-opaque(color, transparency)
+opaque(color = SushiColors(7)(7), transparency = 0.5)
 }
 \arguments{
   \item{color}{color or colors to make opaque}

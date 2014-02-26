@@ -6,7 +6,7 @@
 #' @param chromend end position
 #' @param pvalues pvalues to be used for plotting (will be converted to -log(10) space)
 #' @param genome A genome object (2 columns: column 1 = chromosome name, column 2 = length of chromosome). Required if plotting multiple chromosomes at once.
-#' @param col single value or vector specifying colors of points
+#' @param col single colors, vector of colors, or color palette for coloring points
 #' @param space the space in between each chromosome as a fraction of the width of the plot
 #' @param ... Arguments to be passed to methods such as \code{\link{plot}}
 #' @export 
@@ -27,13 +27,22 @@
 #' 
 #' 
 plotManhattan <-
-function(bedfile, chrom=NULL,chromstart=NULL,chromend=NULL,pvalues,genome=NULL,col=topo.colors,space=0.01,...)
+function(bedfile, chrom=NULL,chromstart=NULL,chromend=NULL,pvalues,genome=NULL,col=SushiColors(5),space=0.01,...)
 {
   if (is.null(genome) == FALSE)
   {
     chromoffsets = chromOffsets(genome,space)
     
-    col = col(nrow(chromoffsets))
+    if (class(col) == "function")
+    {
+      col = col(nrow(chromoffsets))
+    }
+    else
+    {
+      col = rep(col,ceiling(nrow(chromoffsets) / length(col)   ))
+    }
+    
+    
     
     # remove data from chroms not in genome
     bedfile = bedfile[bedfile[,1]%in%chromoffsets[,1],]

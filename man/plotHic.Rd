@@ -3,7 +3,7 @@
 \title{plots HiC interactio matrix}
 \usage{
 plotHic(hicdata, chrom, chromstart, chromend, max_y = 30, zrange = NULL,
-  palette = topo.colors, flip = FALSE)
+  palette = SushiColors(7), flip = FALSE)
 }
 \arguments{
   \item{hicdata}{interaction matrix representing HiC data.

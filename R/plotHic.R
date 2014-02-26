@@ -25,7 +25,7 @@
 #' addlegend(phic[[1]],palette=phic[[2]],title="score",side="right",bottominset=0.4,topinset=0,xoffset=-.035,labelside="left",width=0.025,title.offset=0.035)
 #'
 plotHic <-
-function(hicdata,chrom,chromstart,chromend,max_y = 30,zrange=NULL,palette = topo.colors,flip=FALSE)
+function(hicdata,chrom,chromstart,chromend,max_y = 30,zrange=NULL,palette = SushiColors(7),flip=FALSE)
 {
   # grab only regions of interest
   rows = as.numeric(rownames(hicdata))

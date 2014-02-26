@@ -117,7 +117,7 @@ function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
       range = c(min(signaltrack[,2]),0)
     }
   }
-  
+  print(range)
   if (overlay == FALSE)
   {
     # make blank plot

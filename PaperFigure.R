@@ -2,7 +2,7 @@ library('Sushi')
 pdfname = "~/Dropbox/Sushi/Figure_dhp_new.pdf"
 Sushi_data = data(package = 'Sushi')
 data(list = Sushi_data$results[,3]) 
-makepdf = FALSE
+makepdf = TRUE
 
 ############################################################################
 #                                                                          #
@@ -53,7 +53,7 @@ chromend2         = 89500000
 
 
 # make the manhattan plot
-plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],genome=Sushi_hg18_genome,col=SushiColors("fire"),cex=0.75)
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],genome=Sushi_hg18_genome,cex=0.75)
 
 # add zoom 1
 zoomsregion(region=c(chromstart1,chromend1),chrom=chrom1,genome=Sushi_hg18_genome,extend=c(0.07,0.2),wideextend=0.2,offsets=c(0,.535))
@@ -88,7 +88,7 @@ chromend         = 5050000
 zoomregion       = c(1700000,2350000)
 
 # plot the HiC data
-phic = plotHic(Sushi_HiC.matrix,chrom,chromstart,chromend,max_y = 20,zrange=c(0,28),palette = SushiColors("fire"))
+phic = plotHic(Sushi_HiC.matrix,chrom,chromstart,chromend,max_y = 20,zrange=c(0,28))
 
 # add labels
 labelgenome(chrom,chromstart,chromend,n=4,scale="Mb",edgeblankfraction=0.20)
@@ -123,7 +123,7 @@ chromend         = 2350000
 
 # plot the loops
 pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
-                 lwd=1,plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=SushiColors("three"))
+                 lwd=1,plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=SushiColors(3))
 
 # add zoombox
 zoombox(passthrough=TRUE)
@@ -132,7 +132,7 @@ zoombox(passthrough=TRUE)
 labelgenome(chrom, chromstart,chromend,n=3,scale="Mb")
 
 # add the legend
-legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),col=SushiColors("three")(3),pch=19,bty='n',text.font=2)
+legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),col=SushiColors(3)(3),pch=19,bty='n',text.font=2)
 
 # add y-axis
 axis(side=2,las=2,tcl=.2)
@@ -157,7 +157,7 @@ chromend         = 2350000
 
 # plot the loops
 pbpe = plotbedpe(Sushi_ChIAPET_pol2.bedpe,chrom,chromstart,chromend,flip=TRUE,bty='n',lwd=1,plottype="lines",
-                 colorby=abs(Sushi_ChIAPET_pol2.bedpe$start1-Sushi_ChIAPET_pol2.bedpe$start2),colorbycol=SushiColors("firedark"))
+                 colorby=abs(Sushi_ChIAPET_pol2.bedpe$start1-Sushi_ChIAPET_pol2.bedpe$start2),colorbycol=SushiColors(5))
 
 # add the genome labels
 labelgenome(chrom, chromstart,chromend,n=4,scale="Mb")
@@ -189,7 +189,7 @@ zoomregion1      = c(1955000,1965000)
 zoomregion2      = c(2281200,2282200)
 
 # overlapping, transparent, and rescaled
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,color="#5900E5")
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,col=SushiColors(5)(5)[3])
 
 # add zoom 1
 zoomsregion(zoomregion1,extend=c(0.01,0.18),wideextend=0.10,offsets=c(0,.577))
@@ -225,13 +225,13 @@ zoomregion1      = c(1955000,1965000)
 zoomregion2      = c(2281200,2282200)
 
 # plot chip-seq data
-plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,zoomregion1[1],zoomregion1[2],transparency=.50,color="blue")
+plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,zoomregion1[1],zoomregion1[2],transparency=.50,color=SushiColors(2)(2)[1])
 
 # Add plot label
 mtext("F)    DnaseI / ChIP-Seq",side=3, adj=-0.6,line=0.5,font=2)
 
 # plot dnaseI data
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,zoomregion1[1],zoomregion1[2],transparency=.50,color="#E5001B",overlay=TRUE,rescaleoverlay=TRUE)
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,zoomregion1[1],zoomregion1[2],transparency=.50,color=SushiColors(2)(2)[2],overlay=TRUE,rescaleoverlay=TRUE)
 
 # add the genome labels
 labelgenome(chrom,zoomregion[1],zoomregion[2],n=3,line=.18,scale="Mb")
@@ -240,7 +240,7 @@ labelgenome(chrom,zoomregion[1],zoomregion[2],n=3,line=.18,scale="Mb")
 zoombox()
 
 # add legend
-legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),fill=opaque(c("blue","#E5001B"),0.5),border=c("blue","#E5001B"),text.font=2,cex=0.75)
+legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),fill=opaque(SushiColors(2)(2),0.5),border=SushiColors(2)(2),text.font=2,cex=0.75)
 
 
 
@@ -259,7 +259,7 @@ zoomregion2      = c(2281200,2282200)
 
 # plt the chip-seq data as a pile-up
 plotBed(beddata    = Sushi_ChIPSeq_pol2.bed,chrom = chrom,chromstart = zoomregion2[1],chromend =zoomregion2[2],
-        colorby    = Sushi_ChIPSeq_pol2.bed$strand,colorbycol = SushiColors("two"),wiggle=0.001)
+        colorby    = Sushi_ChIPSeq_pol2.bed$strand,colorbycol = SushiColors(2),wiggle=0.001)
 
 # add the genome labels
 labelgenome(chrom,zoomregion2[1],zoomregion2[2],n=2,scale="Mb")
@@ -268,7 +268,7 @@ labelgenome(chrom,zoomregion2[1],zoomregion2[2],n=2,scale="Mb")
 zoombox()
 
 # add legend
-legend("topright",inset=0.025,legend=c("reverse","forward"),fill=SushiColors("two"),border=SushiColors("two"),text.font=2,cex=0.75)
+legend("topright",inset=0.025,legend=c("reverse","forward"),fill=SushiColors(2)(2),border=SushiColors(2)(2),text.font=2,cex=0.75)
 
 # Add plot label
 mtext("G)    ChIP-Seq",side=3, adj=-.275,line=0.5,font=2)
@@ -290,7 +290,7 @@ chromstart2       = 72000000
 chromend2         = 74000000
 
 # make the manhattan plot
-plotManhattan(bedfile=Sushi_GWAS.bed,chrom=chrom2,chromstart= chromstart, chromend = chromend,    pvalues=Sushi_GWAS.bed$pval.GC.DBP,col=SushiColors("firenowhite")(nrow(Sushi_hg18_genome))[15],cex=0.75)
+plotManhattan(bedfile=Sushi_GWAS.bed,chrom=chrom2,chromstart= chromstart, chromend = chromend,    pvalues=Sushi_GWAS.bed$pval.GC.DBP,col=SushiColors(6)(nrow(Sushi_hg18_genome))[15],cex=0.75)
 
 # add zoom in
 zoomsregion(region=c(chromstart2,chromend2),chrom=chrom2,genome=NULL,extend=c(0.05,1),offsets=c(0.0,0))
@@ -372,7 +372,7 @@ head(Sushi_transcripts.bed)
 
 # plot transcripts
 pg = plotgenes(Sushi_transcripts.bed,chrom2,chromstart2,chromend2 ,types = Sushi_transcripts.bed$type,
-          colorby=Sushi_transcripts.bed$score,colorbycol= SushiColors("firedark") ,labeltext=FALSE,
+          colorby=Sushi_transcripts.bed$score,colorbycol= SushiColors(5) ,labeltext=FALSE,
           maxrows=50,height=0.4,plotgenetype="box")
 
 # label genome
@@ -407,7 +407,7 @@ zoomregion       = c(72998000,73020000)
 
 Sushi_ChIPSeq_severalfactors.bed$color = 
   maptocolors(Sushi_ChIPSeq_severalfactors.bed$row,
-              col=SushiColors("firenowhite"))
+              col=SushiColors(6))
 
 # plot it
 plotBed(beddata    = Sushi_ChIPSeq_severalfactors.bed,chrom = chrom,chromstart = chromstart,chromend =chromend,
@@ -430,7 +430,7 @@ mtext("K)    ChIP-seq",side=3, adj=-0.065,line=0.5,font=2)
 
 #################################################################################################
 #                                                                                               #
-#                                 (L) Pol2 bedgrpah                             #
+#                                             (L) Pol2 bedgrpah                                 #
 #                                                                                               #
 #################################################################################################
 
@@ -443,7 +443,7 @@ chromstart       = 72998000
 chromend         = 73020000
 
 # plot the Pol2 bedgraph data
-plotBedgraph(Sushi_ChIPSeq_pol2.bedgraph, chrom,chromstart,chromend,color="blue")
+plotBedgraph(Sushi_ChIPSeq_pol2.bedgraph, chrom,chromstart,chromend)
 
 # label genome
 labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
@@ -460,7 +460,7 @@ mtext("L)    Chip-Seq (Pol2)",side=3, adj=-.065,line=0.5,font=2)
 
 #################################################################################################
 #                                                                                               #
-#                                 (M) RNA-seq bedgrpah                             #
+#                                         (M) RNA-seq bedgrpah                                  #
 #                                                                                               #
 #################################################################################################
 
@@ -473,7 +473,7 @@ chromstart       = 72998000
 chromend         = 73020000
 
 # plot the K562 RNAseq bedgraph data
-plotBedgraph(Sushi_RNASeq_K562.bedgraph, chrom,chromstart,chromend,color="red")
+plotBedgraph(Sushi_RNASeq_K562.bedgraph, chrom,chromstart,chromend,color=SushiColors(2)(2)[2])
 
 # label genome
 labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
@@ -500,7 +500,7 @@ chromend         = 73020000
 
 # plot gene structures
 plotgenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
-          maxrows=1,height=0.5,plotgenetype="arrow",bentline=FALSE,col="blue",
+          maxrows=1,height=0.5,plotgenetype="arrow",bentline=FALSE,
           labeloffset=1,fontsize=1.2)
 
 # label genome

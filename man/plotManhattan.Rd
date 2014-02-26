@@ -3,7 +3,7 @@
 \title{plots a Manhattan plot}
 \usage{
 plotManhattan(bedfile, chrom = NULL, chromstart = NULL, chromend = NULL,
-  pvalues, genome = NULL, col = topo.colors, space = 0.01, ...)
+  pvalues, genome = NULL, col = SushiColors(5), space = 0.01, ...)
 }
 \arguments{
   \item{bedfile}{bedfile for Manhattan plot}
@@ -21,8 +21,8 @@ plotManhattan(bedfile, chrom = NULL, chromstart = NULL, chromend = NULL,
   chromosome name, column 2 = length of chromosome).
   Required if plotting multiple chromosomes at once.}
 
-  \item{col}{single value or vector specifying colors of
-  points}
+  \item{col}{single colors, vector of colors, or color
+  palette for coloring points}
 
   \item{space}{the space in between each chromosome as a
   fraction of the width of the plot}

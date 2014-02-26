@@ -42,7 +42,7 @@
 #'
 plotgenes <-
 function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
-                      col="dodgerblue2",bheight=0.3,lheight=0.3,bentline=TRUE,
+                      col=SushiColors(2)(2)[1],bheight=0.3,lheight=0.3,bentline=TRUE,
                       packrow=TRUE,maxrows=10000,
                       colorby=NULL,colorbyrange=NULL, colorbycol=colorRampPalette(c("blue","red")),
                       types="exon",plotgenetype = "box",
