@@ -7,7 +7,7 @@
 #' @examples
 #' plot((1:10),col="red",pch=19)
 #' points((10:1),col=opaque("red",transparency=0.3),pch=19)
-opaque <- function(color,transparency)
+opaque <- function(color=SushiColors(7)(7),transparency=0.5)
 {
   if (length(color) == 1)
   {

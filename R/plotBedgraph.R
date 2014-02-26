@@ -44,7 +44,7 @@
 #' 
 #' legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),fill=c(finalcolor1,finalcolor2),border=c("blue","#E5001B"),text.font=2,cex=0.75)
 plotBedgraph <-
-function(signal,chrom,chromstart,chromend,range=NULL,color="dodgerblue4",
+function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
                          lwd=1,linecolor=NA,addscale=FALSE,overlay=FALSE,rescaleoverlay=FALSE,transparency=1.0,
                          flip=FALSE, xaxt='none',yaxt='none',xlab="",ylab="",xaxs="i",yaxs="i",bty='n',
                          ...)
