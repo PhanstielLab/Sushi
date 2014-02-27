@@ -50,6 +50,12 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
                       labeltext=TRUE,labeloffset=0.4,fontsize=.7,fonttype=2,labelat="middle",...)
 {
   
+  # convert strand info 
+  if (ncol(transcripts) >= 6)
+  {
+    transcripts[,6] = convertstrandinfo(transcripts[,6])
+  }
+  
   # Define a function that merges overlapping regions
   mergetypes <- function(exons)
   {

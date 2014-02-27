@@ -84,6 +84,11 @@ function(beddata,chrom,chromstart,chromend,type="region",
                     maxrows=1000000,color="dodgerblue4",xaxt='none',yaxt='none',xlab="",ylab="",xaxs="i",yaxs="i",bty='n',border=NA,...)
 {
   
+  # convert strand info 
+  if (ncol(beddata) >= 6)
+  {
+    beddata[,6] = convertstrandinfo(beddata[,6])
+  }
   
   # Define a function that determines which row to plot a gene on
   checkrow <- function(data,alldata,maxrows,wiggle=0)

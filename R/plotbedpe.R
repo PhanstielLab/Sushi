@@ -46,6 +46,13 @@ function(bedpedata,chrom,chromstart,chromend,heights,
                       plottype="loops",maxrows=10000,height=.3,...)
 {
   
+  # convert strand info 
+  if (ncol(bedpedata) >= 10)
+  {
+    bedpedata[,9] = convertstrandinfo(bedpedata[,9])
+    bedpedata[,10] = convertstrandinfo(bedpedata[,10])
+  }
+  
   # Define a function th determines which row to plot a gene on
   checkrow <- function(data,alldata,maxrows,wiggle=0)
   {
