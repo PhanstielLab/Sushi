@@ -20,7 +20,9 @@
 #' @param ylab Label for the y-axis
 #' @param xaxs Must be set to 'i' for appropriate integration into Sushi plots.  See \code{\link{par}}
 #' @param yaxs Must be set to 'i' for appropriate integration into Sushi plots.  See \code{\link{par}}
+#' plottype
 #' @param bty A character string which determined the type of box which is drawn about plots.  See \code{\link{par}}
+#' @param ymax fraction of max y value to set as height of plot.
 #' @param ... values to be passed to \code{\link{plot}}
 #' @export
 #' @examples
@@ -46,7 +48,7 @@
 plotBedgraph <-
 function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
                          lwd=1,linecolor=NA,addscale=FALSE,overlay=FALSE,rescaleoverlay=FALSE,transparency=1.0,
-                         flip=FALSE, xaxt='none',yaxt='none',xlab="",ylab="",xaxs="i",yaxs="i",bty='n',
+                         flip=FALSE, xaxt='none',yaxt='none',xlab="",ylab="",xaxs="i",yaxs="i",bty='n',ymax=1.04,
                          ...)
 {
   if(is.na(linecolor ) == TRUE)
@@ -111,10 +113,10 @@ function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
   # determine the y-limits
   if (is.null(range) == TRUE)
   {
-    range = c(0,max(signaltrack[,2]))
+    range = c(0,ymax*max(signaltrack[,2]))
     if (flip == TRUE)
     {
-      range = c(min(signaltrack[,2]),0)
+      range = c(ymax*min(signaltrack[,2]),0)
     }
   }
   print(range)

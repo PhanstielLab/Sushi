@@ -19,6 +19,7 @@
 #' @param yaxt A character which specifies the y axis type.  See \code{\link{par}}
 #' @param plottype type of plot (acceptable values are 'loops' and 'lines')
 #' @param maxrows The maximum number of rows to plot on the y-axis
+#' @param ymax fraction of max y value to set as height of plot. Only applies when plottype is set to 'loops'
 #' @param height the height of the boxes at either end of a bedpe element if plottype is set to 'lines'. Typical vaues range form 0 to 1.  (only valid when plottype is set to 'lines')
 #' @param bty A character string which determined the type of box which is drawn about plots.  See \code{\link{par}}
 #' @param ... values to be passed to \code{\link{plot}}
@@ -38,12 +39,12 @@
 #' 
 
 
-plotbedpe <-
+plotBedpe <-
 function(bedpedata,chrom,chromstart,chromend,heights,
                       color="black",colorby=NULL,colorbycol=NULL,colorbyrange=NULL,
                       lwdby    =  NULL,lwdrange =  c(1,5),
                       offset=0,flip=FALSE,lwd=1,xaxt='n',yaxt='n',bty='n',
-                      plottype="loops",maxrows=10000,height=.3,...)
+                      plottype="loops",maxrows=10000,height=.3,ymax=1.04,...)
 {
   
   # convert strand info 
@@ -258,11 +259,11 @@ function(bedpedata,chrom,chromstart,chromend,heights,
     # first make empty plot
     if (flip == FALSE)
     {
-      plot(c(1,1),type='n',xlab="",ylab="",xaxs = 'i',yaxs='i',xlim=c(chromstart,chromend), ylim=c(0,(max(bedpedata$heights) + offset )),xaxt=xaxt,yaxt=yaxt,bty=bty,...)
+      plot(c(1,1),type='n',xlab="",ylab="",xaxs = 'i',yaxs='i',xlim=c(chromstart,chromend), ylim=c(0,(max(bedpedata$heights) + offset )*ymax),xaxt=xaxt,yaxt=yaxt,bty=bty,...)
     }
     if (flip == TRUE)
     {
-      plot(c(1,1),type='n',xlab="",ylab="",xaxs = 'i',yaxs='i',xlim=c(chromstart,chromend), ylim=c(-max(bedpedata$heights)-offset,0  ),xaxt=xaxt,yaxt=yaxt,bty=bty,...)
+      plot(c(1,1),type='n',xlab="",ylab="",xaxs = 'i',yaxs='i',xlim=c(chromstart,chromend), ylim=c(-max((bedpedata$heights)-offset)*ymax,0  ),xaxt=xaxt,yaxt=yaxt,bty=bty,...)
     }
 
     
