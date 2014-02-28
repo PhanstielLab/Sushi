@@ -6,7 +6,8 @@ plotBedgraph(signal, chrom, chromstart, chromend, range = NULL,
   color = SushiColors(2)(2)[1], lwd = 1, linecolor = NA,
   addscale = FALSE, overlay = FALSE, rescaleoverlay = FALSE,
   transparency = 1, flip = FALSE, xaxt = "none", yaxt = "none",
-  xlab = "", ylab = "", xaxs = "i", yaxs = "i", bty = "n", ...)
+  xlab = "", ylab = "", xaxs = "i", yaxs = "i", bty = "n",
+  ymax = 1.04, colorbycol = NULL, ...)
 }
 \arguments{
   \item{signal}{signal track data to be plotted (in
@@ -57,11 +58,19 @@ plotBedgraph(signal, chrom, chromstart, chromend, range = NULL,
   integration into Sushi plots.  See \code{\link{par}}}
 
   \item{yaxs}{Must be set to 'i' for appropriate
-  integration into Sushi plots.  See \code{\link{par}}}
+  integration into Sushi plots.  See \code{\link{par}}
+  plottype}
 
   \item{bty}{A character string which determined the type
   of box which is drawn about plots.  See
   \code{\link{par}}}
+
+  \item{ymax}{fraction of max y value to set as height of
+  plot.}
+
+  \item{colorbycol}{palette to use to shade the signal
+  track plot.  Only applicable when overlay is set to
+  FALSE.}
 
   \item{...}{values to be passed to \code{\link{plot}}}
 }

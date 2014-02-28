@@ -23,6 +23,7 @@
 #' plottype
 #' @param bty A character string which determined the type of box which is drawn about plots.  See \code{\link{par}}
 #' @param ymax fraction of max y value to set as height of plot.
+#' @param colorbycol palette to use to shade the signal track plot.  Only applicable when overlay is set to FALSE.
 #' @param ... values to be passed to \code{\link{plot}}
 #' @export
 #' @examples
@@ -49,8 +50,13 @@ plotBedgraph <-
 function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
                          lwd=1,linecolor=NA,addscale=FALSE,overlay=FALSE,rescaleoverlay=FALSE,transparency=1.0,
                          flip=FALSE, xaxt='none',yaxt='none',xlab="",ylab="",xaxs="i",yaxs="i",bty='n',ymax=1.04,
-                         ...)
+                         colorbycol=NULL,...)
 {
+  if (overlay == TRUE)
+  {
+    colorbycol = NULL
+  }
+  
   if(is.na(linecolor ) == TRUE)
   {
     linecolor = color
@@ -119,11 +125,11 @@ function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
       range = c(ymax*min(signaltrack[,2]),0)
     }
   }
-  print(range)
+
   if (overlay == FALSE)
   {
     # make blank plot
-    plot(signaltrack,xlim=c(chromstart,chromend),type='n',ylim=range,xaxt=xaxt,yaxt=yaxt,ylab=ylab,xaxs=xaxs,yaxs=yaxs,bty=bty,xlab=xlab,...)
+    plot(signaltrack,xlim=c(chromstart,chromend),type='n',ylim=range,xaxt=xaxt,yaxt=yaxt,ylab=ylab,xaxs=xaxs,yaxs=yaxs,bty=bty,xlab=xlab,...) 
   }
   
   # rescale the overlay plot for comparative purposes
@@ -144,8 +150,57 @@ function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
   rgbcol = col2rgb(color)
   finalcolor = rgb(rgbcol[1],rgbcol[2],rgbcol[3],alpha=transparency * 255,maxColorValue = 255)
   
-  # plot the signal track
-  polygon(signaltrack,col=finalcolor,border=linecolor,lwd=lwd)
+  if (is.null(colorbycol) == FALSE)
+  {
+    # add the gradient to the background
+    if (is.null(colorbycol) == FALSE)
+    {
+      plotlef = par('usr')[1]
+      plotrig = par('usr')[2]
+      plotbot = par('usr')[3]
+      plottop = par('usr')[4]
+      
+      bgcol = maptocolors((1:100),colorbycol)
+      
+      if (flip == FALSE)
+      {
+        tops = seq(plotbot,plottop,length.out=101)[2:101]  
+        bots =  seq(plotbot,plottop,length.out=101)[1:100]
+      }
+      if (flip == TRUE)
+      {
+        bots =  rev(seq(plotbot,plottop,length.out=101)[2:101])
+        tops =  rev(seq(plotbot,plottop,length.out=101)[1:100] )
+      }
+      
+      for (i in (3:(nrow(signaltrack)-1)))
+      {
+        if (flip == FALSE)
+        {
+          ybots = bots[which(bots <= signaltrack[i,2])]
+          ytops = tops[which(tops <  signaltrack[i,2])]
+        }
+        if (flip == TRUE)
+        {
+          ybots = bots[which(bots >= signaltrack[i,2])]
+          ytops = tops[which(tops >  signaltrack[i,2])]
+        }
+        ytops = c(ytops,signaltrack[i,2] )
+        xleft = rep(signaltrack[i-1,1],length(ytops))
+        xrigh = rep(signaltrack[i,1],length(ytops))
+        xybgcol = bgcol[1:length(ytops)]
+        
+        rect(xleft=xleft, ybottom=ybots, xright=xrigh, ytop=ytops,col= xybgcol,border=bgcol,lwd=lwd) 
+      } 
+    }
+  }
+  
+
+  if (is.null(colorbycol) == TRUE)
+  {
+    # plot the signal track
+    polygon(signaltrack,col=finalcolor,border=linecolor,lwd=lwd)
+  }
   
   # add scale to upper right corner
   if (addscale == TRUE)

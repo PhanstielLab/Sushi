@@ -30,7 +30,7 @@
 #' chrom            = "chr11"
 #' chromstart       = 1650000
 #' chromend         = 2350000
-#' pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
+#' pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
 #' lwd=1,plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=topo.colors)
 #' labelgenome(chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
 #' legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),col=c(topo.colors(3)),pch=19,bty='n',text.font=2)

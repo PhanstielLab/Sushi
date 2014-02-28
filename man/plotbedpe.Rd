@@ -1,12 +1,12 @@
-\name{plotbedpe}
-\alias{plotbedpe}
+\name{plotBedpe}
+\alias{plotBedpe}
 \title{plots data stored in bed file format}
 \usage{
-plotbedpe(bedpedata, chrom, chromstart, chromend, heights, color = "black",
+plotBedpe(bedpedata, chrom, chromstart, chromend, heights, color = "black",
   colorby = NULL, colorbycol = NULL, colorbyrange = NULL, lwdby = NULL,
   lwdrange = c(1, 5), offset = 0, flip = FALSE, lwd = 1, xaxt = "n",
   yaxt = "n", bty = "n", plottype = "loops", maxrows = 10000,
-  height = 0.3, ...)
+  height = 0.3, ymax = 1.04, ...)
 }
 \arguments{
   \item{bedpedata}{bed paired end data to be plotted}
@@ -59,6 +59,9 @@ plotbedpe(bedpedata, chrom, chromstart, chromend, heights, color = "black",
   \item{maxrows}{The maximum number of rows to plot on the
   y-axis}
 
+  \item{ymax}{fraction of max y value to set as height of
+  plot. Only applies when plottype is set to 'loops'}
+
   \item{height}{the height of the boxes at either end of a
   bedpe element if plottype is set to 'lines'. Typical
   vaues range form 0 to 1.  (only valid when plottype is
@@ -79,7 +82,7 @@ data(Sushi_5C.bedpe)
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
+pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
 lwd=1,plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=topo.colors)
 labelgenome(chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
 legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),col=c(topo.colors(3)),pch=19,bty='n',text.font=2)

@@ -74,7 +74,7 @@ Sushi functions can be broken down into 3 categories: plotting, annotating, zoom
 
 \begin{itemize}
 
-\item Plotting functions: \texttt{plotBed()}, \texttt{plotBedgraph()}, \texttt{plotbedpe()}, \texttt{plotgenes()}, \texttt{plotHiC()}, and \texttt{plotManhattan()}
+\item Plotting functions: \texttt{plotBed()}, \texttt{plotBedgraph()}, \texttt{plotBedpe()}, \texttt{plotgenes()}, \texttt{plotHiC()}, and \texttt{plotManhattan()}
 
 \item Annotating functions: \texttt{labelgenome()} and \texttt{addlegend()}
 
@@ -104,7 +104,7 @@ The \texttt{plotBedgraph()} function is used to plot the data.  As with most Sus
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend)
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,colorbycol= SushiColors(5))
 @
 \end{center}
 
@@ -119,7 +119,7 @@ labelgenome(chrom,chromstart,chromend,n=4,scale="Mb")
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend)
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,colorbycol= SushiColors(5))
 labelgenome(chrom,chromstart,chromend,n=4,scale="Mb")
 @
 \end{center}
@@ -138,7 +138,7 @@ axis(side=2,las=2,tcl=.2)
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend)
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,colorbycol= SushiColors(5))
 labelgenome(chrom,chromstart,chromend,n=4,scale="Mb")
 mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
 axis(side=2,las=2,tcl=.2)
@@ -221,8 +221,7 @@ chromstart       = 1955000
 chromend         = 1960000
 
 # plot chip-seq data
-plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,chromstart,chromend,transparency=.50,
-             col=SushiColors(2)(2)[1])
+plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,chromstart,chromend,transparency=.50)
 
 # add y-axis
 axis(side=2,las=2,tcl=.2)
@@ -350,7 +349,7 @@ labelgenome(chrom,chromstart,chromend,side=3,n=4,scale="Mb",edgeblankfraction=0.
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,
+pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,
                  heights = Sushi_5C.bedpe$score,plottype="loops",
                  colorby=Sushi_5C.bedpe$samplenumber,
                  colorbycol=SushiColors(3))
@@ -370,7 +369,7 @@ The plot can be flipped over the x-axis by setting \texttt{flip = TRUE},  Bedpe 
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,flip=TRUE,
+pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,flip=TRUE,
                  plottype="lines",colorby=Sushi_5C.bedpe$score,
                  colorbycol=SushiColors(5))
 labelgenome(chrom, chromstart,chromend,side=3,n=3,scale="Mb")
@@ -557,7 +556,7 @@ Now we can make a gene density plot using the plotBed function.
 << fig = TRUE , echo = TRUE ,height=3,width=8 >>=
 plotBed(beddata = geneinfobed[!duplicated(geneinfobed),],chrom = chrom,
         chromstart = chromstart,chromend =chromend,row='supplied',
-        palettes = list(heat.colors), type = "density")
+        palettes = list(SushiColors(7)), type = "density")
 
 labelgenome(chrom, chromstart, chromend,  n=4,scale="Mb",edgeblankfraction=0.10)
 
@@ -584,7 +583,7 @@ geneinfobed[,1] = paste("chr",geneinfobed[,1],sep="")
 
 plotBed(beddata = geneinfobed[!duplicated(geneinfobed),],chrom = chrom,
         chromstart = chromstart,chromend =chromend,row='supplied',
-        palettes = list(heat.colors), type = "density")
+        palettes = list(SushiColors(7)), type = "density")
 
 labelgenome(chrom, chromstart, chromend,  n=4,scale="Mb",edgeblankfraction=0.10)
 
@@ -645,8 +644,7 @@ chrom            = "chr11"
 chromstart       = 1900000
 chromend         = 2350000
 
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,chromend=chromend,
-             color="#5900E5")
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,chromend=chromend,colorbycol= SushiColors(5))
 
 labelgenome(chrom,chromstart=chromstart,chromend=chromend,n=4,scale="Mb")
 
@@ -662,7 +660,7 @@ par(mar=c(3,4,1,1))
 chrom            = "chr11"
 chromstart       = 1900000
 chromend         = 2350000
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,chromend=chromend)
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,chromend=chromend,colorbycol= SushiColors(5))
 labelgenome(chrom,chromstart=chromstart,chromend=chromend,n=4,scale="Mb")
 mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
 axis(side=2,las=2,tcl=.2)
@@ -688,7 +686,7 @@ chrom            = "chr11"
 chromstart       = 1900000
 chromend         = 2350000
 
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,chromend=chromend)
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,chromend=chromend,colorbycol= SushiColors(5))
 
 labelgenome(chrom,chromstart=chromstart,chromend=chromend,n=4,scale="Mb")
 
@@ -706,7 +704,7 @@ Then we can add each of the zoomed inset regions.  For, each region we need exec
 
 <<fig = FALSE, eval=FALSE , echo = TRUE>>=
 plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=zoomregion1[1],
-             chromend=zoomregion1[2])
+             chromend=zoomregion1[2],colorbycol= SushiColors(5))
 
 labelgenome(chrom,chromstart=zoomregion1[1],chromend=zoomregion1[2],
             n=4,scale="Kb",edgeblankfraction=0.2,cex.axis=.75)
@@ -715,7 +713,7 @@ mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
 axis(side=2,las=2,tcl=.2)
 
 plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=zoomregion2[1],
-             chromend=zoomregion2[2])
+             chromend=zoomregion2[2],colorbycol= SushiColors(5))
 
 labelgenome(chrom,chromstart=zoomregion2[1],chromend=zoomregion2[2],
             n=4,scale="Kb",edgeblankfraction=0.2,cex.axis=.75)
@@ -734,7 +732,7 @@ chrom            = "chr11"
 chromstart       = 1900000
 chromend         = 2350000
 
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,chromend=chromend)
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,chromend=chromend,colorbycol= SushiColors(5))
 
 labelgenome(chrom,chromstart=chromstart,chromend=chromend,n=4,scale="Mb")
 
@@ -747,7 +745,7 @@ zoomsregion(zoomregion1,extend=c(0.01,0.13),wideextend=0.05,offsets=c(0,0.580))
 zoomsregion(zoomregion2,extend=c(0.01,0.13),wideextend=0.05,offsets=c(0.580,0))
 
 plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=zoomregion1[1],
-             chromend=zoomregion1[2],)
+             chromend=zoomregion1[2],colorbycol= SushiColors(5))
 
 labelgenome(chrom,chromstart=zoomregion1[1],chromend=zoomregion1[2],
             n=4,scale="Kb",edgeblankfraction=0.2,cex.axis=.75)
@@ -757,7 +755,7 @@ mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
 axis(side=2,las=2,tcl=.2)
 
 plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=zoomregion2[1],
-             chromend=zoomregion2[2])
+             chromend=zoomregion2[2],colorbycol= SushiColors(5))
 
 labelgenome(chrom,chromstart=zoomregion2[1],chromend=zoomregion2[2],
             n=4,scale="Kb",edgeblankfraction=0.2,cex.axis=.75)

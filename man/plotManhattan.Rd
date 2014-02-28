@@ -3,7 +3,8 @@
 \title{plots a Manhattan plot}
 \usage{
 plotManhattan(bedfile, chrom = NULL, chromstart = NULL, chromend = NULL,
-  pvalues, genome = NULL, col = SushiColors(5), space = 0.01, ...)
+  pvalues, genome = NULL, col = SushiColors(5), space = 0.01,
+  ymax = 1.04, ...)
 }
 \arguments{
   \item{bedfile}{bedfile for Manhattan plot}
@@ -26,6 +27,9 @@ plotManhattan(bedfile, chrom = NULL, chromstart = NULL, chromend = NULL,
 
   \item{space}{the space in between each chromosome as a
   fraction of the width of the plot}
+
+  \item{ymax}{fraction of max y value to set as height of
+  plot.}
 
   \item{...}{Arguments to be passed to methods such as
   \code{\link{plot}}}

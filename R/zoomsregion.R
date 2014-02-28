@@ -94,8 +94,6 @@ function(region,chrom=NULL,genome=NULL,space=0.01,padding=0.005,col=NA,zoomborde
   plottop = par('usr')[4]
   xrange  = abs(plotrig - plotlef)
   yrange  = abs(plotbot - plottop)
-
-
   
   # determine upper and lower extension
   if (length(extend) == 1)
@@ -133,7 +131,7 @@ function(region,chrom=NULL,genome=NULL,space=0.01,padding=0.005,col=NA,zoomborde
       region[2] = center + padding*xrange
     }
     
-    # 
+    # highlight
     if (highlight == TRUE)
     {
       plotrig = region[2]

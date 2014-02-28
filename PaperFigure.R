@@ -122,7 +122,7 @@ chromend         = 2350000
 
 
 # plot the loops
-pbpe = plotbedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
+pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
                  lwd=1,plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=SushiColors(3))
 
 # add zoombox
@@ -156,7 +156,7 @@ chromstart       = 1650000
 chromend         = 2350000
 
 # plot the loops
-pbpe = plotbedpe(Sushi_ChIAPET_pol2.bedpe,chrom,chromstart,chromend,flip=TRUE,bty='n',lwd=1,plottype="lines",
+pbpe = plotBedpe(Sushi_ChIAPET_pol2.bedpe,chrom,chromstart,chromend,flip=TRUE,bty='n',lwd=1,plottype="lines",
                  colorby=abs(Sushi_ChIAPET_pol2.bedpe$start1-Sushi_ChIAPET_pol2.bedpe$start2),colorbycol=SushiColors(5))
 
 # add the genome labels
@@ -189,7 +189,7 @@ zoomregion1      = c(1955000,1965000)
 zoomregion2      = c(2281200,2282200)
 
 # overlapping, transparent, and rescaled
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,col=SushiColors(5)(5)[3])
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,colorbycol= SushiColors(5))
 
 # add zoom 1
 zoomsregion(zoomregion1,extend=c(0.01,0.18),wideextend=0.10,offsets=c(0,.577))
@@ -335,7 +335,7 @@ geneinfobed[,1] = paste("chr",geneinfobed[,1],sep="")
 
 # plot gene density
 plotBed(beddata = geneinfobed[!duplicated(geneinfobed),],chrom = chrom,chromstart = chromstart,row='supplied',
-        chromend =chromend,palettes = list(colorRampPalette(c("black","red"))), type = "density")
+        chromend =chromend,palettes = list(SushiColors(7)), type = "density")
 
 #label genome
 labelgenome(chrom=chrom, chromstart, chromend ,n=4,scale="Mb",edgeblankfraction=0.10)
@@ -443,7 +443,7 @@ chromstart       = 72998000
 chromend         = 73020000
 
 # plot the Pol2 bedgraph data
-plotBedgraph(Sushi_ChIPSeq_pol2.bedgraph, chrom,chromstart,chromend)
+plotBedgraph(Sushi_ChIPSeq_pol2.bedgraph, chrom,chromstart,chromend,colorbycol= SushiColors(5))
 
 # label genome
 labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
@@ -473,7 +473,7 @@ chromstart       = 72998000
 chromend         = 73020000
 
 # plot the K562 RNAseq bedgraph data
-plotBedgraph(Sushi_RNASeq_K562.bedgraph, chrom,chromstart,chromend,color=SushiColors(2)(2)[2])
+plotBedgraph(Sushi_RNASeq_K562.bedgraph, chrom,chromstart,chromend,colorbycol= SushiColors(5))
 
 # label genome
 labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
@@ -500,7 +500,7 @@ chromend         = 73020000
 
 # plot gene structures
 plotgenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
-          maxrows=1,height=0.5,plotgenetype="arrow",bentline=FALSE,
+          maxrows=1,bheight=0.2,plotgenetype="arrow",bentline=FALSE,
           labeloffset=1,fontsize=1.2)
 
 # label genome
@@ -512,11 +512,10 @@ zoombox()
 # Add plot label
 mtext("N)    Gene Structures",side=3, adj=-0.065,line=-.5,font=2)
 
-
 if (makepdf ==TRUE)
 {
   dev.off()
 }
 
-
+?plotgenes
 
