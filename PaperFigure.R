@@ -4,6 +4,7 @@ Sushi_data = data(package = 'Sushi')
 data(list = Sushi_data$results[,3]) 
 makepdf = TRUE
 
+
 ############################################################################
 #                                                                          #
 #                                   CODE                                   #
@@ -69,8 +70,7 @@ axis(side=2,las=2,tcl=.2)
 mtext("log10(P)",side=2,line=1.75,cex=.75,font=2)
 
 # Add plot label
-mtext("A)   GWAS",side=3, adj=-.025,line=1,font=2)
-
+labelplot("A)"," GWAS",letteradj=-.025)
 
 #################################################################################################
 #                                                                                               #
@@ -103,8 +103,7 @@ zoomsregion(region=zoomregion,extend=c(0.05,0.25))
 zoombox(zoomregion=zoomregion,)
 
 # Add plot label
-mtext("B)    HiC",side=3, adj=-0.065,line=0.5,font=2)
-
+labelplot("B)"," HiC")
 
 #################################################################################################
 #                                                                                               #
@@ -139,7 +138,7 @@ axis(side=2,las=2,tcl=.2)
 mtext("Z-score",side=2,line=1.75,cex=.75,font=2)
 
 # Add plot label
-mtext("C)    5C",side=3, adj=-0.065,line=0.5,font=2)
+labelplot("C)"," 5C")
 
 #################################################################################################
 #                                                                                               #
@@ -170,7 +169,7 @@ addlegend(pbpe[[1]],palette=pbpe[[2]],title="distance (bp)",side="right",bottomi
 zoombox(passthrough=TRUE)
 
 # Add plot label
-mtext("D)    ChIA-PET (Pol2)",side=3, adj=-0.065,line=0.5,font=2)
+labelplot("D)"," ChIA-PET (Pol2)")
 
 #################################################################################################
 #                                                                                               #
@@ -185,14 +184,14 @@ par(mar=c(3,4,2,2))
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-zoomregion1      = c(1955000,1965000)
-zoomregion2      = c(2281200,2282200)
+zoomregion1      = c(1860000,1861000)
+zoomregion2      = c(2281000,2282400)
 
 # overlapping, transparent, and rescaled
 plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,colorbycol= SushiColors(5))
 
 # add zoom 1
-zoomsregion(zoomregion1,extend=c(0.01,0.18),wideextend=0.10,offsets=c(0,.577))
+zoomsregion(zoomregion1,extend=c(-0.8,0.18),wideextend=0.10,offsets=c(0,.577))
 
 # add the genome labels
 labelgenome(chrom,chromstart,chromend,n=4,scale="Mb")
@@ -208,8 +207,7 @@ axis(side=2,las=2,tcl=.2)
 mtext("Read Depth",side=2,line=1.75,cex=.75,font=2)
 
 # Add plot label
-mtext("E)    DnaseI",side=3, adj=-0.065,line=0.5,font=2)
-
+labelplot("E)", " DnaseI")
 
 #################################################################################################
 #                                                                                               #
@@ -221,27 +219,26 @@ mtext("E)    DnaseI",side=3, adj=-0.065,line=0.5,font=2)
 chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
-zoomregion1      = c(1955000,1965000)
-zoomregion2      = c(2281200,2282200)
+zoomregion1      = c(1860000,1861000)
+zoomregion2      = c(2281000,2282400)
 
 # plot chip-seq data
 plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,zoomregion1[1],zoomregion1[2],transparency=.50,color=SushiColors(2)(2)[1])
 
-# Add plot label
-mtext("F)    DnaseI / ChIP-Seq",side=3, adj=-0.6,line=0.5,font=2)
+# plot chip-seq data
+plotBedgraph(Sushi_ChIPExo_CTCF.bedgraph,chrom,zoomregion1[1],zoomregion1[2],transparency=.50,color=SushiColors(2)(2)[2],overlay=TRUE,rescaleoverlay=TRUE)
 
-# plot dnaseI data
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom,zoomregion1[1],zoomregion1[2],transparency=.50,color=SushiColors(2)(2)[2],overlay=TRUE,rescaleoverlay=TRUE)
+# Add plot label
+labelplot("F)"," ChIP-Seq / ChIP-Exo",letteradj = -.125)
 
 # add the genome labels
-labelgenome(chrom,zoomregion[1],zoomregion[2],n=3,line=.18,scale="Mb")
+labelgenome(chrom,zoomregion1[1],zoomregion1[2],n=3,line=.5,scale="Mb",edgeblankfraction=0.2)
 
 # add zoombox
 zoombox()
 
 # add legend
-legend("topright",inset=0.025,legend=c("DnaseI","ChIP-seq (CTCF)"),fill=opaque(SushiColors(2)(2),0.5),border=SushiColors(2)(2),text.font=2,cex=0.75)
-
+legend("topright",inset=0.025,legend=c("ChIP-seq (CTCF)","ChIP-exo (CTCF)"),fill=opaque(SushiColors(2)(2),0.5),border=SushiColors(2)(2),text.font=2,cex=0.75)
 
 
 #################################################################################################
@@ -255,11 +252,11 @@ chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
 zoomregion1      = c(1955000,1965000)
-zoomregion2      = c(2281200,2282200)
+zoomregion2      = c(2281000,2282400)
 
 # plt the chip-seq data as a pile-up
 plotBed(beddata    = Sushi_ChIPSeq_pol2.bed,chrom = chrom,chromstart = zoomregion2[1],chromend =zoomregion2[2],
-        colorby    = Sushi_ChIPSeq_pol2.bed$strand,colorbycol = SushiColors(2),wiggle=0.001)
+        colorby    = Sushi_ChIPSeq_pol2.bed$strand,colorbycol = SushiColors(2),wiggle=0.001,height=0.25)
 
 # add the genome labels
 labelgenome(chrom,zoomregion2[1],zoomregion2[2],n=2,scale="Mb")
@@ -271,7 +268,8 @@ zoombox()
 legend("topright",inset=0.025,legend=c("reverse","forward"),fill=SushiColors(2)(2),border=SushiColors(2)(2),text.font=2,cex=0.75)
 
 # Add plot label
-mtext("G)    ChIP-Seq",side=3, adj=-.275,line=0.5,font=2)
+labelplot("G)"," ChIP-Seq",letteradj = -.125)
+
 
 #################################################################################################
 #                                                                                               #
@@ -293,7 +291,7 @@ chromend2         = 74000000
 plotManhattan(bedfile=Sushi_GWAS.bed,chrom=chrom2,chromstart= chromstart, chromend = chromend,    pvalues=Sushi_GWAS.bed$pval.GC.DBP,col=SushiColors(6)(nrow(Sushi_hg18_genome))[15],cex=0.75)
 
 # add zoom in
-zoomsregion(region=c(chromstart2,chromend2),chrom=chrom2,genome=NULL,extend=c(0.05,1),offsets=c(0.0,0))
+zoomsregion(region=c(chromstart2,chromend2),chrom=chrom2,genome=NULL,extend=c(0.075,1),offsets=c(0.0,0))
 
 # add zoom box
 zoombox(passthrough=TRUE,topextend=5)
@@ -303,8 +301,7 @@ axis(side=2,las=2,tcl=.2)
 mtext("Z-score",side=2,line=1.75,cex=.75,font=2)
 
 # Add plot label
-mtext("H)    GWAS",side=3, adj=-0.065,line=0.5,font=2)
-
+labelplot("H)", " GWAS")
 
 #################################################################################################
 #                                                                                               #
@@ -347,8 +344,7 @@ zoomsregion(region=c(chromstart2,chromend2),chrom=chrom2,genome=NULL,extend=c(2,
 zoombox(zoomregion=c(chromstart2,chromend2),topextend=5)
 
 # Add plot label
-mtext("I)    Gene Density",side=3, adj=-0.065,line=0.20,font=2)
-
+labelplot("I)"," Gene Density")
 
 #################################################################################################
 #                                                                                               #
@@ -368,18 +364,16 @@ chrom2_biomart   = 15
 
 Sushi_transcripts.bed[,1] = paste("chr",Sushi_transcripts.bed[,1],sep="")
 
-head(Sushi_transcripts.bed)
-
 # plot transcripts
 pg = plotgenes(Sushi_transcripts.bed,chrom2,chromstart2,chromend2 ,types = Sushi_transcripts.bed$type,
-          colorby=Sushi_transcripts.bed$score,colorbycol= SushiColors(5) ,labeltext=FALSE,
-          maxrows=50,height=0.4,plotgenetype="box")
+               colorby=log10(Sushi_transcripts.bed$score+0.001),colorbycol= SushiColors(5) ,labeltext=FALSE,
+               maxrows=50,height=0.4,plotgenetype="box")
 
 # label genome
 labelgenome( chrom2, chromstart2,chromend2,n=3,scale="Mb")
 
 # add the legend
-addlegend(pg[[1]],palette=pg[[2]],title="FPKM",side="right",bottominset=0.4,topinset=0,xoffset=-.035,labelside="left",width=0.025,title.offset=0.055)
+addlegend(pg[[1]],palette=pg[[2]],title="log10(FPKM)",side="right",bottominset=0.4,topinset=0,xoffset=-.035,labelside="left",width=0.025,title.offset=0.055)
 
 # add zoombox
 zoombox(passthrough=TRUE)
@@ -388,7 +382,7 @@ zoombox(passthrough=TRUE)
 zoomsregion(region=zoomregion,extend=c(-.025,1))
 
 # Add plot label
-mtext("J)    RNA-seq",side=3, adj=-0.065,line=0.5,font=2)
+labelplot("J)"," RNA-seq")
 
 #################################################################################################
 #                                                                                               #
@@ -424,8 +418,7 @@ zoombox(zoomregion = zoomregion)
 zoomsregion(region=zoomregion,chrom=chrom,extend=c(0.5,.22),wideextend=0.15,offsets=c(0.0,0))
 
 # Add plot label
-mtext("K)    ChIP-seq",side=3, adj=-0.065,line=0.5,font=2)
-
+labelplot("K)"," ChIP-seq")
 
 
 #################################################################################################
@@ -456,7 +449,7 @@ axis(side=2,las=2,tcl=.2)
 mtext("Read Depth",side=2,line=1.75,cex=.75,font=2)
 
 # Add plot label
-mtext("L)    Chip-Seq (Pol2)",side=3, adj=-.065,line=0.5,font=2)
+labelplot("L)"," Chip-Seq (Pol2)")
 
 #################################################################################################
 #                                                                                               #
@@ -482,7 +475,7 @@ labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
 zoombox(passthrough=TRUE)
 
 # Add plot label
-mtext("M)    RNA-seq",side=3, adj=-0.065,line=-1,font=2)
+labelplot("M)"," RNA-seq")
 
 #################################################################################################
 #                                                                                               #
@@ -510,12 +503,11 @@ labelgenome( chrom, chromstart,chromend,n=3,scale="Mb")
 zoombox()
 
 # Add plot label
-mtext("N)    Gene Structures",side=3, adj=-0.065,line=-.5,font=2)
+labelplot("N)"," Gene Structures",letterline=-0.4,titleline=-0.4)
 
 if (makepdf ==TRUE)
 {
   dev.off()
 }
 
-?plotgenes
 

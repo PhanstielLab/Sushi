@@ -1,0 +1,41 @@
+\name{labelplot}
+\alias{labelplot}
+\title{adds a letter and a title to a plot}
+\usage{
+labelplot(letter = NULL, title = NULL, letteradj = -0.05, titleadj = 0,
+  letterfont = 2, titlefont = 2, lettercex = 1, titlecex = 1,
+  letterline = 0.5, titleline = 0.5, lettercol = "black",
+  titlecol = "black")
+}
+\arguments{
+  \item{letter}{A string, typically a letter or number (eg
+  'A', 'A)', '1', etc) to lable the plot with}
+
+  \item{title}{A string for a plot title}
+
+  \item{letteradj}{adj of letter. See \code{\link{par}}}
+
+  \item{titleadj}{adj of title. See \code{\link{par}}}
+
+  \item{letterfont}{font of letter. See \code{\link{par}}}
+
+  \item{titlefont}{font of title See \code{\link{par}}}
+
+  \item{lettercex}{cex of letter. See \code{\link{par}}}
+
+  \item{titlecex}{cex of title See \code{\link{par}}}
+
+  \item{letterline}{line of letter. See \code{\link{par}}}
+
+  \item{titleline}{line of title See \code{\link{par}}}
+}
+\description{
+This function adds a letter and a title (both are optional)
+to the top of a plot.  Udeful for generating paper figures.
+}
+\examples{
+par(mar=c(3,3,3,3))
+plot((1:10),col=maptocolors(vec=(1:10),colorRampPalette(c("blue","red"))),pch=19,cex=4)
+labelplot("A)"," sample plot",lettercex=2,titlecex=2,titlecol="blue")
+}
+
