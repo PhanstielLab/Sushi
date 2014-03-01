@@ -613,7 +613,6 @@ And the genome file should look like this:
 The \texttt{plotManhattan()} function is used to plot the data while the \texttt{labelgenome()} function is used to add the genome labels to the x-axis.  The \texttt{labelgenome()} function also requires a genome object.
 
 \begin{center}
-
 << fig = TRUE , echo = TRUE, height=6,width=8>>=
 plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],col=SushiColors(6),
                 genome=Sushi_hg18_genome,cex=0.75)
@@ -623,6 +622,18 @@ mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
 mtext("chromosome",side=1,line=1.75,cex=1,font=2)
 @
 \end{center}
+
+
+\subsection{plotGenes}
+
+\begin{center}
+<< fig = FALSE , echo = TRUE, height=6,width=8>>=
+  print ("working on it")
+@
+\end{center}
+
+
+
 
 
 \subsection{Zoom functions}
@@ -768,11 +779,11 @@ axis(side=2,las=2,tcl=.2)
 \end{center}
 
 
-\subsection{SushiColors}
+\subsection{Color functions}
 
 Sushi includes three functions to assist in the generating of R colors and color palettes: \texttt{SushiColors()}, \texttt{maptocolors()}, \texttt{opaque()}.
 
-\subsubsection{Color functions}
+\subsubsection{SushiColors}
 
 \paragraph{}
 \texttt{SushiColors()} provides default color palettes for the Sushi package.
@@ -839,6 +850,54 @@ addlegend(range(values),title="key",palette=colorpalette,
           side='left',xoffset = -0.125,width=0.03,bottominset = 0.5, topinset = 0.025)
 axis(side=2,las=2)
 @
+
+
+
+\subsection{labeling functions}
+
+\subsubsection{labelgenome}
+
+\texttt{labelgenome()} Add genome coordinates to the x-axis of a plot.  The \texttt{line} argument can be used to offset the axis and \texttt{n} can be used to determine the desired umber of tick marks.
+
+<<fig = TRUE , echo = TRUE,height=6,width=9>>=
+par(mar=c(8,3,3,1),mgp=c(3, .3, 0))
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom="chr11",chromstart=1650000,chromend=2350000,colorbycol=SushiColors(7))
+labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,side=1,n=4,scale="Mb",line=.25)
+labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,side=1,n=3,scale="Kb",line=2)
+labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,side=1,n=1,scale="bp",line=4)
+@
+
+Manhattan plots include multiple genomes and labeling the axes of Manhattan plots requires the same \texttt{genome} oject and value of \texttt{space} that were used to in \texttt{plotManhattan()}
+
+<<fig = TRUE , echo = TRUE,height=6,width=9>>=
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],col=SushiColors(6),
+                genome=Sushi_hg18_genome,cex=0.75,space=0.05)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",edgeblankfraction=0.20,cex.axis=.5,space=0.05)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+@
+
+\subsubsection{labelplot}
+
+Plot labels and titles can be added with the \texttt{labelplot()} function.
+
+<<fig = FALSE , echo = TRUE,height=6,width=9>>=
+labelplot("A) ","Manhattan Plot")
+@
+
+<<fig = TRUE , echo = FALSE,height=6,width=9>>=
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],col=SushiColors(6),
+                genome=Sushi_hg18_genome,cex=0.75,space=0.05)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",edgeblankfraction=0.20,cex.axis=.5,space=0.05)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+labelplot("A) ","Manhattan Plot")
+@
+
+
 
 \end{document}
 

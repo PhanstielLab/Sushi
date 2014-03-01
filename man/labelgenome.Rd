@@ -65,8 +65,8 @@ Adds genome coordinates to the x-axis of a Sushi plot
 data(Sushi_DNaseI.bedgraph)
 # set the genomic regions
 
-plotBedgraph(Sushi_DNaseI.bedgraph,chrom="chr11",chromstart=1650000,chromend=2350000,transparency=1.0,color="#5900E5",lwd=1,linecol="#5900E5")
-labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,side=1,scipen=20,n=4,line=.18,chromline=.5,scaleline=0.5,scale="Mb")
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom="chr11",chromstart=1650000,chromend=2350000,colorbycol=SushiColors(7))
+labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,side=1,n=4,scale="Mb")
 axis(side=2,las=2,tcl=.2)
 mtext("Read Depth",side=2,line=1.75,cex=.75,font=2)
 }
