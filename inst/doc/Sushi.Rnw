@@ -1,6 +1,7 @@
 %\VignetteIndexEntry{Sushi}
 \documentclass{article}
 \usepackage{hyperref}
+\usepackage{natbib}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -53,13 +54,15 @@ Sushi accepts 4 types of genomic data as input.  These include:
 \subsection{Example datasets}
 To illustrate how Sushi works, we have included several publicaly available data sets in the package Sushi. The data types include RNA-seq, ChIP-seq, ChIA-PET, and HiC data:
 
+\paragraph{}
+
 %% Citations for data sets
 \begin{tabular}{l|r}
 \texttt{Sushi\_5C.bedpe} & \\
 \texttt{Sushi\_ChIAPET\_pol2.bedpe} & \\
 \texttt{Sushi\_ChIPExo\_CTCF.bedgraph} & \\
 \texttt{Sushi\_ChIPSeq\_CTCF.bedgraph} & \\
-\texttt{Sushi\_ChIPSeq\_pol2.bed} & \cite{encode_integrated_2012} \\
+\texttt{Sushi\_ChIPSeq\_pol2.bed} & \citet{encode_integrated_2012} \\
 \texttt{Sushi\_ChIPSeq\_pol2.bedgraph} & \\
 \texttt{Sushi\_ChIPSeq\_severalfactors.bed} & \\
 \texttt{Sushi\_DNaseI.bedgraph} & \\
@@ -80,13 +83,15 @@ writeLines("@article{encode_integrated_2012,
   doi = {10.1038/nature11247},
   number = {7414},
   journal = {Nature},
-  author = {{The {ENCODE} Project Consortium}},
+  author = {The ENCODE Project Consortium},
   month = sep,
   year = {2012},
   note = {{PMID:} 22955616},
   pages = {57--74}
 }",con="Sushi.bib")
 @
+
+\paragraph{}
 
 These data sets can be loaded using the following commands:
 
