@@ -51,7 +51,44 @@ Sushi accepts 4 types of genomic data as input.  These include:
 ** Some functions may require additional information depending on the plot and features desired.
 
 \subsection{Example datasets}
-To illustrate how Sushi works, we have included several publicaly available data sets in the package Sushi. The data types include RNA-seq, ChIP-seq, ChIA-PET, and HiC data and can be loaded using the following commands:
+To illustrate how Sushi works, we have included several publicaly available data sets in the package Sushi. The data types include RNA-seq, ChIP-seq, ChIA-PET, and HiC data:
+
+%% Citations for data sets
+\begin{tabular}{l|r}
+\texttt{Sushi\_5C.bedpe} & \\
+\texttt{Sushi\_ChIAPET\_pol2.bedpe} & \\
+\texttt{Sushi\_ChIPExo\_CTCF.bedgraph} & \\
+\texttt{Sushi\_ChIPSeq\_CTCF.bedgraph} & \\
+\texttt{Sushi\_ChIPSeq\_pol2.bed} & \cite{encode_integrated_2012} \\
+\texttt{Sushi\_ChIPSeq\_pol2.bedgraph} & \\
+\texttt{Sushi\_ChIPSeq\_severalfactors.bed} & \\
+\texttt{Sushi\_DNaseI.bedgraph} & \\
+\texttt{Sushi\_GWAS.bed} & \\
+\texttt{Sushi\_HiC.matrix} & \\
+\texttt{Sushi\_RNASeq\_K562.bedgraph} & \\
+\texttt{Sushi\_genes.bed} & \\
+\texttt{Sushi\_hg18\_genome} & \\
+\texttt{Sushi\_transcripts.bed} & \\
+\end{tabular}
+
+<<echo = FALSE>>=
+writeLines("@article{encode_integrated_2012,
+  title = {An integrated encyclopedia of {DNA} elements in the human genome},
+  volume = {489},
+  issn = {1476-4687},
+  url = {http://www.ncbi.nlm.nih.gov/pubmed/22955616},
+  doi = {10.1038/nature11247},
+  number = {7414},
+  journal = {Nature},
+  author = {{The {ENCODE} Project Consortium}},
+  month = sep,
+  year = {2012},
+  note = {{PMID:} 22955616},
+  pages = {57--74}
+}",con="Sushi.bib")
+@
+
+These data sets can be loaded using the following commands:
 
 <<dataLoading>>=
 library('Sushi')
@@ -64,9 +101,6 @@ To see which data sets are loaded
 <<dataLoading>>=
 Sushi_data$results[,3]
 @
-
-%%We should include citations for the data sets here.
-
 
 \section{Functions}
 \subsection{Functions overview}
@@ -897,7 +931,8 @@ mtext("chromosome",side=1,line=1.75,cex=1,font=2)
 labelplot("A) ","Manhattan Plot")
 @
 
-
+\bibliography{Sushi}
+\bibliographystyle{plain}
 
 \end{document}
 
