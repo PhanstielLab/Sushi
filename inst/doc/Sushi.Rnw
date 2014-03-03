@@ -116,10 +116,6 @@ topological basis for transcription regulation},
 con="Sushi.bib")
 @
 
-
-. . Cell. 2012 Jan 20;148(1-2):84-98.
-doi: 10.1016/j.cell.2011.12.014. PubMed PMID: 22265404; PubMed Central PMCID:
-PMC3339270.
 \paragraph{}
 
 These data sets can be loaded using the following commands:
