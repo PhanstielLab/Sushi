@@ -1,7 +1,7 @@
 %\VignetteIndexEntry{Sushi}
 \documentclass{article}
 \usepackage{hyperref}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -67,11 +67,16 @@ To illustrate how Sushi works, we have included several publicaly available data
 \texttt{Sushi\_ChIPSeq\_severalfactors.bed} & \\
 \texttt{Sushi\_DNaseI.bedgraph} & \\
 \texttt{Sushi\_GWAS.bed} & \\
-\texttt{Sushi\_HiC.matrix} & \\
+
 \texttt{Sushi\_RNASeq\_K562.bedgraph} & \\
 \texttt{Sushi\_genes.bed} & \\
 \texttt{Sushi\_hg18\_genome} & \\
 \texttt{Sushi\_transcripts.bed} & \\
+\end{tabular}
+
+
+\begin{tabular}{l|r}
+\texttt{Sushi\_HiC.matrix} & \citet{encode_integrated_2012} \\
 \end{tabular}
 
 <<echo = FALSE>>=
@@ -83,7 +88,7 @@ writeLines("@article{encode_integrated_2012,
   doi = {10.1038/nature11247},
   number = {7414},
   journal = {Nature},
-  author = {The ENCODE Project Consortium},
+  author = {{The ENCODE Project Consortium}},
   month = sep,
   year = {2012},
   note = {{PMID:} 22955616},
@@ -937,7 +942,7 @@ labelplot("A) ","Manhattan Plot")
 @
 
 \bibliography{Sushi}
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 
 \end{document}
 
