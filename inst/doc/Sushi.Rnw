@@ -58,8 +58,8 @@ To illustrate how Sushi works, we have included several publicaly available data
 
 %% Citations for data sets
 \begin{tabular}{l|r}
-\texttt{Sushi\_5C.bedpe} & \\
-\texttt{Sushi\_ChIAPET\_pol2.bedpe} & \\
+\texttt{Sushi\_5C.bedpe} & \citet{fiveC} \\ 
+\texttt{Sushi\_ChIAPET\_pol2.bedpe} & \citet{chiapet} \\ 
 \texttt{Sushi\_ChIPExo\_CTCF.bedgraph} & \\
 \texttt{Sushi\_ChIPSeq\_CTCF.bedgraph} & \citet{encode_integrated_2012} \\
 \texttt{Sushi\_ChIPSeq\_pol2.bed} & \citet{encode_integrated_2012} \\
@@ -87,10 +87,41 @@ writeLines("@article{encode_integrated_2012,
   month = sep,
   year = {2012},
   note = {{PMID:} 22955616},
-  pages = {57--74}
-}",con="Sushi.bib")
+  pages = {57-74},
+}
+@article{fiveC,
+  title = {The long-range interaction landscape of gene promoters},
+  volume = {489},
+  doi = {10.1038/nature11279},
+  number = {7414},
+  journal = {Nature},
+  author = {A Sanyal and BR Lajoie and G Jain and J Dekker},
+  month = sep,
+  year = {2012},
+  note = {{PMID:} 22955621},
+  pages = {109-113},
+}
+@article{chiapet,
+  title = {Extensive promoter-centered chromatin interactions provide a
+topological basis for transcription regulation},
+  volume = {148},
+  doi = {10.1016/j.cell.2011.12.014},
+  journal = {Cell},
+  author = {G Li and X Ruan and RK Auerbach and KS Sandhu and M Zheng and P Wang and HM Poh and Y Goh and J Lim and J Zhang and HS Sim and SQ Peh and FH Mulawadi and CT Ong and YL Orlov and S Hong and Z Zhang and S Landt and D Raha and G Euskirchen and CL Wei and W Ge and H Wang and C Davis and KI Fisher-Aylor and A Mortazavi and M Gerstein and T Gingeras and B Wold and Y Sun and MJ Fullwood and E Cheung and E Liu and WK Sung and M Snyder and Y Ruan},
+  month = jan,
+  year = {2012},
+  note = {{PMID:} 22265404},
+  pages = {84-98},
+}
+"
+,con="Sushi.bib")
 @
 
+
+
+. . Cell. 2012 Jan 20;148(1-2):84-98.
+doi: 10.1016/j.cell.2011.12.014. PubMed PMID: 22265404; PubMed Central PMCID:
+PMC3339270.
 \paragraph{}
 
 These data sets can be loaded using the following commands:
