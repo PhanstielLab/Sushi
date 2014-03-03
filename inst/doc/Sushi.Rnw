@@ -77,17 +77,17 @@ To illustrate how Sushi works, we have included several publicaly available data
 <<echo = FALSE>>=
 writeLines("@article{encode_integrated_2012,
   title = {An integrated encyclopedia of {DNA} elements in the human genome},
+  author = {{The ENCODE Project Consortium}},
+  journal = {Nature},
+  year = {2012},
   volume = {489},
   issn = {1476-4687},
   url = {http://www.ncbi.nlm.nih.gov/pubmed/22955616},
   doi = {10.1038/nature11247},
   number = {7414},
-  journal = {Nature},
-  author = {{The ENCODE Project Consortium}},
   month = sep,
-  year = {2012},
   note = {{PMID:} 22955616},
-  pages = {57-74},
+  pages = {57--74},
 }
 @article{fiveC,
   title = {The long-range interaction landscape of gene promoters},
@@ -99,7 +99,7 @@ writeLines("@article{encode_integrated_2012,
   month = sep,
   year = {2012},
   note = {{PMID:} 22955621},
-  pages = {109-113},
+  pages = {109--113},
 }
 @article{chiapet,
   title = {Extensive promoter-centered chromatin interactions provide a
@@ -111,12 +111,10 @@ topological basis for transcription regulation},
   month = jan,
   year = {2012},
   note = {{PMID:} 22265404},
-  pages = {84-98},
-}
-"
-,con="Sushi.bib")
+  pages = {84--98},
+}",
+con="Sushi.bib")
 @
-
 
 
 . . Cell. 2012 Jan 20;148(1-2):84-98.
