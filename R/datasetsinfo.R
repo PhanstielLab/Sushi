@@ -25,7 +25,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPSeq_CTCF.bedgraph
 #' @format bedgraph format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nat. Methods 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
 NULL
 
 #' @name Sushi_ChIPExo_CTCF.bedgraph
@@ -45,7 +45,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPSeq_pol2.bedgraph
 #' @format bedgraph format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nat. Methods 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
 NULL
 
 #' @name Sushi_DNaseI.bedgraph
@@ -65,7 +65,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPSeq_pol2.bed
 #' @format bed format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nat. Methods 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
 NULL
 
 
@@ -76,7 +76,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPSeq_severalfactors.bed
 #' @format bed format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nat. Methods 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
 NULL
 
 #' @name Sushi_RNASeq_K562.bedgraph
@@ -86,7 +86,7 @@ NULL
 #' @docType data
 #' @usage Sushi_RNASeq_K562.bedgraph
 #' @format bedgraph format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nat. Methods 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
 NULL
 
 
@@ -97,7 +97,7 @@ NULL
 #' @docType data
 #' @usage Sushi_RNASeq_K562.bedgraph
 #' @format bedgraph format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nat. Methods 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
 NULL
 
 #' @name Sushi_GWAS.bed
@@ -137,7 +137,7 @@ NULL
 #' @docType data
 #' @usage Sushi_transcripts.bed
 #' @format bed format
-#' @source http://www.biomart.org/ and Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nat. Methods 489, 57–74 (2012).
+#' @source http://www.biomart.org/ and Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
 NULL
 
 #' @name Sushi_hg18_genome
@@ -146,7 +146,7 @@ NULL
 #' @docType data
 #' @usage Sushi_hg18_genome
 #' @format two columns (column 1 = chromosome name, column 2 = length of chromosome)
-#' @source http://www.biomart.org/ and Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nat. Methods 489, 57–74 (2012).
+#' @source http://www.biomart.org/ and Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
 NULL
 
 
