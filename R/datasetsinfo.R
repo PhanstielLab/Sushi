@@ -35,7 +35,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPExo_CTCF.bedgrap
 #' @format bedgraph format
-#' @source TBD
+#' @source Rhee, H. S. & Pugh, B. F. Comprehensive genome-wide protein-DNA interactions detected at single-nucleotide resolution. Cell 147, 1408-1419 (2011).
 NULL
 
 #' @name Sushi_ChIPSeq_pol2.bedgraph

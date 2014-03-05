@@ -4,7 +4,9 @@
 \title{Sushi_ChIPExo_CTCF.bedgraph}
 \format{bedgraph format}
 \source{
-TBD
+Rhee, H. S. & Pugh, B. F. Comprehensive genome-wide
+protein-DNA interactions detected at single-nucleotide
+resolution. Cell 147, 1408-1419 (2011).
 }
 \usage{
 Sushi_ChIPExo_CTCF.bedgrap

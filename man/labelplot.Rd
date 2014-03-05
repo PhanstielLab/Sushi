@@ -3,7 +3,7 @@
 \title{adds a letter and a title to a plot}
 \usage{
 labelplot(letter = NULL, title = NULL, letteradj = -0.05, titleadj = 0,
-  letterfont = 2, titlefont = 2, lettercex = 1, titlecex = 1,
+  letterfont = 2, titlefont = 2, lettercex = 1.2, titlecex = 1,
   letterline = 0.5, titleline = 0.5, lettercol = "black",
   titlecol = "black")
 }
