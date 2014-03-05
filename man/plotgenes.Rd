@@ -1,8 +1,8 @@
-\name{plotgenes}
-\alias{plotgenes}
+\name{plotGenes}
+\alias{plotGenes}
 \title{plots gene structure or transcript structures}
 \usage{
-plotgenes(transcripts, chrom = NULL, chromstart = NULL, chromend = NULL,
+plotGenes(transcripts, chrom = NULL, chromstart = NULL, chromend = NULL,
   col = SushiColors(2)(2)[1], bheight = 0.3, lheight = 0.3,
   bentline = TRUE, packrow = TRUE, maxrows = 10000, colorby = NULL,
   colorbyrange = NULL, colorbycol = colorRampPalette(c("blue", "red")),
@@ -87,7 +87,7 @@ chromstart       = 72998000
 chromend         = 73020000
 chrom_biomart    = 15
 
-plotgenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
+plotGenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
      maxrows=1,height=0.5,plotgenetype="arrow",bentline=FALSE,col="blue",
      labeloffset=1,fontsize=1.2)
 

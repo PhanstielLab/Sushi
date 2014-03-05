@@ -12,6 +12,8 @@
 #' @param titlecex cex of title See \code{\link{par}}
 #' @param letterline line of letter. See \code{\link{par}}
 #' @param titleline line of title See \code{\link{par}}
+#' @param lettercol color of letter. See \code{\link{par}}
+#' @param titlecol color of title See \code{\link{par}}
 #' @export
 #' @examples
 #' 

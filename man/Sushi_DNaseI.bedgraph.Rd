@@ -6,7 +6,7 @@
 \source{
 Neph, S. et al. An expansive human regulatory lexicon
 encoded in transcription factor footprints. Nature 489,
-83–90 (2012).
+83-90 (2012).
 }
 \usage{
 Sushi_DNaseI.bedgraph

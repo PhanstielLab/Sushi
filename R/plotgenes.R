@@ -34,13 +34,13 @@
 #' chromend         = 73020000
 #' chrom_biomart    = 15
 #' 
-#' plotgenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
+#' plotGenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
 #'      maxrows=1,height=0.5,plotgenetype="arrow",bentline=FALSE,col="blue",
 #'      labeloffset=1,fontsize=1.2)
 #' 
 #' labelgenome( chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
 #'
-plotgenes <-
+plotGenes <-
 function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
                       col=SushiColors(2)(2)[1],bheight=0.3,lheight=0.3,bentline=TRUE,
                       packrow=TRUE,maxrows=10000,
@@ -370,6 +370,11 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
  
   # filter out rows above max row 
   transcriptinfo = transcriptinfo[which(is.na(transcriptinfo$plotrow)==FALSE),]
+  
+  # filter out transcrits that don't overlap region
+  transcriptinfo = transcriptinfo[which((transcriptinfo[,2] > chromstart & transcriptinfo[,2] < chromend)
+                       | (transcriptinfo[,3] > chromstart & transcriptinfo[,3] < chromend)),]
+   
 
   plot(c(1,1),xlim=c(chromstart,chromend),ylim=c(0.5,( max(transcriptinfo$plotrow) + offsettop)),type ='n',bty='n',xaxt='n',yaxt='n',ylab="",xlab="",xaxs="i")
   

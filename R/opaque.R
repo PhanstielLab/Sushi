@@ -12,7 +12,7 @@ opaque <- function(color=SushiColors(7)(7),transparency=0.5)
   if (length(color) == 1)
   {
     colrgb = col2rgb(color)
-    newcol = rgb(colrgb[1],colrgb[2],colrgb[3],alpha=transparency * 255,max = 255)
+    newcol = rgb(colrgb[1],colrgb[2],colrgb[3],alpha=transparency * 255,maxColorValue = 255)
     return(newcol)
   }
   else
@@ -21,7 +21,7 @@ opaque <- function(color=SushiColors(7)(7),transparency=0.5)
     for (col in color)
     {
       colrgb = col2rgb(col)
-      newcols = c(newcols,rgb(colrgb[1],colrgb[2],colrgb[3],alpha=transparency * 255,max = 255))
+      newcols = c(newcols,rgb(colrgb[1],colrgb[2],colrgb[3],alpha=transparency * 255,maxColorValue = 255))
     }
     return (newcols)
   }

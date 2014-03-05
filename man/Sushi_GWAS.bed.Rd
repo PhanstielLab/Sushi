@@ -6,7 +6,7 @@
 \source{
 Ehret, G. B. et al. Genetic variants in novel pathways
 influence blood pressure and cardiovascular disease risk.
-Nature 478, 103–109 (2011).
+Nature 478, 103-109 (2011).
 }
 \usage{
 Sushi_GWAS.bed

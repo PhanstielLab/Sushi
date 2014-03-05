@@ -6,7 +6,7 @@
 \source{
 Li, G. et al. Extensive Promoter-Centered Chromatin
 Interactions Provide a Topological Basis for Transcription
-Regulation. Cell 148, 84–98 (2012).
+Regulation. Cell 148, 84-98 (2012).
 }
 \usage{
 Sushi_ChIAPET_pol2.bedpe

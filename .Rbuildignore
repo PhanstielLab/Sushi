@@ -1,2 +1,12 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+.Rproj.user
+.Rhistory
+.RData
+.DS_Store
+inst/doc/Sushi-0*.pdf
+inst/doc/Sushi.log
+inst/doc/Sushi.synctex.gz
+inst/doc/Sushi-concordance.tex
+inst/doc/Sushi.tex
+inst/doc/Sushi.toc

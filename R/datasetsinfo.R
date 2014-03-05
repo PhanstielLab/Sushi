@@ -5,7 +5,7 @@
 #' @docType data
 #' @usage Sushi_5C.bedpe
 #' @format bedpe format
-#' @source Sanyal, A., Lajoie, B. R., Jain, G. & Dekker, J. The long-range interaction landscape of gene promoters. Nature 489, 109–113 (2012).
+#' @source Sanyal, A., Lajoie, B. R., Jain, G. & Dekker, J. The long-range interaction landscape of gene promoters. Nature 489, 109-113 (2012).
 NULL
 
 #' @name Sushi_ChIAPET_pol2.bedpe
@@ -15,7 +15,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIAPET_pol2.bedpe
 #' @format bedpe format
-#' @source Li, G. et al. Extensive Promoter-Centered Chromatin Interactions Provide a Topological Basis for Transcription Regulation. Cell 148, 84–98 (2012).
+#' @source Li, G. et al. Extensive Promoter-Centered Chromatin Interactions Provide a Topological Basis for Transcription Regulation. Cell 148, 84-98 (2012).
 NULL
 
 #' @name Sushi_ChIPSeq_CTCF.bedgraph
@@ -25,7 +25,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPSeq_CTCF.bedgraph
 #' @format bedgraph format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57-74 (2012).
 NULL
 
 #' @name Sushi_ChIPExo_CTCF.bedgraph
@@ -45,7 +45,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPSeq_pol2.bedgraph
 #' @format bedgraph format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57-74 (2012).
 NULL
 
 #' @name Sushi_DNaseI.bedgraph
@@ -55,7 +55,7 @@ NULL
 #' @docType data
 #' @usage Sushi_DNaseI.bedgraph
 #' @format bedgraph format
-#' @source Neph, S. et al. An expansive human regulatory lexicon encoded in transcription factor footprints. Nature 489, 83–90 (2012).
+#' @source Neph, S. et al. An expansive human regulatory lexicon encoded in transcription factor footprints. Nature 489, 83-90 (2012).
 NULL
 
 #' @name Sushi_ChIPSeq_pol2.bed
@@ -65,7 +65,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPSeq_pol2.bed
 #' @format bed format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57-74 (2012).
 NULL
 
 
@@ -76,7 +76,7 @@ NULL
 #' @docType data
 #' @usage Sushi_ChIPSeq_severalfactors.bed
 #' @format bed format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57-74 (2012).
 NULL
 
 #' @name Sushi_RNASeq_K562.bedgraph
@@ -86,7 +86,7 @@ NULL
 #' @docType data
 #' @usage Sushi_RNASeq_K562.bedgraph
 #' @format bedgraph format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57-74 (2012).
 NULL
 
 
@@ -97,7 +97,7 @@ NULL
 #' @docType data
 #' @usage Sushi_RNASeq_K562.bedgraph
 #' @format bedgraph format
-#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
+#' @source Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57-74 (2012).
 NULL
 
 #' @name Sushi_GWAS.bed
@@ -107,7 +107,7 @@ NULL
 #' @docType data
 #' @usage Sushi_GWAS.bed
 #' @format bed format
-#' @source Ehret, G. B. et al. Genetic variants in novel pathways influence blood pressure and cardiovascular disease risk. Nature 478, 103–109 (2011).
+#' @source Ehret, G. B. et al. Genetic variants in novel pathways influence blood pressure and cardiovascular disease risk. Nature 478, 103-109 (2011).
 NULL
 
 #' @name Sushi_HiC.matrix
@@ -137,7 +137,7 @@ NULL
 #' @docType data
 #' @usage Sushi_transcripts.bed
 #' @format bed format
-#' @source http://www.biomart.org/ and Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
+#' @source http://www.biomart.org/ and Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57-74 (2012).
 NULL
 
 #' @name Sushi_hg18_genome
@@ -146,7 +146,7 @@ NULL
 #' @docType data
 #' @usage Sushi_hg18_genome
 #' @format two columns (column 1 = chromosome name, column 2 = length of chromosome)
-#' @source http://www.biomart.org/ and Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).
+#' @source http://www.biomart.org/ and Consortium, T. E. P. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57-74 (2012).
 NULL
 
 

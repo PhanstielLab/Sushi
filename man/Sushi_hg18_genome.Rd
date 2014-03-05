@@ -6,7 +6,7 @@
 \source{
 http://www.biomart.org/ and Consortium, T. E. P. An
 integrated encyclopedia of DNA elements in the human
-genome. Nat. Methods 489, 57–74 (2012).
+genome. Nature 489, 57-74 (2012).
 }
 \usage{
 Sushi_hg18_genome

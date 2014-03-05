@@ -28,6 +28,10 @@ labelplot(letter = NULL, title = NULL, letteradj = -0.05, titleadj = 0,
   \item{letterline}{line of letter. See \code{\link{par}}}
 
   \item{titleline}{line of title See \code{\link{par}}}
+
+  \item{lettercol}{color of letter. See \code{\link{par}}}
+
+  \item{titlecol}{color of title See \code{\link{par}}}
 }
 \description{
 This function adds a letter and a title (both are optional)

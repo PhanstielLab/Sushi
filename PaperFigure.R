@@ -362,10 +362,8 @@ chromend2         = 73100000
 zoomregion       = c(72998000,73020000)
 chrom2_biomart   = 15
 
-Sushi_transcripts.bed[,1] = paste("chr",Sushi_transcripts.bed[,1],sep="")
-
 # plot transcripts
-pg = plotgenes(Sushi_transcripts.bed,chrom2,chromstart2,chromend2 ,types = Sushi_transcripts.bed$type,
+pg = plotGenes(Sushi_transcripts.bed,chrom2,chromstart2,chromend2 ,types = Sushi_transcripts.bed$type,
                colorby=log10(Sushi_transcripts.bed$score+0.001),colorbycol= SushiColors(5) ,labeltext=FALSE,
                maxrows=50,height=0.4,plotgenetype="box")
 
@@ -492,7 +490,7 @@ chromstart       = 72998000
 chromend         = 73020000
 
 # plot gene structures
-plotgenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
+plotGenes(Sushi_genes.bed,chrom,chromstart,chromend ,
           maxrows=1,bheight=0.2,plotgenetype="arrow",bentline=FALSE,
           labeloffset=1,fontsize=1.2)
 

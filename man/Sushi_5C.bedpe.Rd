@@ -6,7 +6,7 @@
 \source{
 Sanyal, A., Lajoie, B. R., Jain, G. & Dekker, J. The
 long-range interaction landscape of gene promoters. Nature
-489, 109–113 (2012).
+489, 109-113 (2012).
 }
 \usage{
 Sushi_5C.bedpe

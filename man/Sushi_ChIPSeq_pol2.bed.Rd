@@ -5,8 +5,7 @@
 \format{bed format}
 \source{
 Consortium, T. E. P. An integrated encyclopedia of DNA
-elements in the human genome. Nat. Methods 489, 57–74
-(2012).
+elements in the human genome. Nature 489, 57-74 (2012).
 }
 \usage{
 Sushi_ChIPSeq_pol2.bed
