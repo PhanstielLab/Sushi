@@ -4,11 +4,9 @@ Sushi_data = data(package = 'Sushi')
 data(list = Sushi_data$results[,3]) 
 makepdf = TRUE
 
-#############################################################################
-#                                                                           #
-#                                   CODE                                    #
-#                                                                           #
-#############################################################################
+###
+### CODE
+###
 
 if (makepdf == TRUE)
 {
@@ -28,14 +26,13 @@ layout(matrix(c(1,1,1,1,
                 5,5,12,12,
                 6,7,13,13,
                 6,7,14,14
-),12, 4, byrow = TRUE))
-par(mgp=c(3, .3, 0))
+), 12, 4, byrow=TRUE))
+par(mgp=c(3,.3,0))
 
-#############################################################################
-#                                                                           #
-#                           (A) manhattan plot                              #
-#                                                                           #
-#############################################################################
+
+###
+### (A) manhattan plot
+###
 
 # set the margins
 par(mar=c(3,4,3,2))
@@ -68,11 +65,10 @@ mtext("log10(P)", side=2, line=1.75, cex=.75, font=2)
 # Add plot label
 labelplot("A)", " GWAS", letteradj=-.025)
 
-#############################################################################
-#                                                                           #
-#                                 (B) Hi-C                                  #
-#                                                                           #
-#############################################################################
+
+###
+### (B) Hi-C
+###
 
 # set the margins
 par(mar=c(3,4,2,2))
@@ -101,11 +97,10 @@ zoombox(zoomregion=zoomregion)
 # Add plot label
 labelplot("B)", " HiC")
 
-#############################################################################
-#                                                                           #
-#                                 (C) 5C                                    #
-#                                                                           #
-#############################################################################
+
+###
+### (C) 5C
+###
 
 # set the margins
 par(mar=c(3,4,2,2))
@@ -134,11 +129,10 @@ mtext("Z-score", side=2, line=1.75, cex=.75, font=2)
 # Add plot label
 labelplot("C)", " 5C")
 
-#############################################################################
-#                                                                           #
-#                          (D) ChIA PET (PolII)                             #
-#                                                                           #
-#############################################################################
+
+###
+### (D) ChIA PET (PolII)
+###
 
 # set the margins
 par(mar=c(3,4,2,2))
@@ -163,11 +157,10 @@ zoombox(passthrough=TRUE)
 # Add plot label
 labelplot("D)", " ChIA-PET (Pol2)")
 
-#############################################################################
-#                                                                           #
-#                                 (E) DNaseI                                #
-#                                                                           #
-#############################################################################
+
+###
+### (E) DNaseI
+###
 
 # set the margins
 par(mar=c(3,4,2,2))
@@ -201,11 +194,10 @@ mtext("Read Depth", side=2, line=1.75, cex=.75, font=2)
 # Add plot label
 labelplot("E)", " DnaseI")
 
-#############################################################################
-#                                                                           #
-#                           (F) ChIP-Seq ChIP Exo                           #
-#                                                                           #
-#############################################################################
+
+###
+### (F) ChIP-Seq ChIP Exo
+###
 
 # set the genomic regions
 chrom            = "chr11"
@@ -232,11 +224,10 @@ zoombox()
 # add legend
 legend("topright", inset=0.025, legend=c("ChIP-seq (CTCF)","ChIP-exo (CTCF)"), fill=opaque(SushiColors(2)(2),0.5), border=SushiColors(2)(2), text.font=2, cex=0.75)
 
-#############################################################################
-#                                                                           #
-#                           (G) Bed Pile up                                 #
-#                                                                           #
-#############################################################################
+
+###
+### (G) Bed Pile up
+###
 
 # set the genomic regions
 chrom            = "chr11"
@@ -260,11 +251,10 @@ legend("topright", inset=0.025, legend=c("reverse","forward"), fill=SushiColors(
 # Add plot label
 labelplot("G)", " ChIP-Seq", letteradj=-.125)
 
-#############################################################################
-#                                                                           #
-#                       (H) manhattan plot zoomed                           #
-#                                                                           #
-#############################################################################
+
+###
+### (H) manhattan plot zoomed
+###
 
 # set the margins
 par(mar=c(0.1,4,2,2))
@@ -292,11 +282,10 @@ mtext("Z-score", side=2, line=1.75, cex=.75, font=2)
 # Add plot label
 labelplot("H)", " GWAS")
 
-#############################################################################
-#                                                                           #
-#                            (I) Gene density                               #
-#                                                                           #
-#############################################################################
+
+###
+### (I) Gene density
+###
 
 # set the margins
 par(mar=c(3,4,1.8,2))
@@ -331,11 +320,10 @@ zoombox(zoomregion=c(chromstart2,chromend2), topextend=5)
 # Add plot label
 labelplot("I)", " Gene Density")
 
-#############################################################################
-#                                                                           #
-#                                 (J) RNA seq                               #
-#                                                                           #
-#############################################################################
+
+###
+### (J) RNA seq
+###
 
 # set the margins
 par(mar=c(3,4,2,2))
@@ -365,11 +353,10 @@ zoomsregion(region=zoomregion, extend=c(-.025,1))
 # Add plot label
 labelplot("J)", " RNA-seq")
 
-#############################################################################
-#                                                                           #
-#                           (K) ChIP Seq peaks                              #
-#                                                                           #
-#############################################################################
+
+###
+### (K) ChIP Seq peaks
+###
 
 # set the margins
 par(mar=c(3,4,2,2))
@@ -397,11 +384,10 @@ zoomsregion(region=zoomregion, chrom=chrom, extend=c(0.5,.22), wideextend=0.15, 
 # Add plot label
 labelplot("K)", " ChIP-seq")
 
-#############################################################################
-#                                                                           #
-#                         (L) Pol2 bedgrpah                                 #
-#                                                                           #
-#############################################################################
+
+###
+### (L) Pol2 bedgrpah
+###
 
 # set the margins
 par(mar=c(3,4,2,2))
@@ -427,11 +413,10 @@ mtext("Read Depth", side=2, line=1.75, cex=.75, font=2)
 # Add plot label
 labelplot("L)", " Chip-Seq (Pol2)")
 
-#############################################################################
-#                                                                           #
-#                        (M) RNA-seq bedgraph                               #
-#                                                                           #
-#############################################################################
+
+###
+### (M) RNA-seq bedgraph
+###
 
 # set the margins
 par(mar=c(2,4,.5,2))
@@ -453,11 +438,10 @@ zoombox(passthrough=TRUE)
 # Add plot label
 labelplot("M)", " RNA-seq")
 
-#############################################################################
-#                                                                           #
-#                          (N) Gene Structures                              #
-#                                                                           #
-#############################################################################
+
+###
+### (N) Gene Structures
+###
 
 # set the margins
 par(mar=c(3,4,.5,2))

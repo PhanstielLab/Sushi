@@ -2,6 +2,9 @@
 \documentclass{article}
 \usepackage{hyperref}
 \usepackage[numbers]{natbib}
+\usepackage{listings}
+\usepackage[nottoc,numbib]{tocbibind}
+
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -1073,6 +1076,14 @@ mtext("chromosome",side=1,line=1.75,cex=1,font=2)
 labelplot("A) ","Manhattan Plot")
 @
 \end{center}
+
+\section{Appendix}
+
+For illustrative purposes we include a complex figure as published in the accompanying manuscript (Phanstiel, et al.).
+
+\lstinputlisting[language=R, breaklines=TRUE, basicstyle=\small, numbers=left]{PaperFigure.R}
+
+\includegraphics{Figure_dhp_new.pdf}
 
 \bibliography{Sushi}
 \bibliographystyle{plainnat}
