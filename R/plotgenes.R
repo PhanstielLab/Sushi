@@ -338,6 +338,7 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
   sizes  = c()
   strands = c()
   
+  
   # collect the info for each transcript
   for (i in (1:numberoftranscripts))
   {
@@ -350,6 +351,8 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
   
   transcriptinfo = data.frame(names=namestranscripts,starts=starts,stops=stops,sizes=sizes,strand=strands)
   transcriptinfo = transcriptinfo[order(sizes,decreasing=TRUE),]
+  
+
   
   # get row information
   if (packrow == TRUE)
@@ -365,6 +368,8 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
     transcriptinfo$plotrow = seq(1:nrow(transcriptinfo))
   }
   
+
+  
   # make the empty plot
   offsettop = 0.5
  
@@ -374,16 +379,28 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
   # filter out transcrits that don't overlap region
   transcriptinfo = transcriptinfo[which((transcriptinfo[,2] > chromstart & transcriptinfo[,2] < chromend)
                        | (transcriptinfo[,3] > chromstart & transcriptinfo[,3] < chromend)),]
-   
 
-  plot(c(1,1),xlim=c(chromstart,chromend),ylim=c(0.5,( max(transcriptinfo$plotrow) + offsettop)),type ='n',bty='n',xaxt='n',yaxt='n',ylab="",xlab="",xaxs="i")
-  
-  for (i in (1:nrow(transcriptinfo)))
+  if (nrow(transcriptinfo) == 0)
   {
-    subtranscripts  = transcripts[which(transcripts[,4] == transcriptinfo[i,1]),]
-    plottranscript(subtranscripts,col=subtranscripts$colors[1],yvalue=transcriptinfo$plotrow[i],bheight=bheight,lheight=lheight,bentline=bentline,border=col,
-                   bprange=bprange,arrowlength=arrowlength,plotgenetype=plotgenetype,
-                   labeltext=labeltext,labeloffset=labeloffset,fontsize=fontsize,fonttype=fonttype,labelat=labelat)
+    toprow = 1
+  }
+  if (nrow(transcriptinfo) > 0)
+  {
+    toprow = max(transcriptinfo$plotrow)
+  }
+  
+  plot(c(1,1),xlim=c(chromstart,chromend),ylim=c(0.5,(toprow  + offsettop)),type ='n',bty='n',xaxt='n',yaxt='n',ylab="",xlab="",xaxs="i")
+  
+  
+  if (nrow(transcriptinfo) > 0)
+  {
+    for (i in (1:nrow(transcriptinfo)))
+    {
+      subtranscripts  = transcripts[which(transcripts[,4] == transcriptinfo[i,1]),]
+      plottranscript(subtranscripts,col=subtranscripts$colors[1],yvalue=transcriptinfo$plotrow[i],bheight=bheight,lheight=lheight,bentline=bentline,border=col,
+                     bprange=bprange,arrowlength=arrowlength,plotgenetype=plotgenetype,
+                     labeltext=labeltext,labeloffset=labeloffset,fontsize=fontsize,fonttype=fonttype,labelat=labelat)
+    }
   }
   
   # return color by range and palette
