@@ -1,7 +1,7 @@
 #' plots gene structure or transcript structures
 #' 
 #'
-#' @param geneinfo gene info stored in a bed-like format
+#' @param geneinfo gene info stored in a bed-like format.  If NULL it will look up genes in the region using biomart (with biomart="ensembl" and dataset="hsapiens_gene_ensembl"). See also \code{\link{useMart}}
 #' @param chrom chromosome of region to be plotted
 #' @param chromstart start position
 #' @param chromend end position

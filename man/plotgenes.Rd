@@ -12,7 +12,10 @@ plotGenes(geneinfo = NULL, chrom = NULL, chromstart = NULL,
   labelat = "middle", ...)
 }
 \arguments{
-  \item{geneinfo}{gene info stored in a bed-like format}
+  \item{geneinfo}{gene info stored in a bed-like format.
+  If NULL it will look up genes in the region using
+  biomart="ensembl" and dataset="hsapiens_gene_ensembl".
+  See also \code{\link{useMart}}}
 
   \item{chrom}{chromosome of region to be plotted}
 
