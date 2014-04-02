@@ -750,7 +750,7 @@ dev.off()
 
 \subsection{plotGenes}
 
-\texttt{plotGenes()} can be used to plot gene structures that are stored in bed format.  
+\texttt{plotGenes()} can be used to plot gene structures that are stored in bed format. If no \texttt{geneinfo} object is provided genes are looked up in the region using biomart with biomart='ensembl' and dataset='hsapiens\_gene\_ensembl'.
 
 << fig = FALSE , echo = TRUE>>=
 head(Sushi_genes.bed)
