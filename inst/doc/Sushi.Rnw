@@ -721,7 +721,7 @@ And the genome file should look like this:
 The \texttt{plotManhattan()} function is used to plot the data while the \texttt{labelgenome()} function is used to add the genome labels to the x-axis.  The \texttt{labelgenome()} function also requires a genome object.
 
 \begin{center}
-<< fig = TRUE , echo = TRUE, height=6,width=8>>=
+<<echo=TRUE,fig=FALSE>>=
 plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
                 col=SushiColors(6),genome=Sushi_hg18_genome,cex=0.75)
 labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",
@@ -730,6 +730,21 @@ axis(side=2,las=2,tcl=.2)
 mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
 mtext("chromosome",side=1,line=1.75,cex=1,font=2)
 @
+\end{center}
+\begin{center}
+<<GWAS1, echo=FALSE>>=
+png('GWAS1.png',height=600,width=800 )
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+                col=SushiColors(6),genome=Sushi_hg18_genome,cex=0.75)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",
+                edgeblankfraction=0.20,cex.axis=.5)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+dev.off() 
+@
+\includegraphics{GWAS1}
+
 \end{center}
 
 
@@ -1042,7 +1057,7 @@ labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,
 Manhattan plots include multiple genomes and labeling the axes of Manhattan plots requires the same \texttt{genome} oject and value of \texttt{space} that were used to in \texttt{plotManhattan()}
 
 \begin{center}
-<<fig = TRUE , echo = TRUE,height=6,width=9>>=
+<<echo=TRUE,fig=FALSE>>=
 plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
               col=SushiColors(6),genome=Sushi_hg18_genome,
               cex=0.75,space=0.05)
@@ -1052,6 +1067,21 @@ axis(side=2,las=2,tcl=.2)
 mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
 mtext("chromosome",side=1,line=1.75,cex=1,font=2)
 @
+\end{center}
+\begin{center}
+<<GWAS2, echo=FALSE>>=
+png('GWAS2.png',height=600,width=900 )
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+              col=SushiColors(6),genome=Sushi_hg18_genome,
+              cex=0.75,space=0.05)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",
+            edgeblankfraction=0.20,cex.axis=.5,space=0.05)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+dev.off()
+@
+\includegraphics{GWAS2}
 \end{center}
 
 \subsubsection{labelplot}
@@ -1064,7 +1094,7 @@ labelplot("A) ","Manhattan Plot")
 @
 \end{center}
 \begin{center}
-<<fig = TRUE , echo = FALSE,height=6,width=9>>=
+<<fig=FALSE,echo=TRUE>>=
 plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
               col=SushiColors(6),genome=Sushi_hg18_genome,
               cex=0.75,space=0.05)
@@ -1075,6 +1105,22 @@ mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
 mtext("chromosome",side=1,line=1.75,cex=1,font=2)
 labelplot("A) ","Manhattan Plot")
 @
+\end{center}
+\begin{center}
+<<GWAS3, echo=FALSE>>=
+png('GWAS3.png',height=600,width=900 )
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+              col=SushiColors(6),genome=Sushi_hg18_genome,
+              cex=0.75,space=0.05)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb"
+            ,edgeblankfraction=0.20,cex.axis=.5,space=0.05)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+labelplot("A) ","Manhattan Plot")
+dev.off()
+@
+\includegraphics{GWAS3}
 \end{center}
 
 \section{Appendix}
