@@ -2,16 +2,17 @@
 \alias{plotGenes}
 \title{plots gene structure or transcript structures}
 \usage{
-plotGenes(transcripts, chrom = NULL, chromstart = NULL, chromend = NULL,
-  col = SushiColors(2)(2)[1], bheight = 0.3, lheight = 0.3,
-  bentline = TRUE, packrow = TRUE, maxrows = 10000, colorby = NULL,
-  colorbyrange = NULL, colorbycol = colorRampPalette(c("blue", "red")),
-  types = "exon", plotgenetype = "box", arrowlength = 0.005,
-  wigglefactor = 0.05, labeltext = TRUE, labeloffset = 0.4,
-  fontsize = 0.7, fonttype = 2, labelat = "middle", ...)
+plotGenes(geneinfo = NULL, chrom = NULL, chromstart = NULL,
+  chromend = NULL, col = SushiColors(2)(2)[1], bheight = 0.3,
+  lheight = 0.3, bentline = TRUE, packrow = TRUE, maxrows = 10000,
+  colorby = NULL, colorbyrange = NULL,
+  colorbycol = colorRampPalette(c("blue", "red")), types = "exon",
+  plotgenetype = "box", arrowlength = 0.005, wigglefactor = 0.05,
+  labeltext = TRUE, labeloffset = 0.4, fontsize = 0.7, fonttype = 2,
+  labelat = "middle", ...)
 }
 \arguments{
-  \item{transcripts}{gene info stored in a bed-like format}
+  \item{geneinfo}{gene info stored in a bed-like format}
 
   \item{chrom}{chromosome of region to be plotted}
 

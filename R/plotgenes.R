@@ -1,7 +1,7 @@
 #' plots gene structure or transcript structures
 #' 
 #'
-#' @param transcripts gene info stored in a bed-like format
+#' @param geneinfo gene info stored in a bed-like format
 #' @param chrom chromosome of region to be plotted
 #' @param chromstart start position
 #' @param chromend end position
@@ -41,7 +41,7 @@
 #' labelgenome( chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
 #'
 plotGenes <-
-function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
+function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
                       col=SushiColors(2)(2)[1],bheight=0.3,lheight=0.3,bentline=TRUE,
                       packrow=TRUE,maxrows=10000,
                       colorby=NULL,colorbyrange=NULL, colorbycol=colorRampPalette(c("blue","red")),
@@ -50,10 +50,29 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
                       labeltext=TRUE,labeloffset=0.4,fontsize=.7,fonttype=2,labelat="middle",...)
 {
   
-  # convert strand info 
-  if (ncol(transcripts) >= 6)
+  # if the gene info is nullusing current human annotations
+  if (is.null(geneinfo)==TRUE)
   {
-    transcripts[,6] = convertstrandinfo(transcripts[,6])
+    # grab info
+    mart=useMart(biomart="ensembl", dataset="hsapiens_gene_ensembl")
+    chrom_biomart    = gsub("chr","",chrom)
+    geneinfo = getBM(attributes = c("chromosome_name","exon_chrom_start","exon_chrom_end","external_gene_id","strand"),
+                           filters= c("chromosome_name","start","end"),
+                           values=list(chrom_biomart,chromstart,chromend),
+                           mart=mart)
+    
+    # make names the same
+    names(geneinfo) = c("chrom","start","stop","gene","strand")
+    
+    # reorder and make proper bed format
+    geneinfo$score = "."
+    geneinfo = geneinfo[,c(1,2,3,4,6,5)]    
+  }
+
+  # convert strand info 
+  if (ncol(geneinfo) >= 6)
+  {
+    geneinfo[,6] = convertstrandinfo(geneinfo[,6])
   }
   
   # Define a function that merges overlapping regions
@@ -284,17 +303,17 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
   }
   
   # remove unwanted columns
-  transcripts = transcripts[,seq(1,6)]
+  geneinfo = geneinfo[,seq(1,6)]
   
   # establish start and stop columns
   startcol = 2
   stopcol  = 3
   
   # add types
-  transcripts$types = types
+  geneinfo$types = types
   
   # remove lines with NA
-  transcripts = transcripts[which(is.na(transcripts[,2]) ==FALSE),]
+  geneinfo = geneinfo[which(is.na(geneinfo[,2]) ==FALSE),]
   
   # color by 
   if (is.null(colorby) == FALSE)
@@ -303,20 +322,20 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
     {
       colorbyrange = c(min(colorby),max(colorby))
     }
-    transcripts$colors = maptocolors(colorby,col=colorbycol,num=100,range=colorbyrange)
+    geneinfo$colors = maptocolors(colorby,col=colorbycol,num=100,range=colorbyrange)
   }
   
   if (is.null(colorby) == TRUE)
   {
-    transcripts$colors = col
+    geneinfo$colors = col
   }
   
   # set xlim
   if (is.null(chrom) == TRUE | is.null(chromstart) == TRUE | is.null(chromend) == TRUE)
   {
-    chrom      = transcripts[1,1]
-    chromstart = min(transcripts[,c(startcol,stopcol)])
-    chromend   = max(transcripts[,c(startcol,stopcol)])
+    chrom      = geneinfo[1,1]
+    chromstart = min(geneinfo[,c(startcol,stopcol)])
+    chromend   = max(geneinfo[,c(startcol,stopcol)])
     extend     = abs(chromend - chromend) * 0.04
     chromstart = chromstart - extend
     chromend   = chromend   + extend
@@ -328,9 +347,9 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
   # set wiggle
   wiggle = bprange * wigglefactor
   
-  # get number of transcripts
-  numberoftranscripts = length(names(table(transcripts[,4])))
-  namestranscripts    = names(table(transcripts[,4]))
+  # get number of geneinfo
+  numberofgeneinfo = length(names(table(geneinfo[,4])))
+  namesgeneinfo    = names(table(geneinfo[,4]))
   
   # sort by length
   starts = c()
@@ -340,16 +359,16 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
   
   
   # collect the info for each transcript
-  for (i in (1:numberoftranscripts))
+  for (i in (1:numberofgeneinfo))
   {
-    subtranscripts  = transcripts[which(transcripts[,4] == namestranscripts[i]),]
-    starts = c(starts,min(subtranscripts[,2:3]))
-    stops  = c(stops, max(subtranscripts[,2:3]))
+    subgeneinfo  = geneinfo[which(geneinfo[,4] == namesgeneinfo[i]),]
+    starts = c(starts,min(subgeneinfo[,2:3]))
+    stops  = c(stops, max(subgeneinfo[,2:3]))
     sizes  = c(sizes, stops[i] - starts[i])
-    strands = c(strands,subtranscripts[1,6])
+    strands = c(strands,subgeneinfo[1,6])
   }
   
-  transcriptinfo = data.frame(names=namestranscripts,starts=starts,stops=stops,sizes=sizes,strand=strands)
+  transcriptinfo = data.frame(names=namesgeneinfo,starts=starts,stops=stops,sizes=sizes,strand=strands)
   transcriptinfo = transcriptinfo[order(sizes,decreasing=TRUE),]
   
 
@@ -396,8 +415,8 @@ function(transcripts, chrom=NULL, chromstart=NULL,chromend=NULL,
   {
     for (i in (1:nrow(transcriptinfo)))
     {
-      subtranscripts  = transcripts[which(transcripts[,4] == transcriptinfo[i,1]),]
-      plottranscript(subtranscripts,col=subtranscripts$colors[1],yvalue=transcriptinfo$plotrow[i],bheight=bheight,lheight=lheight,bentline=bentline,border=col,
+      subgeneinfo  = geneinfo[which(geneinfo[,4] == transcriptinfo[i,1]),]
+      plottranscript(subgeneinfo,col=subgeneinfo$colors[1],yvalue=transcriptinfo$plotrow[i],bheight=bheight,lheight=lheight,bentline=bentline,border=col,
                      bprange=bprange,arrowlength=arrowlength,plotgenetype=plotgenetype,
                      labeltext=labeltext,labeloffset=labeloffset,fontsize=fontsize,fonttype=fonttype,labelat=labelat)
     }
