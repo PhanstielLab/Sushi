@@ -1,1 +1,4 @@
 exportPattern("^[[:alpha:]]+")
+
+import(biomaRt)
+import(zoo)

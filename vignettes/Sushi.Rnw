@@ -1,0 +1,1147 @@
+%\VignetteIndexEntry{Sushi}
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+\usepackage{listings}
+\usepackage[nottoc,numbib]{tocbibind}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\setlength{\parindent}{0cm}
+
+\title{Sushi: An R/Bioconductor package for visualizing genomic data}
+\author{Douglas H. Phanstiel\footnote{Corresponding contact: doug.phanstiel@gmail.com}, Alan P. Boyle, Carlos L. Araya, and Mike Snyder}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{}
+\setkeys{Gin}{width=0.99\textwidth}
+
+<<echo=FALSE>>=
+options(SweaveHooks=list(fig=function() par(mgp=c(3, .4, 0))))
+options(continue=" ")
+@
+
+\maketitle
+
+\tableofcontents
+\section{Introduction}
+
+Sushi is an R package for plotting genomic data stored in multiple common genomic formats including bed, bedpe, bedgraph format. The package was designed to be very flexible to allow for combinations of plots into multipanel figures that can include plots made by Sushi, R basecode, or other R packages.  Sushi allows for simple flexible plotting of gene structures, transcript structures, sequencing tracks, ChIP-seq peaks, chromatin interactions, GWAS results and other commen genomic data types. This vignette shows some examples of the functions included in Sushi to get you started with plotting these diverse data types.
+
+
+\section{Data}
+\subsection{Data types}
+Sushi accepts 4 types of genomic data as input.  These include:
+
+\begin{itemize}
+\item bed format: 3-6 columns (chromosome, start, stop, name, score, strand)
+\item bedpe format: 6-10 columns (chromosome1, start1, stop1, chromosome2, start2, stop2,name, score, strand1, strand2)
+\item bedgraph format: 4 columns (chromosome, start, stop, score)
+\item interaction matrix: This is matrix in which row and column names are genomic coordiates and matrix values are some tye of interaction score.
+\end{itemize}
+
+\paragraph{}
+** strands can be represented as 1 or -1 or "+" and "-".
+\paragraph{}
+** Some functions may require additional information depending on the plot and features desired.
+
+\subsection{Example datasets}
+To illustrate how Sushi works, we have included several publicaly available data sets in the package Sushi. The data types include RNA-seq, ChIP-seq, ChIA-PET, and HiC data:
+
+\paragraph{}
+
+%% Citations for data sets
+\begin{tabular}{l|r}
+\texttt{Sushi\_5C.bedpe} & \citet{fiveC} \\ 
+\texttt{Sushi\_ChIAPET\_pol2.bedpe} & \citet{chiapet} \\ 
+\texttt{Sushi\_ChIPExo\_CTCF.bedgraph} & \citet{chipexo} \\ 
+\texttt{Sushi\_ChIPSeq\_CTCF.bedgraph} & \citet{encode_integrated_2012} \\
+\texttt{Sushi\_ChIPSeq\_pol2.bed} & \citet{encode_integrated_2012} \\
+\texttt{Sushi\_ChIPSeq\_pol2.bedgraph} & \citet{encode_integrated_2012} \\
+\texttt{Sushi\_ChIPSeq\_severalfactors.bed} & \citet{encode_integrated_2012} \\
+\texttt{Sushi\_DNaseI.bedgraph} & \citet{dnaseI} \\
+\texttt{Sushi\_GWAS.bed} & \citet{GWAS} \\ 
+\texttt{Sushi\_HiC.matrix} & \citet{HiC} \\ 
+\texttt{Sushi\_RNASeq\_K562.bedgraph} & \citet{encode_integrated_2012} \\
+\texttt{Sushi\_genes.bed} & \citet{biomart} \\
+\texttt{Sushi\_hg18\_genome} & \citet{biomart} \\
+\texttt{Sushi\_transcripts.bed} & \citet{encode_integrated_2012} \\
+\end{tabular}
+
+<<echo = FALSE >>=
+writeLines("@article{encode_integrated_2012,
+   title = {An integrated encyclopedia of {DNA} elements in the human genome},
+   author = {{The ENCODE Project Consortium}},
+   journal = {Nature},
+   year = {2012},
+   volume = {489},
+   issn = {1476-4687},
+   url = {http://www.ncbi.nlm.nih.gov/pubmed/22955616},
+   doi = {10.1038/nature11247},
+   number = {7414},
+   month = sep,
+   note = {{PMID:} 22955616},
+   pages = {57--74},
+ },
+ @article{fiveC,
+   title = {The long-range interaction landscape of gene promoters},
+   volume = {489},
+   doi = {10.1038/nature11279},
+   number = {7414},
+   journal = {Nature},
+   author = {A Sanyal and BR Lajoie and G Jain and J Dekker},
+   month = sep,
+   year = {2012},
+   note = {{PMID:} 22955621},
+   pages = {109--113},
+ },
+ @article{chiapet,
+   title = {Extensive promoter-centered chromatin interactions provide a topological basis for transcription regulation},
+   volume = {148},
+   doi = {10.1016/j.cell.2011.12.014},
+   journal = {Cell},
+   author = {G Li and X Ruan and RK Auerbach and KS Sandhu and M Zheng and P Wang and HM Poh and Y Goh and J Lim and J Zhang and HS Sim and SQ Peh and FH Mulawadi and CT Ong and YL Orlov and S Hong and Z Zhang and S Landt and D Raha and G Euskirchen and CL Wei and W Ge and H Wang and C Davis and KI Fisher-Aylor and A Mortazavi and M Gerstein and T Gingeras and B Wold and Y Sun and MJ Fullwood and E Cheung and E Liu and WK Sung and M Snyder and Y Ruan},
+   month = jan,
+   year = {2012},
+   note = {{PMID:} 22265404},
+   pages = {84--98},
+ },
+ @article{chipexo,
+   title = {Comprehensive genome-wide protein-DNA interactions detected at single-nucleotide resolution},
+   volume = {147},
+   doi = {10.1016/j.cell.2011.11.013},
+   journal = {Cell},
+   author = {HS Rhee and BF Pugh},
+   month = dec,
+   year = {2011},
+   note = {{PMID:} 22153082},
+ },
+ @article{dnaseI,
+   title = {An expansive human regulatory lexicon encoded in transcription factor footprints},
+   volume = {489},
+   doi = {10.1038/nature11212},
+   journal = {Nature},
+   author = {S Neph and J Vierstra and AB Stergachis and AP Reynolds and E Haugen and B Vernot and RE Thurman and S John and R Sandstrom and AK Johnson and MT Maurano and R Humbert and E Rynes and H Wang and S Vong and K Lee and D Bates and M Diegel and V Roach and D Dunn and J Neri and A Schafer and RS Hansen and T  Kutyavin and E Giste and M Weaver and T Canfield and P Sabo and M Zhang and G Balasundaram and R Byron and MJ MacCoss and JM Akey and MA Bender and M Groudine and R Kaul and JA Stamatoyannopoulos},
+   month = sep,
+   year = {2012},
+   pages = {83-90},
+   note = {{PMID:} 22955618},
+ },
+ @article{GWAS,
+   title = {Genetic variants in novel pathways influence blood pressure and cardiovascular disease risk},
+   volume = {478},
+   doi = {10.1038/nature10405},
+   journal = {Nature},
+   author = {{International Consortium for Blood Pressure}},
+   month = sep,
+   year = {2011},
+   note = {{PMID:} 21909115},
+ },
+ @article{HiC,
+  title = {Topological domains in mammalian genomes identified by analysis of chromatin interactions},
+  volume = {485},
+  doi = {10.1038/nature11082},
+  journal = {Nature},
+  author = {JR Dixon and S Selvaraj and F Yue and A Kim and Y Li and Y Shen and M Hu and JS Liu and B Ren},
+  month = sep,
+  year = {2012},
+  note = {{PMID:} 22495300},
+ },
+ @online{biomart,
+   author = {Biomart},
+   url = {http://www.biomart.org/}
+ }", con="Sushi.bib")
+@
+
+
+\paragraph{}
+
+These data sets can be loaded using the following commands:
+
+<<dataLoading>>=
+library('Sushi')
+Sushi_data = data(package = 'Sushi')
+data(list = Sushi_data$results[,3]) 
+@
+
+To see which data sets are loaded
+
+<<dataLoading>>=
+Sushi_data$results[,3]
+@
+
+\section{Functions}
+\subsection{Functions overview}
+Sushi functions can be broken down into 3 categories: plotting, annotating, zooming, and coloring.  Plotting functions generate a basic plot object using the data. Annotating functions add information to the plots such as an x-axis labeling the genomic region or a legend describing the values represented by different colors. Zooming functions allow for highlighting and zooming of genomic regions, which are of particular use for multipanel plots generated with base R functions \texttt{mfrow()} or \texttt{layout()}.  The coloring functions provide simple tools for generating R colors and palettes.
+
+\begin{itemize}
+
+\item Plotting functions: \texttt{plotBed()}, \texttt{plotBedgraph()}, \texttt{plotBedpe()}, \texttt{plotGenes()}, \texttt{plotHiC()}, and \texttt{plotManhattan()}
+
+\item Annotating functions: \texttt{labelgenome()} and \texttt{addlegend()}
+
+\item Zooming functions: \texttt{zoomsregion()} and \texttt{zoombox()}
+
+\item Coloring functions: \texttt{maptocolors()}, \texttt{SushiColors()}, and \texttt{opaque()}
+\end{itemize}
+
+
+\subsection{Non-Sushi Functions}
+An important characteristic of Sushi plots is their compatibility with all base R functions and their ability to be combined into complex multipanel figures.  Two of the most usefule base R functions for creating multipanel figures are \texttt{layout()} and \texttt{mfrow()}.  Basic R plotting functions such as \texttt{axis()}, \texttt{mtext()}, and \texttt{legend()} are also particularly well suited to combine with Sushi plots.  A familiarity with these functions will greatly improve your ability to create Sushi plots.
+
+\subsection{plotBedgraph}
+
+Signal tracks can be plotted using \texttt{plotBedgraph()}.  The input requires data in bedgraph format.  We will demonstrate this using bedgraph data representing a DNaseI hypersensitivity experiment in K562 cells.
+
+<< fig = FALSE , echo = TRUE ,height=5,width=9>>=
+  head(Sushi_DNaseI.bedgraph)
+@
+
+The \texttt{plotBedgraph()} function is used to plot the data.  As with most Sushi functions the basic required arguments include the data to be plotted, the chromosome, and a start and stop position.
+
+
+\begin{center}
+
+<< fig = TRUE , echo = TRUE >>=
+chrom            = "chr11"
+chromstart       = 1650000
+chromend         = 2350000
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,colorbycol= SushiColors(5))
+@
+\end{center}
+
+To annotate the genome postion we use the \texttt{labelgenome()} function. We us \texttt{n = 4} to specify the desired number of tickmarks.  The scale is set to \texttt{Mb} (other options are \texttt{Kb} or \texttt{bp}).
+
+\begin{center}
+<< fig = FALSE , echo = TRUE, eval=FALSE >>=
+labelgenome(chrom,chromstart,chromend,n=4,scale="Mb")
+@
+
+<< fig = TRUE , echo = FALSE >>=
+chrom            = "chr11"
+chromstart       = 1650000
+chromend         = 2350000
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,colorbycol= SushiColors(5))
+labelgenome(chrom,chromstart,chromend,n=4,scale="Mb")
+@
+\end{center}
+
+
+The y-axis can be added using basic R functions \texttt{mtext()} and \texttt{axis()}.
+
+\begin{center}
+
+<< fig = FALSE , echo = TRUE, eval=FALSE >>=
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+@
+
+<< fig = TRUE , echo = FALSE >>=
+chrom            = "chr11"
+chromstart       = 1650000
+chromend         = 2350000
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,colorbycol= SushiColors(5))
+labelgenome(chrom,chromstart,chromend,n=4,scale="Mb")
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+@
+\end{center}
+
+Multiple bedgraph tracks can be plotted on the same plot by setting \texttt{overlay=TRUE}.  Transparencies can be added for easier viewing by adjusting the transcparency value.  The second plot can be rescaled to the maximum of the first plot by setting \texttt{rescaleoverlay=TRUE}.
+
+\begin{center}
+<< fig = TRUE , echo = TRUE,height=5,width=9 >>=
+chrom            = "chr11"
+chromstart       = 1955000
+chromend         = 1960000
+plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,chromstart,chromend,
+             transparency=.50,color=SushiColors(2)(2)[1])
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,
+             transparency=.50,color=SushiColors(2)(2)[2],overlay=TRUE,
+             rescaleoverlay=TRUE)
+labelgenome(chrom,chromstart,chromend,n=3,scale="Kb")
+@
+\end{center}
+
+Then we can use the base R function \texttt{legend()} to add a legend to the plot.  First we need to use the rgb function to add transparency to the colors in order to match out plot.
+
+\begin{center}
+
+<< eval = FALSE , echo = TRUE >>=
+
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
+       fill=opaque(SushiColors(2)(2)),border=SushiColors(2)(2),text.font=2,
+       cex=1.0)
+@
+<< fig = TRUE , echo = FALSE,height=5,width=9 >>=
+chrom            = "chr11"
+chromstart       = 1955000
+chromend         = 1960000
+plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,chromstart,chromend,
+             transparency=.50,color=SushiColors(2)(2)[1])
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,
+             transparency=.50,color=SushiColors(2)(2)[2],overlay=TRUE,
+             rescaleoverlay=TRUE)
+labelgenome(chrom,chromstart,chromend,n=3,scale="Kb")
+
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
+       fill=opaque(SushiColors(2)(2)),border=SushiColors(2)(2),text.font=2,
+       cex=1.0)
+@
+
+\end{center}
+
+Setting \texttt{flip=TRUE} is another method that can be used to compare tracks.  First, we will use mfrow to divided the plotting divice into two vertically stacked regions.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE ,eval=FALSE>>=
+par(mfrow=c(2,1),mar=c(1,4,1,1))
+@
+\end{center}
+
+Next, we plot the first plot.  We set the transparency of the plot to 0.5. We will also add the legend.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE ,eval=FALSE>>=
+plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,chromstart,chromend,transparency=.50,
+             color=SushiColors(2)(2)[1])
+axis(side=2,las=2,tcl=.2)
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
+       fill=opaque(SushiColors(2)(2)),border=SushiColors(2)(2),text.font=2,
+       cex=1.0)
+@
+\end{center}
+
+
+\begin{center}
+<< fig = TRUE , echo = FALSE ,eval=TRUE>>=
+par(mfrow=c(2,1),mar=c(1,4,1,1))
+# set the genomic regions
+chrom            = "chr11"
+chromstart       = 1955000
+chromend         = 1960000
+
+# plot chip-seq data
+plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph,chrom,chromstart,chromend,transparency=.50)
+
+# add y-axis
+axis(side=2,las=2,tcl=.2)
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+
+# add legend
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
+       fill=opaque(SushiColors(2)(2)),border=SushiColors(2)(2),text.font=2)
+@
+\end{center}
+
+Finally, we add the second plot with \texttt{flip=TRUE}.  We will also label the x-axis using \texttt{labelgenome()} and label the y-axis using \texttt{mtext()} and \texttt{axis()}.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE ,eval=FALSE>>=
+plotBedgraph(Sushi_DNaseI.bedgraph, chrom, chromstart, chromend,
+             transparency=.50, flip=TRUE, color=SushiColors(2)(2)[2])
+labelgenome(chrom,chromstart,chromend,side=3,n=3,scale="Kb")
+axis(side=2,las=2,tcl=.2,at=pretty(par("yaxp")[c(1,2)]),
+             labels=-1*pretty(par("yaxp")[c(1,2)]))
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+@
+\end{center}
+
+
+\begin{center}
+<< fig = TRUE , echo = FALSE ,height=5,width=9>>=
+par(mfrow=c(2,1),mar=c(1,4,1,1))
+# set the genomic regions
+chrom            = "chr11"
+chromstart       = 1955000
+chromend         = 1960000
+
+# plot chip-seq data
+plotBedgraph(Sushi_ChIPSeq_CTCF.bedgraph ,chrom, chromstart, chromend,
+             transparency=.50, color=SushiColors(2)(2)[1])
+
+# add y-axis
+axis(side=2,las=2,tcl=.2)
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+
+# add legend
+legend("topright",inset=0.025,legend=c("DNaseI","ChIP-seq (CTCF)"),
+       fill=opaque(SushiColors(2)(2)),border=SushiColors(2)(2),text.font=2)
+
+# plot dnaseI data
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart,chromend,transparency=.50,flip=TRUE,
+             color=SushiColors(2)(2)[2])
+
+# add y-axis
+ylabs = axis(side=2,las=2,tcl=.2,at=pretty(par("yaxp")[c(1,2)]),
+             labels=-1*pretty(par("yaxp")[c(1,2)]))
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+
+# add the genome labels
+labelgenome(chrom,chromstart,chromend,side=3,n=3,scale="Kb")
+@
+\end{center}
+
+
+\subsection{plotHic}
+
+HiC interaction plots can be plotted given an interaction matrix in which row and column names are genomic coordiates and matrix values are some tye of interaction score.
+
+<< fig = FALSE , echo = TRUE >>=
+  Sushi_HiC.matrix[100:105,100:105]
+@
+
+The \texttt{plotHic()} function is used to plot the data while the \texttt{labelgenome()} function is used to add the genome labels to the x-axis.  \texttt{plotHic()} returns an object indicating the color palette and data range that can be fed into \texttt{addlegend()} to create a legend.
+
+\begin{center}
+
+<< fig = TRUE , echo = TRUE, height=4,width=9 >>=
+chrom            = "chr11"
+chromstart       = 500000
+chromend         = 5050000
+phic = plotHic(Sushi_HiC.matrix, chrom,chromstart, chromend, max_y = 20,
+               zrange=c(0,28), palette=SushiColors(7))
+addlegend(phic[[1]], palette=phic[[2]], title="score", side="right",
+          bottominset=0.4, topinset=0, xoffset=-.035, labelside="left",
+          width=0.025, title.offset=0.035)
+labelgenome(chrom, chromstart, chromend, n=4, scale="Mb",
+            edgeblankfraction=0.20)
+@
+\end{center}
+
+\texttt{plotHic()} has a number of customizable options.  The plot can be flipped over the x-axis by setting \texttt{flip = TRUE}.  The color palette can be changed by the palette argument. 
+
+\texttt{addlegend()} also has customizable features.  The legend can be moved to the left side of the plot by setting \texttt{side = "left"} and the labeling can be moved to the right side of the lenged buy setting \texttt{labelside = "right"}.  The vertical position of the legend can be adjusted by changing the \texttt{topinset} and \texttt{bottominset}.
+
+Finally, the x-axis label can be moved to the top of the plot by setting \texttt{side = 3} in the \texttt{labelgenome()} function.
+
+\begin{center}
+
+<< fig = TRUE , echo = TRUE, height=4,width=9 >>=
+chrom            = "chr11"
+chromstart       = 500000
+chromend         = 5050000
+
+phic = plotHic(Sushi_HiC.matrix,chrom,chromstart,chromend,max_y = 20,
+               zrange=c(0,28),flip=TRUE,palette=topo.colors)
+
+addlegend(phic[[1]],palette=phic[[2]],title="score",side="left",bottominset=0.1,
+          topinset=0.5,xoffset=-.035,labelside="right",width=0.025,title.offset=0.035)
+
+labelgenome(chrom,chromstart,chromend,side=3,n=4,scale="Mb",edgeblankfraction=0.20)
+@
+\end{center}
+
+
+
+\subsection{plotBedpe}
+
+\texttt{plotBedpe()} allows for data in bedpe format to be plotted in multiple fashions.  To illustrate this we will use 5C data formatted in the following way.
+
+<< fig = FALSE , echo = TRUE >>=
+  head(Sushi_5C.bedpe)
+@
+
+\texttt{plotBedpe()} can plot bedpe as arches.  The height, linewidth, and color of each arch can be scaled to represent different aspects of the data.  Here the height of the arches represents the Z-score of the 5C interaction, the color represents the cell line each interaction was detected in, and the line widths are kept constant (default lwd = 1).
+
+\begin{center}
+
+<< fig = TRUE , echo = TRUE ,height=5,width=9>>=
+chrom            = "chr11"
+chromstart       = 1650000
+chromend         = 2350000
+pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,
+                 heights = Sushi_5C.bedpe$score,plottype="loops",
+                 colorby=Sushi_5C.bedpe$samplenumber,
+                 colorbycol=SushiColors(3))
+labelgenome(chrom, chromstart,chromend,n=3,scale="Mb")
+legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),
+       col=SushiColors(3)(3),pch=19,bty='n',text.font=2)
+axis(side=2,las=2,tcl=.2)
+mtext("Z-score",side=2,line=1.75,cex=.75,font=2)
+@
+\end{center}
+
+The plot can be flipped over the x-axis by setting \texttt{flip = TRUE},  Bedpe elements can be represented by boxes and straight lines by setting \texttt{plottype = "lines"}.  And colors can be used to represent Z-scores by setting \texttt{colorby = "Sushi\_5C.bedpe\$score"}. 
+
+\begin{center}
+
+<< fig = TRUE , echo = TRUE ,height=6,width=9>>=
+chrom            = "chr11"
+chromstart       = 1650000
+chromend         = 2350000
+pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,flip=TRUE,
+                 plottype="lines",colorby=Sushi_5C.bedpe$score,
+                 colorbycol=SushiColors(5))
+labelgenome(chrom, chromstart,chromend,side=3,n=3,scale="Mb")
+addlegend(pbpe[[1]],palette=pbpe[[2]],title="Z-score",side="right",bottominset=0.05,
+          topinset=0.05,xoffset=-.035,labelside="right",width=0.025,title.offset=0.045)
+@
+
+\end{center}
+
+
+\subsection{plotBed}
+
+ \texttt{plotBed} provides multiple different ways to represent genomic data stored in bed format.  Below are the first six lines of a bed file detailing reads from Pol2 ChIP-Seq analysis of K562 cells.
+
+<< fig = FALSE , echo = TRUE >>=
+  head(Sushi_ChIPSeq_pol2.bed)
+@
+
+Leaving row set to  \texttt{auto} provides a pile-sup style plot.  Here the  \texttt{colorby} argument is used to color the bed elements by the strand.
+
+\begin{center}
+<< fig = TRUE , echo = TRUE ,height=4,width=9>>=
+chrom            = "chr11"
+chromstart       = 2281200
+chromend         = 2282200
+
+plotBed(beddata    = Sushi_ChIPSeq_pol2.bed,chrom = chrom,chromstart = chromstart,
+        chromend =chromend,colorby    = Sushi_ChIPSeq_pol2.bed$strand,
+        colorbycol = SushiColors(2),row  = "auto",wiggle=0.001)
+
+labelgenome(chrom,chromstart,chromend,n=2,scale="Kb")
+
+legend("topright",inset=0,legend=c("reverse","forward"),fill=SushiColors(2)(2),
+       border=SushiColors(2)(2),text.font=2,cex=0.75)
+@
+\end{center}
+
+Setting \texttt{splitstrand = TRUE} plots reads from different strands in two separate vertical regions.
+
+\begin{center}
+<< fig = TRUE , echo = TRUE ,height=4,width=9>>=
+chrom            = "chr11"
+chromstart       = 2281200
+chromend         = 2282200
+
+plotBed(beddata    = Sushi_ChIPSeq_pol2.bed,chrom = chrom,chromstart = chromstart,
+        chromend =chromend,colorby    = Sushi_ChIPSeq_pol2.bed$strand,
+        colorbycol = SushiColors(2),row  = "auto",wiggle=0.001,splitstrand=TRUE)
+
+labelgenome(chrom,chromstart,chromend,n=2,scale="Kb")
+
+legend("topright",inset=0,legend=c("reverse","forward"),fill=SushiColors(2)(2),
+       border=SushiColors(2)(2),text.font=2,cex=0.75)
+@
+\end{center}
+
+plotBed can also plot bed elements on different rows as specified by the user. First, we will use the Sushi function \texttt{maptocolors()} to assign a different color to each row.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE >>=
+Sushi_ChIPSeq_severalfactors.bed$color = 
+        maptocolors(Sushi_ChIPSeq_severalfactors.bed$row,
+        col=SushiColors(6))
+@
+\end{center}
+
+By providing row and color information \texttt{plotBed()} can be used to compare bed elements from different samples by plotting them on different rows.  
+
+\begin{center}
+<< fig = TRUE , echo = FALSE ,height=5,width=9 >>=
+chrom            = "chr15"
+chromstart      = 72800000
+chromend         = 73100000
+
+Sushi_ChIPSeq_severalfactors.bed$color = 
+        maptocolors(Sushi_ChIPSeq_severalfactors.bed$row,
+        col=SushiColors(6))
+
+plotBed(beddata    = Sushi_ChIPSeq_severalfactors.bed,chrom = chrom,
+        chromstart = chromstart,chromend =chromend,
+        rownumber  = Sushi_ChIPSeq_severalfactors.bed$row, type = "circles",
+        color=Sushi_ChIPSeq_severalfactors.bed$color,row="given",
+        plotbg="grey95",rowlabels=unique(Sushi_ChIPSeq_severalfactors.bed$name),
+        rowlabelcol=unique(Sushi_ChIPSeq_severalfactors.bed$color),rowlabelcex=0.75)
+
+labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
+
+mtext("ChIP-seq",side=3, adj=-0.065,line=0.5,font=2)
+@
+\end{center}
+
+
+\begin{center}
+<< fig = FALSE , echo = TRUE >>=
+chrom            = "chr15"
+chromstart      = 72800000
+chromend         = 73100000
+
+plotBed(beddata    = Sushi_ChIPSeq_severalfactors.bed,chrom = chrom,
+        chromstart = chromstart,chromend =chromend,
+        rownumber  = Sushi_ChIPSeq_severalfactors.bed$row, type = "circles",
+        color=Sushi_ChIPSeq_severalfactors.bed$color,row="given",
+        plotbg="grey95",rowlabels=unique(Sushi_ChIPSeq_severalfactors.bed$name),
+        rowlabelcol=unique(Sushi_ChIPSeq_severalfactors.bed$color),rowlabelcex=0.75)
+
+labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
+
+mtext("ChIP-seq",side=3, adj=-0.065,line=0.5,font=2)
+@
+\end{center}
+
+That same data can be represented by rectangles that depict the actual width of each bed element.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE  ,height=5,width=9>>=
+plotBed(beddata    = Sushi_ChIPSeq_severalfactors.bed,chrom = chrom,
+        chromstart = chromstart,chromend =chromend,
+        rownumber  = Sushi_ChIPSeq_severalfactors.bed$row, type = "region",
+        color=Sushi_ChIPSeq_severalfactors.bed$color,row="given",
+        plotbg="grey95",rowlabels=unique(Sushi_ChIPSeq_severalfactors.bed$name),
+        rowlabelcol=unique(Sushi_ChIPSeq_severalfactors.bed$color),rowlabelcex=0.75)
+
+labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
+
+mtext("ChIP-seq",side=3, adj=-0.065,line=0.5,font=2)
+@
+\end{center}
+
+\begin{center}
+<< fig = TRUE , echo = FALSE  ,height=5,width=9>>=
+chrom            = "chr15"
+chromstart       = 72800000
+chromend         = 73100000
+
+Sushi_ChIPSeq_severalfactors.bed$color = 
+        maptocolors(Sushi_ChIPSeq_severalfactors.bed$row,
+        col=SushiColors(6))
+
+plotBed(beddata    = Sushi_ChIPSeq_severalfactors.bed,chrom = chrom,
+        chromstart = chromstart,chromend =chromend,
+        rownumber  = Sushi_ChIPSeq_severalfactors.bed$row, type = "region",
+        color=Sushi_ChIPSeq_severalfactors.bed$color,row="given",
+        plotbg="grey95",rowlabels=unique(Sushi_ChIPSeq_severalfactors.bed$name),
+        rowlabelcol=unique(Sushi_ChIPSeq_severalfactors.bed$color),rowlabelcex=0.75)
+
+labelgenome(chrom,chromstart,chromend,n=3,scale="Mb")
+
+mtext("ChIP-seq",side=3, adj=-0.065,line=0.5,font=2)
+@
+\end{center}
+
+\texttt{plotBed()} can also be used to plot heatmaps representing the density of bed elements.  First, we will use the biomaRt function \texttt{getBM()} to get the gene information we require.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE>>=
+chrom            = "chr15"
+chromstart       = 60000000
+chromend         = 80000000
+chrom_biomart    = gsub("chr","",chrom)
+
+mart=useMart(host='may2009.archive.ensembl.org', biomart='ENSEMBL_MART_ENSEMBL', 
+             dataset='hsapiens_gene_ensembl')
+
+geneinfobed = getBM(attributes = c("chromosome_name","start_position","end_position"),
+                    filters= c("chromosome_name","start","end"),
+                    values=list(chrom_biomart,chromstart,chromend),mart=mart)
+
+geneinfobed[,1] = paste("chr",geneinfobed[,1],sep="")
+@
+\end{center}
+
+The data is in simple bed format with just three columns representing chromosome, start, and stop.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE>>=
+head (geneinfobed)
+@
+
+\end{center}
+
+Now we can make a gene density plot using the plotBed function.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE ,height=3,width=8 >>=
+plotBed(beddata = geneinfobed[!duplicated(geneinfobed),],chrom = chrom,
+        chromstart = chromstart,chromend =chromend,row='supplied',
+        palettes = list(SushiColors(7)), type = "density")
+
+labelgenome(chrom, chromstart, chromend,  n=4,scale="Mb",edgeblankfraction=0.10)
+
+mtext("Gene Density",side=3, adj=0,line=0.20,font=2)
+@
+\end{center}
+
+\begin{center}
+<< fig = TRUE , echo = FALSE ,height=3,width=8 >>=
+par(mar=c(3,1,3,1))
+chrom            = "chr15"
+chromstart       = 60000000
+chromend         = 80000000
+chrom_biomart    = gsub("chr","",chrom)
+
+mart=useMart(host='may2009.archive.ensembl.org', biomart='ENSEMBL_MART_ENSEMBL', 
+             dataset='hsapiens_gene_ensembl')
+
+geneinfobed = getBM(attributes = c("chromosome_name","start_position","end_position"),
+                    filters= c("chromosome_name","start","end"),
+                    values=list(chrom_biomart,chromstart,chromend),mart=mart)
+
+geneinfobed[,1] = paste("chr",geneinfobed[,1],sep="")
+
+plotBed(beddata = geneinfobed[!duplicated(geneinfobed),],chrom = chrom,
+        chromstart = chromstart,chromend =chromend,row='supplied',
+        palettes = list(SushiColors(7)), type = "density")
+
+labelgenome(chrom, chromstart, chromend,  n=4,scale="Mb",edgeblankfraction=0.10)
+
+mtext("Gene Density",side=3, adj=0,line=0.20,font=2)
+@
+\end{center}
+
+
+
+\subsection{plotManhattan}
+
+\texttt{plotManhattan()} differs from most other Sushi functions in that it can plot multiple chromosomes in a single plot.  Because of this plotManhattan requires some additional inputs.  It requires an object in bed format describing the location of data points as well as vector of p-values (typically one of the columns of the bed file).  But it also requires an genome object that describes which chromosomes to plot and their sizes (in bp).  The genome object is very similar to the genome files used for bedtools.
+
+\paragraph{}
+The bed data should look something like this:
+
+<< fig = FALSE , echo = TRUE >>=
+  head(Sushi_GWAS.bed)
+@
+
+And the genome file should look like this:
+
+<< fig = FALSE , echo = TRUE >>=
+  head(Sushi_hg18_genome)
+@
+
+The \texttt{plotManhattan()} function is used to plot the data while the \texttt{labelgenome()} function is used to add the genome labels to the x-axis.  The \texttt{labelgenome()} function also requires a genome object.
+
+\begin{center}
+<<echo=TRUE,fig=FALSE>>=
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+                col=SushiColors(6),genome=Sushi_hg18_genome,cex=0.75)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",
+                edgeblankfraction=0.20,cex.axis=.5)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+@
+\end{center}
+\begin{center}
+<<GWAS1, echo=FALSE>>=
+png('GWAS1.png',height=600,width=800 )
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+                col=SushiColors(6),genome=Sushi_hg18_genome,cex=0.75)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",
+                edgeblankfraction=0.20,cex.axis=.5)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+dev.off() 
+@
+\includegraphics{GWAS1}
+
+\end{center}
+
+
+\subsection{plotGenes}
+
+\texttt{plotGenes()} can be used to plot gene structures that are stored in bed format. If no \texttt{geneinfo} object is provided genes are looked up in the region using biomart with biomart='ensembl' and dataset='hsapiens\_gene\_ensembl'.
+
+<< fig = FALSE , echo = TRUE>>=
+head(Sushi_genes.bed)
+@
+
+Using \texttt{plotGenes()} with arguments \texttt{bentline=FALSE} and  \texttt{plotgenetype="arrow"} produces arrow and line gene structures.
+
+<< fig = TRUE , echo = TRUE, height=3,width=8>>=
+chrom            = "chr15"
+chromstart       = 72998000
+chromend         = 73020000
+
+pg = plotGenes(Sushi_genes.bed,chrom,chromstart,chromend ,
+               types=Sushi_genes.bed$type,maxrows=1,bheight=0.2,
+               plotgenetype="arrow",bentline=FALSE,
+          labeloffset=.4,fontsize=1.2,arrowlength = 0.025,
+               labeltext=TRUE)
+
+labelgenome( chrom, chromstart,chromend,n=3,scale="Mb")
+@
+
+This function can also be used to plot transcript structures.  The first 20 lines of a data frame describing RNA seq data are shown below.
+
+\begin{center}
+<< fig = FALSE , echo = TRUE>>=
+Sushi_transcripts.bed[1:20,]
+@
+\end{center}
+
+A vector \texttt{type} can be used to specify if each region is an 'exon' or 'utr' while  \texttt{plotgenetype="box"} plots regions as a boxes rather than arrows.   The data can be plotted using \texttt{plotGenes()}.  The \texttt{colorby} argument is used to color the transcripts by log 10(FPKM).  UTR regions are drawn as shorter boxes than exons.
+
+\begin{center}
+<< fig = TRUE , echo = TRUE, height=6,width=8>>=
+chrom            = "chr15"
+chromstart       = 72965000
+chromend         = 72990000
+
+pg = plotGenes(Sushi_transcripts.bed,chrom,chromstart,chromend ,
+               types = Sushi_transcripts.bed$type,
+               colorby=log10(Sushi_transcripts.bed$score+0.001),
+               colorbycol= SushiColors(5),colorbyrange=c(0,1.0),
+               labeltext=TRUE,maxrows=50,height=0.4,plotgenetype="box")
+
+
+labelgenome( chrom, chromstart,chromend,n=3,scale="Mb")
+
+addlegend(pg[[1]],palette=pg[[2]],title="log10(FPKM)",side="right",
+          bottominset=0.4,topinset=0,xoffset=-.035,labelside="left",
+          width=0.025,title.offset=0.055)
+@
+\end{center}
+
+
+
+
+\subsection{Zoom functions}
+
+A critical characteristic of the Sushi package is its ability to create highly customizable, publication-ready, multi-panel figures.  Here, we will create a basic three panel figure and demonstrate how the zoom functions work (\texttt{zoomsregion} and \texttt{zoombox}).  To illustrate these feature we will use the \texttt{plotBedgraph()} function to plot bedgrpah data representing a DNaseI hypersensitivity experiment in K562 cells.
+
+\paragraph{}
+In order to make a multipanel figure we will use the R function layout.  Layout divides the device into rows and columns accoriding to a matrix you provide.  The matrix also tells it which plots will appear on which parts of the plotting device.  Below we make a 2 by 2 matrix.  The entire top row will be used to plot the first plot while the bottom row with contain two plots.  For more info on layout try \texttt{?layout}.
+
+<<fig = FALSE, eval=FALSE , echo = TRUE>>=
+layout(matrix(c(1,1,2,3),2, 2, byrow = TRUE))
+par(mar=c(3,4,1,1))
+@
+
+Next we will add the first plot
+
+<<fig = FALSE, eval=FALSE , echo = TRUE>>=
+chrom            = "chr11"
+chromstart       = 1900000
+chromend         = 2350000
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,
+             chromend=chromend,colorbycol= SushiColors(5))
+
+labelgenome(chrom,chromstart=chromstart,chromend=chromend,n=4,
+            scale="Mb")
+
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+@
+
+
+\begin{center}
+<<fig = TRUE, eval=TRUE , echo = FALSE>>=
+layout(matrix(c(1,1,2,3),2, 2, byrow = TRUE))
+par(mar=c(3,4,1,1))
+chrom            = "chr11"
+chromstart       = 1900000
+chromend         = 2350000
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,
+             chromend=chromend,colorbycol= SushiColors(5))
+labelgenome(chrom,chromstart=chromstart,chromend=chromend,n=4,
+            scale="Mb")
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+@
+\end{center}
+
+Next we will add the zoom regions using the function \texttt{zoomsregion()}.  The argument \texttt{offsets} is used to precisely position the left and right edges of the widest part of the zoom.
+
+<<fig = FALSE, eval=FALSE , echo = TRUE>>=
+zoomregion1      = c(1955000,1960000)
+zoomregion2      = c(2279000,2284000)
+
+zoomsregion(zoomregion1,extend=c(0.01,0.13),wideextend=0.05,
+            offsets=c(0,0.580))
+zoomsregion(zoomregion2,extend=c(0.01,0.13),wideextend=0.05,
+            offsets=c(0.580,0))
+@
+
+\begin{center}
+<<fig = TRUE , echo = FALSE>>=
+layout(matrix(c(1,1,2,3),2, 2, byrow = TRUE))
+par(mar=c(3,4,1,1))
+
+chrom            = "chr11"
+chromstart       = 1900000
+chromend         = 2350000
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,
+             chromend=chromend,colorbycol= SushiColors(5))
+
+labelgenome(chrom,chromstart=chromstart,chromend=chromend,n=4,scale="Mb")
+
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+
+zoomregion1      = c(1955000,1960000)
+zoomregion2      = c(2279000,2284000)
+zoomsregion(zoomregion1,extend=c(0.01,0.13),wideextend=0.05,offsets=c(0,0.580))
+zoomsregion(zoomregion2,extend=c(0.01,0.13),wideextend=0.05,offsets=c(0.580,0))
+@
+\end{center}
+
+Then we can add each of the zoomed inset regions.  For, each region we need execute the \texttt{zoombox} function in order to draw the lines around the new plots.
+
+<<fig = FALSE, eval=FALSE , echo = TRUE>>=
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=zoomregion1[1],
+             chromend=zoomregion1[2],colorbycol= SushiColors(5))
+
+labelgenome(chrom,chromstart=zoomregion1[1],chromend=zoomregion1[2],
+            n=4,scale="Kb",edgeblankfraction=0.2,cex.axis=.75)
+zoombox()
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=zoomregion2[1],
+             chromend=zoomregion2[2],colorbycol= SushiColors(5))
+
+labelgenome(chrom,chromstart=zoomregion2[1],chromend=zoomregion2[2],
+            n=4,scale="Kb",edgeblankfraction=0.2,cex.axis=.75)
+zoombox()
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+@
+
+
+\begin{center}
+<<fig = TRUE , echo = FALSE>>=
+layout(matrix(c(1,1,2,3),2, 2, byrow = TRUE))
+par(mar=c(3,4,1,1))
+
+chrom            = "chr11"
+chromstart       = 1900000
+chromend         = 2350000
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=chromstart,
+             chromend=chromend,colorbycol= SushiColors(5))
+
+labelgenome(chrom,chromstart=chromstart,chromend=chromend,n=4,
+            scale="Mb")
+
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+
+zoomregion1      = c(1955000,1960000)
+zoomregion2      = c(2279000,2284000)
+zoomsregion(zoomregion1,extend=c(0.01,0.13),wideextend=0.05,
+            offsets=c(0,0.580))
+zoomsregion(zoomregion2,extend=c(0.01,0.13),wideextend=0.05,
+            offsets=c(0.580,0))
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=zoomregion1[1],
+             chromend=zoomregion1[2],colorbycol= SushiColors(5))
+
+labelgenome(chrom,chromstart=zoomregion1[1],chromend=zoomregion1[2],
+            n=4,scale="Kb",edgeblankfraction=0.2,cex.axis=.75)
+zoombox()
+
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom,chromstart=zoomregion2[1],
+             chromend=zoomregion2[2],colorbycol= SushiColors(5))
+
+labelgenome(chrom,chromstart=zoomregion2[1],chromend=zoomregion2[2],
+            n=4,scale="Kb",edgeblankfraction=0.2,cex.axis=.75)
+zoombox()
+
+mtext("Read Depth",side=2,line=1.75,cex=1,font=2)
+axis(side=2,las=2,tcl=.2)
+
+@
+\end{center}
+
+
+\subsection{Color functions}
+
+Sushi includes three functions to assist in the generating of R colors and color palettes: \texttt{SushiColors()}, \texttt{maptocolors()}, \texttt{opaque()}.
+
+\subsubsection{SushiColors}
+
+\paragraph{}
+\texttt{SushiColors()} provides default color palettes for the Sushi package.
+
+\paragraph{}
+To see a list of available color palettes:
+
+<<fig = FALSE , echo = TRUE>>=
+SushiColors(palette='list')
+@
+
+To view the color palettes:
+\begin{center}
+<<fig = TRUE , echo = TRUE,height=4,width=9>>=
+plot(1,xlab='',xaxt='n',ylab='',yaxt='n',xlim=c(0.5,7.5),
+     ylim=c(2,7.5),type='n')
+for (i in (2:7))
+{
+  for (j in (1:i))
+  {
+    rect(j-.5,i,j+.5,i+.5,col=SushiColors(i)(i)[j])
+  }
+}
+
+axis(side=2,at=(2:7),labels=(2:7),las=2)
+axis(side=1,at=(1:7),labels=(1:7))
+mtext("SushiColors",side=3,font=2, line=1, cex=1.5)
+mtext("colors",side=1,font=2, line=2)
+mtext("palette",side=2,font=2, line=2)
+@
+\end{center}
+\subsubsection{opaque}
+
+\texttt{opaque()} takes any color or vector of colors and makes themp opaque.  The degree of transparency is determined by the argument \texttt{transparency} which is a value between 0 and 1. 
+\begin{center}
+<<fig = TRUE , echo = TRUE,height=4,width=9>>=
+plot(1,xlab='',xaxt='n',ylab='',yaxt='n',bty='n',type='n',
+     xlim=c(-.15,1.05),ylim=c(-1,2))
+for (i in seq(0,1,by=0.1))
+{
+    rect(i-.05,-1,i+.05,1,col=opaque("red",transparency=i))
+    rect(i-.05,0,i+.05,2,col=opaque("blue",transparency=1-i))
+}
+axis(side=1,at=seq(0,1,by=0.1),labels=seq(0,1,by=0.1))
+mtext("red transparency",side=1,font=2, line=2)
+axis(side=3,at=seq(0,1,by=0.1),labels=seq(1,0,by=-0.1))
+mtext("blue transparency",side=3,font=2, line=2)
+text(-0.075,1.5,labels="blue",font=2,adj=1)
+text(-0.075,0.5,labels="overlap",font=2,adj=1)
+text(-0.075,-.5,labels="red",font=2,adj=1)
+@
+\end{center}
+\subsubsection{maptocolors}
+
+\texttt{maptocolors()} takes a vector of values and maps them to a color palette which can be used for plotting. 
+\begin{center}
+<<fig = TRUE , echo = TRUE,height=9,width=9>>=
+set.seed(3)
+values = rnorm((1:10))
+colorpalette = SushiColors(5)
+plot(x=(1:10),y=values,col=maptocolors(values,colorpalette),
+     pch=19,cex=4,xlab="data points",yaxt='n',ylim=range(values)*1.2)
+addlegend(range(values),title="key",palette=colorpalette,
+          side='left',xoffset = -0.125,width=0.03,bottominset = 0.5, topinset = 0.025)
+axis(side=2,las=2)
+@
+\end{center}
+
+\subsection{labeling functions}
+
+\subsubsection{labelgenome}
+
+\texttt{labelgenome()} Add genome coordinates to the x-axis of a plot.  The \texttt{line} argument can be used to offset the axis and \texttt{n} can be used to determine the desired umber of tick marks.
+
+\begin{center}
+<<fig = TRUE , echo = TRUE,height=6,width=9>>=
+par(mar=c(8,3,3,1),mgp=c(3, .3, 0))
+
+plotBedgraph(Sushi_DNaseI.bedgraph,chrom="chr11",chromstart=1650000,
+             chromend=2350000,colorbycol=SushiColors(7))
+labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,
+            side=1,n=4,scale="Mb",line=.25)
+labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,
+            side=1,n=3,scale="Kb",line=2)
+labelgenome(chrom="chr11",chromstart=1650000,chromend=2350000,
+            side=1,n=1,scale="bp",line=4)
+@
+\end{center}
+
+Manhattan plots include multiple genomes and labeling the axes of Manhattan plots requires the same \texttt{genome} oject and value of \texttt{space} that were used to in \texttt{plotManhattan()}
+
+\begin{center}
+<<echo=TRUE,fig=FALSE>>=
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+              col=SushiColors(6),genome=Sushi_hg18_genome,
+              cex=0.75,space=0.05)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",
+            edgeblankfraction=0.20,cex.axis=.5,space=0.05)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+@
+\end{center}
+\begin{center}
+<<GWAS2, echo=FALSE>>=
+png('GWAS2.png',height=600,width=900 )
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+              col=SushiColors(6),genome=Sushi_hg18_genome,
+              cex=0.75,space=0.05)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb",
+            edgeblankfraction=0.20,cex.axis=.5,space=0.05)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+dev.off()
+@
+\includegraphics{GWAS2}
+\end{center}
+
+\subsubsection{labelplot}
+
+Plot labels and titles can be added with the \texttt{labelplot()} function.
+
+\begin{center}
+<<fig = FALSE , echo = TRUE,height=6,width=9>>=
+labelplot("A) ","Manhattan Plot")
+@
+\end{center}
+\begin{center}
+<<fig=FALSE,echo=TRUE>>=
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+              col=SushiColors(6),genome=Sushi_hg18_genome,
+              cex=0.75,space=0.05)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb"
+            ,edgeblankfraction=0.20,cex.axis=.5,space=0.05)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+labelplot("A) ","Manhattan Plot")
+@
+\end{center}
+\begin{center}
+<<GWAS3, echo=FALSE>>=
+png('GWAS3.png',height=600,width=900 )
+plotManhattan(bedfile=Sushi_GWAS.bed,pvalues=Sushi_GWAS.bed[,5],
+              col=SushiColors(6),genome=Sushi_hg18_genome,
+              cex=0.75,space=0.05)
+labelgenome(genome=Sushi_hg18_genome,n=4,scale="Mb"
+            ,edgeblankfraction=0.20,cex.axis=.5,space=0.05)
+axis(side=2,las=2,tcl=.2)
+mtext("log10(P)",side=2,line=1.75,cex=1,font=2)
+mtext("chromosome",side=1,line=1.75,cex=1,font=2)
+labelplot("A) ","Manhattan Plot")
+dev.off()
+@
+\includegraphics{GWAS3}
+\end{center}
+\begin{center}
+<<fig=FALSE, echo=FALSE>>=
+if (file.exists("Rplots.pdf"))
+{
+  file.remove("Rplots.pdf")
+}
+@
+\end{center}
+\section{Appendix}
+
+For illustrative purposes we include a complex figure as published in the accompanying manuscript (Phanstiel, et al.).
+
+\lstinputlisting[language=R, breaklines=TRUE, basicstyle=\small, numbers=left]{PaperFigure.R}
+
+\includegraphics{Figure_1.pdf}
+
+\bibliography{Sushi}
+\bibliographystyle{plainnat}
+
+\end{document}
+
+
+

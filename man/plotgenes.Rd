@@ -13,9 +13,10 @@ plotGenes(geneinfo = NULL, chrom = NULL, chromstart = NULL,
 }
 \arguments{
   \item{geneinfo}{gene info stored in a bed-like format.
-  If NULL it will look up genes in the region using
-  biomart="ensembl" and dataset="hsapiens_gene_ensembl".
-  See also \code{\link{useMart}}}
+  If NULL it will look up genes in the region using biomart
+  (with biomart="ensembl" and
+  dataset="hsapiens_gene_ensembl"). See also
+  \code{\link{useMart}}}
 
   \item{chrom}{chromosome of region to be plotted}
 
