@@ -1,9 +1,18 @@
+Sushi News
+==========
+
+CHANGES IN R 0.99.1:
+
+    * Made package lighter by adding more specific imports and exports
+    
+    * added examples for all exported functions
+
+Sushi
+=====
+
 Package: Sushi
-Type: Package
 Title: Tools for visualizing genomics data
 Description: Flexible, quantitative, and integrative genomic visualizations for publication-quality multi-panel figures
-Version: 0.99.1
-Date: 2014-02-17
 Author: Douglas H Phanstiel <dphansti@stanford.edu>
 Maintainer: Douglas H Phanstiel <dphansti@stanford.edu>
 biocViews: DataRepresentation, Visualization, Genetics, Sequencing, Infrastructure,
