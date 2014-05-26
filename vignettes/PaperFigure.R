@@ -1,5 +1,5 @@
 library('Sushi')
-pdfname = "inst/doc/Figure_1.pdf"
+pdfname = "vignettes/Figure_1.pdf"
 Sushi_data = data(package = 'Sushi')
 data(list = Sushi_data$results[,3]) 
 makepdf = TRUE
@@ -452,7 +452,7 @@ chromstart       = 72998000
 chromend         = 73020000
 
 # plot gene structures
-plotGenes(Sushi_genes.bed, chrom, chromstart, chromend, maxrows=1, bheight=0.2, plotgenetype="arrow", bentline=FALSE, labeloffset=1, fontsize=1.2)
+plotGenes(Sushi_genes.bed, chrom, chromstart, chromend, maxrows=1, bheight=0.15, plotgenetype="arrow", bentline=FALSE, labeloffset=1, fontsize=1.2,arrowlength = 0.01)
 
 # label genome
 labelgenome(chrom, chromstart, chromend, n=3, scale="Mb")

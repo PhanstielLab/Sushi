@@ -1130,6 +1130,38 @@ if (file.exists("Rplots.pdf"))
 }
 @
 \end{center}
+
+\section{Tips}
+
+Other popular file formats such as BAM and GFF are not explicitly supported by Sushi.  However, data stored in these formats can be easily converted to BED format using common  command line tools such as the \texttt{bedtools} software suite available at \href{https://github.com/arq5x/bedtools2}{https://github.com/arq5x/bedtools2}.  Some examples taken from the \texttt{bedtools} are shown below. 
+
+\vspace{5 mm}
+Convert BAM alignments to BED format.
+
+\vspace{2 mm}
+\texttt{bamToBed -i reads.bam > reads.bed}
+
+\vspace{5 mm}
+Convert BAM alignments to BED format using edit distance (NM) as the BED \texttt{score}.
+
+\vspace{2 mm}
+\texttt{bamToBed -i reads.bam -ed > reads.bed}
+
+\vspace{5 mm}
+Convert BAM alignments to BEDPE format.
+
+\vspace{2 mm}
+\texttt{bamToBed -i reads.bam -bedpe > reads.bedpe}
+
+\vspace{5 mm}
+These BED files can easily be read into R for use with Sushi using the following R command:
+
+\begin{center}
+<<fig=FALSE, eval=FALSE ,echo=TRUE>>=
+read.table(file="reads.bed",sep="\t")
+@
+\end{center}
+
 \section{Appendix}
 
 For illustrative purposes we include a complex figure as published in the accompanying manuscript (Phanstiel, et al.).

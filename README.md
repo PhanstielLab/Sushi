@@ -17,15 +17,17 @@ Detailed usage examples are available in the [Vignette](https://github.com/dphan
 ## Sushi Installation
 
 1. Install with Bioconductor:
-This requires R 3.1 to install
+
+Note: R 3.1 is required for installation via Bioconductor. The newest version of R can be donwloaded at (www.r-project.org/).  Installation via Bioconductor also requires libcurl and libxml2 which may not be be standard with some Linux distributions and are available for download at (http://curl.haxx.se/libcurl/ and http://xmlsoft.org/, respectviely.
+
 ```
 source("http://bioconductor.org/biocLite.R")
 biocLite("Sushi")
 ```
 
-2. Install for previous versions of R >= 2.15:
+2. Install for previous versions of R >= 2.10:
 ```
-R CMD INSTALL Sushi_0.99.2.tar.gz
+R CMD INSTALL Sushi_1.0.1.tar.gz
 ```
 
 ## Contributors
@@ -35,4 +37,4 @@ R CMD INSTALL Sushi_0.99.2.tar.gz
 * Caros Araya
 
 ## License
-The code is freely available under the
+The code is freely available under the GPL (>= 2) license
