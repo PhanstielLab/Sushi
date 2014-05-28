@@ -1,5 +1,9 @@
 Sushi News
 
+CHANGES IN R 1.1.1:
+
+    * Added more install info to README.md
+
 
 CHANGES IN R 1.1.1:
 
@@ -13,7 +17,6 @@ CHANGES IN R 0.99.2:
     * fixed name of NEWS file
     
     * imports graphics, grDevices in DESCRIPTION file
-
 
 
 CHANGES IN R 0.99.1:

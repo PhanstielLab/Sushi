@@ -47,6 +47,12 @@ function(bedpedata,chrom,chromstart,chromend,heights,
                       plottype="loops",maxrows=10000,height=.3,ymax=1.04,...)
 {
   
+  if (nrow(bedpedata) == 0)
+  {
+    plot(c(1,1),type='n',xlab="",ylab="",xaxs = 'i',yaxs='i',xlim=c(chromstart,chromend), ylim=c(0,1),xaxt=xaxt,yaxt=yaxt,bty=bty,...)
+    return(list(colorbyrange,colorbycol))
+  }
+  
   # convert strand info 
   if (ncol(bedpedata) >= 10)
   {
@@ -54,7 +60,7 @@ function(bedpedata,chrom,chromstart,chromend,heights,
     bedpedata[,10] = convertstrandinfo(bedpedata[,10])
   }
   
-  # Define a function th determines which row to plot a gene on
+  # Define a function that determines which row to plot a gene on
   checkrow <- function(data,alldata,maxrows,wiggle=0)
   {
     for (row in (1:maxrows))
@@ -114,7 +120,6 @@ function(bedpedata,chrom,chromstart,chromend,heights,
   bedpedata$start2 = start2
   bedpedata$stop2  = stop2
   
-  
   if (plottype == "loops")
   {
     # add height column
@@ -169,6 +174,13 @@ function(bedpedata,chrom,chromstart,chromend,heights,
     &
       (bedpedata$chrom2 == chrom & (bedpedata$pos2 > chromstart & bedpedata$pos2 < chromend))
   ),]  
+  
+  if (nrow(bedpedata) == 0)
+  {
+    plot(c(1,1),type='n',xlab="",ylab="",xaxs = 'i',yaxs='i',xlim=c(chromstart,chromend), ylim=c(0,1),xaxt=xaxt,yaxt=yaxt,bty=bty,...)
+    return(list(colorbyrange,colorbycol))
+  }
+  
   
   # color by
   if (is.null(colorby) == FALSE)
