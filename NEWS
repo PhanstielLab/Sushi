@@ -4,6 +4,8 @@ CHANGES IN R 1.1.3:
 
     * edited README.md
 
+    * Lines connecting regions in plotBedpe plots now only connect the inner region.  Only noticable if plot is drawn with opaque colors
+
 
 CHANGES IN R 1.1.2:
 
