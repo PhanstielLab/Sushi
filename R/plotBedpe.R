@@ -257,8 +257,8 @@ function(bedpedata,chrom,chromstart,chromend,heights,
            lwd=bedpedata$lwd[i],
            border=bedpedata$color[i])
       
-      segments(x0 =  min(bedpedata[i,2] , bedpedata[i,3],bedpedata[i,5] , bedpedata[i,6]),
-               x1 =  max(bedpedata[i,2] , bedpedata[i,3],bedpedata[i,5] , bedpedata[i,6]),
+      segments(x0 =  max(bedpedata[i,2] , bedpedata[i,3]),
+               x1 =  min(bedpedata[i,5] , bedpedata[i,6]),
                y0 = line,
                y1 = line,
                lwd = bedpedata$lwd[i],
