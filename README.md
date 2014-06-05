@@ -18,31 +18,31 @@ Detailed usage examples are available in the [Vignette](https://github.com/dphan
 
 1. Install release verson with Bioconductor:
 
-```
-source("http://bioconductor.org/biocLite.R")
-biocLite("Sushi")
-```
+ ```
+ source("http://bioconductor.org/biocLite.R")
+ biocLite("Sushi")
+ ```
 
-Note: R 3.1 is required for installation via Bioconductor. The newest version of R can be downloaded at (www.r-project.org/).  Installation via Bioconductor also requires libcurl and libxml2 which may not be be standard with some Linux distributions and are available for download at (http://curl.haxx.se/libcurl/ and http://xmlsoft.org/, respectively.
+ Note: R 3.1 is required for installation via Bioconductor. The newest version of R can be downloaded at (www.r-project.org/).  Installation via Bioconductor also requires libcurl and libxml2 which may not be be standard with some Linux distributions and are available for download at (http://curl.haxx.se/libcurl/ and http://xmlsoft.org/, respectively.
 
 
 2. Install from source (for previous versions of R >= 2.10):
 
-Download source code from http://www.bioconductor.org/packages/release/bioc/html/Sushi.html
+ Download source code from http://www.bioconductor.org/packages/release/bioc/html/Sushi.html
 
-```
-R CMD INSTALL Sushi_X.X.X.tar.gz
-```
+ ```
+ R CMD INSTALL Sushi_X.X.X.tar.gz
+ ```
 
 3. The development version of Sushi can be downloaded via Bioconductor
 
-```
-source("http://bioconductor.org/biocLite.R")
-useDevel()
-biocLite("Sushi")
-```
+ ```
+ source("http://bioconductor.org/biocLite.R")
+ useDevel()
+ biocLite("Sushi")
+ ```
 
-or via source at http://www.bioconductor.org/packages/devel/bioc/html/Sushi.html
+ or via source at http://www.bioconductor.org/packages/devel/bioc/html/Sushi.html
 
 
 ## Contributors
