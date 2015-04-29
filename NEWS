@@ -1,5 +1,11 @@
 Sushi News
 
+CHANGES IN R 1.6.0:
+
+    * edited README.md
+
+    * plotBedgraph now plots empty plot when there is not enough data in range
+
 CHANGES IN R 1.1.3:
 
     * edited README.md
