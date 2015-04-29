@@ -68,6 +68,25 @@ function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
   # filter for desired region
   signaltrack = signal[which(signal[,1] == chrom & ((signal[,2] > chromstart & signal[,2] < chromend) |  (signal[,3] > chromstart & signal[,3] < chromend))),(2:4)]
   
+  # exit if overlay is TRUE and there isn't enough data
+  if (overlay ==TRUE && nrow(signaltrack) < 2)
+  {
+    return ("not enough data within range to plot")
+  }
+  
+  # exit if overlay is FALSE and there isn't enough data
+  if (nrow(signaltrack) < 2)
+  {
+    if (is.null(range) == TRUE)
+    {
+      range = c(0,1)
+    }
+    
+    # make blank plot
+    plot(0,0,xlim=c(chromstart,chromend),type='n',ylim=range,xaxt=xaxt,yaxt=yaxt,ylab=ylab,xaxs=xaxs,yaxs=yaxs,bty=bty,xlab=xlab,...) 
+    return ("not enough data within range to plot")
+  }
+  
   # downsample for plotting
   while (nrow(signaltrack) > 8000)
   {
@@ -82,7 +101,7 @@ function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
     meanval = apply(cbind(signaltrack[seq(1, nrow(signaltrack), 2),3],signaltrack[seq(2, nrow(signaltrack), 2),3]), 1, mean)
     signaltrack = cbind(starts,stops,meanval)
   }
-  
+
   # add col names
   names(signaltrack)[(1:3)]    = c("V1","V2","V3")
   
@@ -131,7 +150,7 @@ function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
     # make blank plot
     plot(signaltrack,xlim=c(chromstart,chromend),type='n',ylim=range,xaxt=xaxt,yaxt=yaxt,ylab=ylab,xaxs=xaxs,yaxs=yaxs,bty=bty,xlab=xlab,...) 
   }
-  
+    
   # rescale the overlay plot for comparative purposes
   if (rescaleoverlay == TRUE)
   {
@@ -194,7 +213,6 @@ function(signal,chrom,chromstart,chromend,range=NULL,color=SushiColors(2)(2)[1],
       } 
     }
   }
-  
 
   if (is.null(colorbycol) == TRUE)
   {
