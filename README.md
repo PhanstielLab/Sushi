@@ -2,7 +2,6 @@
 
 Tools for visualizing genomics data
 
-
 ## Citation
 
 Sushi.r: Flexible, quantitative, and integrative genomic visualizations for publication-quality multi-panel figures.

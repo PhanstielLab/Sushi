@@ -17,9 +17,9 @@
 #' @param lwd linewidth for bedpe elements (only valid when colorby is not NULL)
 #' @param xaxt A character which specifies the x axis type.  See \code{\link{par}}
 #' @param yaxt A character which specifies the y axis type.  See \code{\link{par}}
-#' @param plottype type of plot (acceptable values are 'loops' and 'lines')
+#' @param plottype type of plot (acceptable values are 'loops', 'ribbons', or 'lines')
 #' @param maxrows The maximum number of rows to plot on the y-axis
-#' @param ymax fraction of max y value to set as height of plot. Only applies when plottype is set to 'loops'
+#' @param ymax fraction of max y value to set as height of plot. Only applies when plottype is set to 'loops' or 'ribbons'
 #' @param height the height of the boxes at either end of a bedpe element if plottype is set to 'lines'. Typical vaues range form 0 to 1.  (only valid when plottype is set to 'lines')
 #' @param bty A character string which determined the type of box which is drawn about plots.  See \code{\link{par}}
 #' @param ... values to be passed to \code{\link{plot}}
@@ -31,7 +31,7 @@
 #' chromstart       = 1650000
 #' chromend         = 2350000
 #' pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
-#' lwd=1,plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=topo.colors)
+#' lwd=1,plottype="ribbons",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=topo.colors,border="black")
 #' labelgenome(chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
 #' legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),col=c(topo.colors(3)),pch=19,bty='n',text.font=2)
 #' axis(side=2,las=2,tcl=.2)
@@ -39,9 +39,8 @@
 #' 
 
 
-plotBedpe <-
-function(bedpedata,chrom,chromstart,chromend,heights,
-                      color="black",colorby=NULL,colorbycol=NULL,colorbyrange=NULL,
+plotBedpe <- function(bedpedata,chrom,chromstart,chromend,heights,
+                      color="black",colorby=NULL,colorbycol=NULL,colorbyrange=NULL,border=NULL,
                       lwdby    =  NULL,lwdrange =  c(1,5),
                       offset=0,flip=FALSE,lwd=1,xaxt='n',yaxt='n',bty='n',
                       plottype="loops",maxrows=10000,height=.3,ymax=1.04,...)
@@ -106,6 +105,73 @@ function(bedpedata,chrom,chromstart,chromend,heights,
     curve(offset+posneg * a * (x - x1) * (x - x2),from=x1, to=x2, add=TRUE,...)
   }
   
+  # Define a function that plots a looping interaction on a graph as a ribbon
+  plotribbon <- function(start1,end1,start2,end2,height,offset=0,flip=FALSE,...)
+  {
+    x = NULL
+    
+    posneg = 1
+    if (flip == TRUE)
+    {
+      posneg = -1
+      offset = offset * -1
+    }
+    
+    # offsets
+    xoffset = abs(abs(start2 - start1) - abs(end2 - end1)) / abs(par("xaxp")[2]- par("xaxp")[1])
+    halfwidth = xoffset * abs(par("yaxp")[2]- par("yaxp")[1]) / 2
+    
+    print (xoffset)
+    print (halfwidth)
+    print ("")
+    
+    # initialize variables
+    pairs = list()
+    pairs[[1]] = c(start1,end2)
+    pairs[[2]] = c(end1,start2)
+    xs = c()
+    ys = c()
+    
+    for (i in 1:length(pairs))
+    {
+      # input variables
+      x1 = pairs[[i]][1]
+      x2 = pairs[[i]][2]
+      if  (i == 1)
+      {
+        vert_y  = height + halfwidth
+      }
+      if  (i == 2)
+      {
+        vert_y  = height - halfwidth
+      }
+      
+      # get x coordinate of vertex
+        vert_x= (x1 + x2) / 2
+      
+      # solve for 'a'
+      a = vert_y / ((vert_x - x1) * (vert_x - x2))
+      
+      currentxs = c(seq(x1,x2,length.out=50))
+      if (i == 2)
+      {
+        currentxs = seq(x2,x1,length.out=50)
+      }
+      
+      # get xvals
+      xs = c(xs,currentxs)
+      
+      # get yvals
+      for (x in currentxs)
+      {
+        ys = c(ys, (posneg * a * (x - x1) * (x - x2)))
+      }
+    }
+    polygon(xs,ys,add=TRUE,...)
+  }
+  
+  
+  
   # convert data to data frame
   bedpedata = data.frame(bedpedata[,1:6])
   names(bedpedata) = c("chrom1","start1","stop1","chrom2","start2","stop2")
@@ -120,7 +186,7 @@ function(bedpedata,chrom,chromstart,chromend,heights,
   bedpedata$start2 = start2
   bedpedata$stop2  = stop2
   
-  if (plottype == "loops")
+  if (plottype == "loops" | plottype == "ribbons")
   {
     # add height column
     bedpedata$heights = heights
@@ -266,7 +332,7 @@ function(bedpedata,chrom,chromstart,chromend,heights,
     }
   }
   
-  if (plottype == "loops")
+  if (plottype == "loops" | plottype == "ribbons")
   {
     # first make empty plot
     if (flip == FALSE)
@@ -277,7 +343,6 @@ function(bedpedata,chrom,chromstart,chromend,heights,
     {
       plot(c(1,1),type='n',xlab="",ylab="",xaxs = 'i',yaxs='i',xlim=c(chromstart,chromend), ylim=c(-max((bedpedata$heights)-offset)*ymax,0  ),xaxt=xaxt,yaxt=yaxt,bty=bty,...)
     }
-
     
     # plot the data
     for (row in (1:nrow(bedpedata)))
@@ -287,7 +352,29 @@ function(bedpedata,chrom,chromstart,chromend,heights,
       height = bedpedata$heights[row]
       color  = bedpedata$color[row]
       lwd    = bedpedata$lwd[row]
-      plotpair(x1,x2,height,offset=offset,flip=flip,col=as.character(color),lwd=lwd)
+      
+      if (plottype == "loops")
+      {
+        plotpair(x1,x2,height,offset=offset,flip=flip,col=as.character(color),lwd=lwd)
+      }
+      if (plottype == "ribbons")
+      {
+        if (is.null(border) == TRUE)
+        {
+          bordercol=as.character(color)
+        }
+        if (is.null(border) == FALSE)
+        {
+          bordercol=border
+        }
+
+        s1 = min(bedpedata$start1[row],bedpedata$start2[row])
+        s2 = max(bedpedata$start1[row],bedpedata$start2[row])
+        e1 = min(bedpedata$stop1[row],bedpedata$stop2[row])
+        e2 = max(bedpedata$stop1[row],bedpedata$stop2[row])
+        
+        plotribbon(start1=s1,end1=e1,start2=s2,end2=e2,height=height,offset=offset,flip=flip,col=as.character(color),border=bordercol)
+      }
     }
   }
   
@@ -297,3 +384,4 @@ function(bedpedata,chrom,chromstart,chromend,heights,
     list(colorbyrange,colorbycol)
   }
 }
+

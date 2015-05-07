@@ -1,5 +1,9 @@
 Sushi News
 
+CHANGES IN R 1.6.1:
+
+    * added 'ribbons' feature to plotBedpe
+
 CHANGES IN R 1.6.0:
 
     * edited README.md

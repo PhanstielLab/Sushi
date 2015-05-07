@@ -5,10 +5,10 @@
 \title{plots data stored in bed file format}
 \usage{
 plotBedpe(bedpedata, chrom, chromstart, chromend, heights, color = "black",
-  colorby = NULL, colorbycol = NULL, colorbyrange = NULL, lwdby = NULL,
-  lwdrange = c(1, 5), offset = 0, flip = FALSE, lwd = 1, xaxt = "n",
-  yaxt = "n", bty = "n", plottype = "loops", maxrows = 10000,
-  height = 0.3, ymax = 1.04, ...)
+  colorby = NULL, colorbycol = NULL, colorbyrange = NULL, border = NULL,
+  lwdby = NULL, lwdrange = c(1, 5), offset = 0, flip = FALSE, lwd = 1,
+  xaxt = "n", yaxt = "n", bty = "n", plottype = "loops",
+  maxrows = 10000, height = 0.3, ymax = 1.04, ...)
 }
 \arguments{
 \item{bedpedata}{bed paired end data to be plotted}
@@ -45,13 +45,13 @@ plotBedpe(bedpedata, chrom, chromstart, chromend, heights, color = "black",
 
 \item{bty}{A character string which determined the type of box which is drawn about plots.  See \code{\link{par}}}
 
-\item{plottype}{type of plot (acceptable values are 'loops' and 'lines')}
+\item{plottype}{type of plot (acceptable values are 'loops', 'ribbons', or 'lines')}
 
 \item{maxrows}{The maximum number of rows to plot on the y-axis}
 
 \item{height}{the height of the boxes at either end of a bedpe element if plottype is set to 'lines'. Typical vaues range form 0 to 1.  (only valid when plottype is set to 'lines')}
 
-\item{ymax}{fraction of max y value to set as height of plot. Only applies when plottype is set to 'loops'}
+\item{ymax}{fraction of max y value to set as height of plot. Only applies when plottype is set to 'loops' or 'ribbons'}
 
 \item{...}{values to be passed to \code{\link{plot}}}
 }
@@ -65,7 +65,7 @@ chrom            = "chr11"
 chromstart       = 1650000
 chromend         = 2350000
 pbpe = plotBedpe(Sushi_5C.bedpe,chrom,chromstart,chromend,heights = Sushi_5C.bedpe$score,offset=0,flip=FALSE,bty='n',
-lwd=1,plottype="loops",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=topo.colors)
+lwd=1,plottype="ribbons",colorby=Sushi_5C.bedpe$samplenumber,colorbycol=topo.colors,border="black")
 labelgenome(chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
 legend("topright",inset =0.01,legend=c("K562","HeLa","GM12878"),col=c(topo.colors(3)),pch=19,bty='n',text.font=2)
 axis(side=2,las=2,tcl=.2)

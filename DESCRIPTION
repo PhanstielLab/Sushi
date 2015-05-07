@@ -2,8 +2,8 @@ Package: Sushi
 Type: Package
 Title: Tools for visualizing genomics data
 Description: Flexible, quantitative, and integrative genomic visualizations for publication-quality multi-panel figures
-Version: 1.6.0
-Date: 2015-04-29
+Version: 1.6.1
+Date: 2015-05-06
 Author: Douglas H Phanstiel <dphansti@stanford.edu>
 Maintainer: Douglas H Phanstiel <dphansti@stanford.edu>
 biocViews: DataRepresentation, Visualization, Genetics, Sequencing, Infrastructure, HiC
