@@ -1,5 +1,10 @@
 Sushi News
 
+CHANGES IN R 1.6.2:
+
+    * fixed bug in plotGenes in which genes were not filtered by chromosome
+    * change plotBedpe to remove warning messages
+
 CHANGES IN R 1.6.1:
 
     * added 'ribbons' feature to plotBedpe

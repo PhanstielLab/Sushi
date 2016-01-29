@@ -32,11 +32,10 @@
 #' chrom            = "chr15"
 #' chromstart       = 72998000
 #' chromend         = 73020000
-#' chrom_biomart    = 15
 #' 
-#' plotGenes(Sushi_genes.bed,chrom_biomart,chromstart,chromend ,types=Sushi_genes.bed$type,
+#' plotGenes(Sushi_genes.bed,chrom,chromstart,chromend ,types=Sushi_genes.bed$type,
 #'      maxrows=1,height=0.5,plotgenetype="arrow",bentline=FALSE,col="blue",
-#'      labeloffset=1,fontsize=1.2)
+#'      labeloffset=.4,fontsize=1.2)
 #' 
 #' labelgenome( chrom, chromstart,chromend,side=1,scipen=20,n=3,scale="Mb",line=.18,chromline=.5,scaleline=0.5)
 #'
@@ -49,6 +48,12 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
                       arrowlength=.005,wigglefactor=0.05,
                       labeltext=TRUE,labeloffset=0.4,fontsize=.7,fonttype=2,labelat="middle",...)
 {
+  
+  # filter for chromosome
+  if (is.null(geneinfo)==FALSE)
+  {
+    geneinfo = geneinfo[which(geneinfo[,1]==chrom),]
+  }
   
   # if the gene info is nullusing current human annotations
   if (is.null(geneinfo)==TRUE)
@@ -386,9 +391,7 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   {
     transcriptinfo$plotrow = seq(1:nrow(transcriptinfo))
   }
-  
 
-  
   # make the empty plot
   offsettop = 0.5
  

@@ -106,7 +106,7 @@ plotBedpe <- function(bedpedata,chrom,chromstart,chromend,heights,
   }
   
   # Define a function that plots a looping interaction on a graph as a ribbon
-  plotribbon <- function(start1,end1,start2,end2,height,offset=0,flip=FALSE,...)
+  plotribbon <- function(start1,end1,start2,end2,height,offset=0,flip=FALSE,lwd=1,...)
   {
     x = NULL
     
@@ -167,7 +167,7 @@ plotBedpe <- function(bedpedata,chrom,chromstart,chromend,heights,
         ys = c(ys, (posneg * a * (x - x1) * (x - x2)))
       }
     }
-    polygon(xs,ys,add=TRUE,...)
+    polygon(xs,ys,lwd=lwd,...)
   }
   
   
@@ -373,7 +373,7 @@ plotBedpe <- function(bedpedata,chrom,chromstart,chromend,heights,
         e1 = min(bedpedata$stop1[row],bedpedata$stop2[row])
         e2 = max(bedpedata$stop1[row],bedpedata$stop2[row])
         
-        plotribbon(start1=s1,end1=e1,start2=s2,end2=e2,height=height,offset=offset,flip=flip,col=as.character(color),border=bordercol)
+        plotribbon(start1=s1,end1=e1,start2=s2,end2=e2,height=height,offset=offset,flip=flip,col=as.character(color),border=bordercol,lwd=lwd)
       }
     }
   }
