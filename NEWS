@@ -2,6 +2,10 @@ Sushi News
 
 CHANGES IN R 1.6.2:
 
+    * Added plotHic2 for improved HiC plotting.  Added hightlighthic for adding highlights to HiC plots.  Improved stability and performance of plotGenes and labelgenome functions.
+
+CHANGES IN R 1.6.2:
+
     * fixed bug in plotGenes in which genes were not filtered by chromosome
     * change plotBedpe to remove warning messages
 

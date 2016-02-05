@@ -49,13 +49,16 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
                       labeltext=TRUE,labeloffset=0.4,fontsize=.7,fonttype=2,labelat="middle",...)
 {
   
+  # remove genes that may have been left from prior filtering
+  geneinfo[,4] = as.character(geneinfo[,4])
+  
   # filter for chromosome
   if (is.null(geneinfo)==FALSE)
   {
     geneinfo = geneinfo[which(geneinfo[,1]==chrom),]
   }
   
-  # if the gene info is nullusing current human annotations
+  # if the gene info is null using current human annotations
   if (is.null(geneinfo)==TRUE)
   {
     # grab info
@@ -127,12 +130,13 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
     return (newexons)
   }
   
-
+  
   # Define a function that plots the gene structure given a y-value and all exons
   plottranscript <- function(exons,col,yvalue,bheight,lheight,bentline=TRUE,border="black",
                              arrowlength,bprange,strandlength=0.04,strandarrowlength=0.10,plotgenetype="box",
                              labeltext=TRUE,labeloffset=0.4,fontsize=.7,fonttype=2,labelat="middle",...)
   {
+    
     strand = exons[1,6]
     
     # if label is true add the label
@@ -159,7 +163,7 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
              labellocation+strand*bprange*strandlength,yvalue+labeloffset,
              length=strandarrowlength)
    }
-    
+   
     # make sure coordinates are in the correct order
     min = apply(exons[,c(2,3)],1,min)
     max = apply(exons[,c(2,3)],1,max)
@@ -266,11 +270,8 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   # Define a function th determines which row to plot a gene on
   checkrow <- function(data,alldata,maxrows,strand,wiggle=0,plotgenetype="box",arrowlength=0.005,bprange=0)
   {
-
     startcol = 2
     stopcol  = 3
-
-    
     strand = data[1,5]
     
     for (row in (1:maxrows))
@@ -366,6 +367,7 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   # collect the info for each transcript
   for (i in (1:numberofgeneinfo))
   {
+    
     subgeneinfo  = geneinfo[which(geneinfo[,4] == namesgeneinfo[i]),]
     starts = c(starts,min(subgeneinfo[,2:3]))
     stops  = c(stops, max(subgeneinfo[,2:3]))
@@ -375,9 +377,7 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   
   transcriptinfo = data.frame(names=namesgeneinfo,starts=starts,stops=stops,sizes=sizes,strand=strands)
   transcriptinfo = transcriptinfo[order(sizes,decreasing=TRUE),]
-  
 
-  
   # get row information
   if (packrow == TRUE)
   {
@@ -391,7 +391,7 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   {
     transcriptinfo$plotrow = seq(1:nrow(transcriptinfo))
   }
-
+  
   # make the empty plot
   offsettop = 0.5
  
@@ -401,7 +401,7 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   # filter out transcrits that don't overlap region
   transcriptinfo = transcriptinfo[which((transcriptinfo[,2] > chromstart & transcriptinfo[,2] < chromend)
                        | (transcriptinfo[,3] > chromstart & transcriptinfo[,3] < chromend)),]
-
+  
   if (nrow(transcriptinfo) == 0)
   {
     toprow = 1

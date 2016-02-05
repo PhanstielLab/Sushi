@@ -38,7 +38,7 @@ function(chrom, chromstart,chromend,genome=NULL,space=0.01,scale="bp",side=1,sci
   
   minxpos = par('usr')[1]
   maxxpos = par('usr')[2]
-  range   = abs(maxxpos - minxpos)
+  range   = abs(chromend - chromstart)
   curxpd =  par()$xpd
   par(xpd = FALSE)
   curscipen =  getOption("scipen")
