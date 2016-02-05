@@ -1,4 +1,4 @@
-#' plots HiC interactio matrix
+#' plots HiC interaction matrix
 #' 
 #'
 #' @param hicdata interaction matrix representing HiC data.  Row and column names should be postions along a chromosome

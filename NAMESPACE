@@ -8,6 +8,6 @@ importFrom(zoo, rollapply)
 export(addlegend  ,labelgenome ,labelplot ,maptocolors ,
 maptolwd ,opaque ,plotBed ,plotBedgraph ,plotBedpe ,
 plotGenes ,plotHic ,plotManhattan ,SushiColors ,
-zoombox ,zoomsregion)
+zoombox ,zoomsregion,plotHic2,highlighthic)
 
 

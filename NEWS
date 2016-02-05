@@ -1,9 +1,12 @@
 Sushi News
 
+CHANGES IN R 1.6.6:
+
+    * Fixed bug that was not exporting new functions
+    
 CHANGES IN R 1.6.5:
 
     * Extremely minor change to vignette
-
 
 CHANGES IN R 1.6.4:
 
