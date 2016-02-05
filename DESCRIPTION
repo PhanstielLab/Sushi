@@ -1,12 +1,19 @@
 Package: Sushi
 Type: Package
 Title: Tools for visualizing genomics data
-Description: Flexible, quantitative, and integrative genomic visualizations for publication-quality multi-panel figures
-Version: 1.6.4
+Description: Flexible, quantitative, and integrative genomic visualizations for
+    publication-quality multi-panel figures
+Version: 1.6.5
 Date: 2016-01-29
 Author: Douglas H Phanstiel <dphansti@stanford.edu>
 Maintainer: Douglas H Phanstiel <dphansti@stanford.edu>
-biocViews: DataRepresentation, Visualization, Genetics, Sequencing, Infrastructure, HiC
+biocViews: DataRepresentation, Visualization, Genetics, Sequencing,
+    Infrastructure, HiC
 License: GPL (>= 2)
-Depends: R (>= 2.10), zoo,biomaRt
-Imports: graphics, grDevices
+Depends:
+    R (>= 2.10),
+    zoo,biomaRt
+Imports:
+    graphics,
+    grDevices
+RoxygenNote: 5.0.1

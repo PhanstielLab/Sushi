@@ -1,6 +1,15 @@
 Sushi News
 
-CHANGES IN R 1.6.2:
+CHANGES IN R 1.6.5:
+
+    * Extremely minor change to vignette
+
+
+CHANGES IN R 1.6.4:
+
+    * Updated README to reflect current citation
+
+CHANGES IN R 1.6.3:
 
     * Added plotHic2 for improved HiC plotting.  Added hightlighthic for adding highlights to HiC plots.  Improved stability and performance of plotGenes and labelgenome functions.
 

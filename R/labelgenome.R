@@ -31,7 +31,7 @@
 #' mtext("Read Depth",side=2,line=1.75,cex=.75,font=2)
 #' 
 labelgenome <-
-function(chrom, chromstart,chromend,genome=NULL,space=0.01,scale="bp",side=1,scipen=20,n=5,
+function(chrom, chromstart=NULL,chromend=NULL,genome=NULL,space=0.01,scale="bp",side=1,scipen=20,n=5,
                         chromfont=2,chromadjust=0.015,chromcex=1,chromline=0.5,
                         scalefont=2,scaleadjust=0.985,scalecex=1,scaleline=0.5,line=0.18,edgeblankfraction=0.10,...)
 {
