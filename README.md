@@ -4,9 +4,9 @@ Tools for visualizing genomics data
 
 ## Citation
 
-Sushi.r: Flexible, quantitative, and integrative genomic visualizations for publication-quality multi-panel figures.
-Phanstiel DH, Boyle AP, Araya CL, Snyder MP. Bioinformatics, In Review. 
-
+Phanstiel DH, Boyle AP, Araya CL, Snyder MP. Sushi.R: flexible, quantitative
+and integrative genomic visualizations for publication-quality multi-panel
+figures. Bioinformatics. 2014 Oct;30(19):2808-10.
 
 ## Features
 
