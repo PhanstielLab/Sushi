@@ -10,6 +10,7 @@
 #' @param resolution the width in bp of each pixel
 #' @param plottype options are "triangle" or "square"
 #' @param half if plottype is set to "square" should the highlight be "above" or "below" the diagonal
+#' @param ... values to be passed to \code{\link{plot}}
 #' @export
 #' @examples
 #'

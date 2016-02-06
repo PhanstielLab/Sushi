@@ -1,5 +1,9 @@
 Sushi News
 
+CHANGES IN R 1.6.8:
+
+    * Minor changes in documentation
+
 CHANGES IN R 1.6.7:
 
     * Made changes to elminate error message when no data is supplied

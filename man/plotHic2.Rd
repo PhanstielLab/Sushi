@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotHic2.R
 \name{plotHic2}
 \alias{plotHic2}
-\title{plots HiC interactio matrix}
+\title{plots HiC interaction matrix}
 \usage{
 plotHic2(hicdata, chrom, chromstart, chromend, max_dist = 1e+05,
   zrange = NULL, palette = SushiColors(7), flip = FALSE,
@@ -35,7 +35,7 @@ plotHic2(hicdata, chrom, chromstart, chromend, max_dist = 1e+05,
 \item{plottype}{options are "triangle" or "square"}
 }
 \description{
-plots HiC interactio matrix
+plots HiC interaction matrix
 }
 \examples{
 

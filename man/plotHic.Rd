@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotHic.R
 \name{plotHic}
 \alias{plotHic}
-\title{plots HiC interactio matrix}
+\title{plots HiC interaction matrix}
 \usage{
 plotHic(hicdata, chrom, chromstart, chromend, max_y = 30, zrange = NULL,
   palette = SushiColors(7), flip = FALSE)
@@ -25,7 +25,7 @@ plotHic(hicdata, chrom, chromstart, chromend, max_y = 30, zrange = NULL,
 \item{flip}{TRUE/FALSE whether plot should be flipped over the x-axis}
 }
 \description{
-plots HiC interactio matrix
+plots HiC interaction matrix
 }
 \examples{
 

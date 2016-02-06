@@ -10,6 +10,7 @@
 #' @param colorby vector to scale colors by
 #' @param colorbycol palette to apply color scale to (only valid when colorby is not NULL)
 #' @param colorbyrange the range of values to apply the color scale to.  Values outside that range will be set to the limits of the range.
+#' @param border border color
 #' @param lwdby vector to scale line widths by
 #' @param lwdrange the range of values to apply the line width scale to.  Values outside that range will be set to the limits of the range.
 #' @param offset offset of bedpe elements from the x-axis
