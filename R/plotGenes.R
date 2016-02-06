@@ -308,6 +308,12 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
     return (NA)
   }
   
+  if (nrow(geneinfo) == 0)
+  {
+    plot(c(1,1),xlim=c(chromstart,chromend),ylim=c(0,1),type ='n',bty='n',xaxt='n',yaxt='n',ylab="",xlab="",xaxs="i")
+    return ("no genes within range to plot")
+  }
+  
   # remove unwanted columns
   geneinfo = geneinfo[,seq(1,6)]
   
@@ -362,7 +368,6 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   stops  = c()
   sizes  = c()
   strands = c()
-  
   
   # collect the info for each transcript
   for (i in (1:numberofgeneinfo))

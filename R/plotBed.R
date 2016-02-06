@@ -136,6 +136,13 @@ function(beddata,chrom,chromstart,chromend,type="region",
   # filter for region of interest 
   beddata = beddata[which(beddata[,1] == chrom & ((beddata[,2] > chromstart & beddata[,2] < chromend) |  (beddata[,3] > chromstart & beddata[,3] < chromend))),]
 
+  # make mempty plot if there are no elements to plot
+  if (nrow(beddata) < 1)
+  {
+    # make the empty plot
+    plot(1,1,xlim=c(chromstart,chromend),ylim=c(0,1),type ='n',bty='n',xaxt='n',yaxt='n',ylab="",xlab="",xaxs="i")
+    return ("not enough data within range to plot")
+  }
   
   # color by
   if (is.null(colorby) == FALSE)

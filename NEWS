@@ -1,5 +1,9 @@
 Sushi News
 
+CHANGES IN R 1.6.7:
+
+    * Made changes to elminate error message when no data is supplied
+
 CHANGES IN R 1.6.6:
 
     * Fixed bug that was not exporting new functions
