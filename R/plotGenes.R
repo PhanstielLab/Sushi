@@ -134,7 +134,7 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   # Define a function that plots the gene structure given a y-value and all exons
   plottranscript <- function(exons,col,yvalue,bheight,lheight,bentline=TRUE,border="black",
                              arrowlength,bprange,strandlength=0.04,strandarrowlength=0.10,plotgenetype="box",
-                             labeltext=TRUE,labeloffset=0.4,fontsize=.7,fonttype=2,labelat="middle",...)
+                             labeltext=TRUE,labeloffset=0.4,fontsize=.7,fonttype=2,labelat="middle",addarrows=FALSE,...)
   {
     
     strand = exons[1,6]
@@ -158,10 +158,19 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
       {
         adj = 1.0
       }
+      
+      if (labelat == "middle")
+      {
+        adj = 0.5
+      }
+      
       text(labellocation,yvalue+labeloffset,labels=exons[1,4],adj=adj,cex=fontsize,font=fonttype)
-      arrows(labellocation+strand*bprange*strandlength/4,yvalue+labeloffset,
+      if (addarrows==TRUE)
+      {
+        arrows(labellocation+strand*bprange*strandlength/4,yvalue+labeloffset,
              labellocation+strand*bprange*strandlength,yvalue+labeloffset,
              length=strandarrowlength)
+      }
    }
    
     # make sure coordinates are in the correct order
@@ -398,7 +407,7 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   }
   
   # make the empty plot
-  offsettop = 0.5
+  offsettop = 1.5
  
   # filter out rows above max row 
   transcriptinfo = transcriptinfo[which(is.na(transcriptinfo$plotrow)==FALSE),]

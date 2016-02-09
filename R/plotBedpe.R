@@ -245,9 +245,9 @@ plotBedpe <- function(bedpedata,chrom,chromstart,chromend,heights,
   if (nrow(bedpedata) == 0)
   {
     plot(c(1,1),type='n',xlab="",ylab="",xaxs = 'i',yaxs='i',xlim=c(chromstart,chromend), ylim=c(0,1),xaxt=xaxt,yaxt=yaxt,bty=bty,...)
+    print ("no data in range to plot.  Making empty plot.")
     return(list(colorbyrange,colorbycol))
   }
-  
   
   # color by
   if (is.null(colorby) == FALSE)
