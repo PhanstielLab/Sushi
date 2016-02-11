@@ -1,5 +1,9 @@
 Sushi News
 
+CHANGES IN R 1.7.0:
+
+    * removed print commands from plotBedpe
+
 CHANGES IN R 1.6.9:
 
     * removed arrow above genes in plotGenes function

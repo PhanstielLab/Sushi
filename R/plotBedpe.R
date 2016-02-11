@@ -122,10 +122,6 @@ plotBedpe <- function(bedpedata,chrom,chromstart,chromend,heights,
     xoffset = abs(abs(start2 - start1) - abs(end2 - end1)) / abs(par("xaxp")[2]- par("xaxp")[1])
     halfwidth = xoffset * abs(par("yaxp")[2]- par("yaxp")[1]) / 2
     
-    print (xoffset)
-    print (halfwidth)
-    print ("")
-    
     # initialize variables
     pairs = list()
     pairs[[1]] = c(start1,end2)
