@@ -13,6 +13,8 @@
 #' @param labeltype options are "bin" or "bp"
 #' @param plottype options are "triangle" or "square"
 #' @param resolution the width in bp of each pixel
+#' @param add TRUE/FALSE whether plot should be added to an existing plot
+#' @param half Should the plot be on the top, bottom, or both (onlly applies when plottype == "square)"
 #' @export
 #' @examples
 #' 
@@ -31,12 +33,13 @@
 plotHic2 <-
   function(hicdata,chrom,chromstart,chromend,max_dist = 100000,zrange=NULL,
            palette = SushiColors(7),flip=FALSE,
-           format = "auto",labeltype = "bin",resolution=NULL,plottype="triangle"
+           format = "auto",labeltype = "bin",resolution=NULL,plottype="triangle",
+           half="both",add=FALSE
   )
   {
     
     # define a function that takes midpoints, resolution, and color and draws a ploygon
-    drawpoly <- function(df,res,flip=FALSE,plottype="triangle")
+    drawpoly <- function(df,res,flip=FALSE,plottype="triangle",half="both")
     {
       col = rgb(df[4],df[5],df[6],maxColorValue=255)
       if (plottype=="triangle")
@@ -55,11 +58,46 @@ plotHic2 <-
         ys = unlist(c(y-.5*res,y,y+.5*res,y,y-.5*res))
         polygon (xs,ys,col=col,border=NA)
       }
+      
       if (plottype=="square")
       {
-        x = df[1]
-        y = df[2]
-        rect(xleft=x-.5*res, ybottom=y-.5*res, xright=x+.5*res, ytop=y+.5*res,col=col,border=NA)
+        if (half == "both")
+        {
+          x = df[1]
+          y = df[2]
+          rect(xleft=x-.5*res, ybottom=y-.5*res, xright=x+.5*res, ytop=y+.5*res,col=col,border=NA)
+        }
+        if (half == "top")
+        {
+          x = df[1]
+          y = df[2]
+          if (y >x)
+          {
+            rect(xleft=x-.5*res, ybottom=y-.5*res, xright=x+.5*res, ytop=y+.5*res,col=col,border=NA)
+          }
+          if (y == x)
+          {
+            xs = c(x-.5*res,x-.5*res,x+.5*res,x-.5*res)
+            ys = c(y-.5*res,y+.5*res,y+.5*res,y-.5*res)
+            polygon (xs,ys,col=col,border=NA)
+          }
+        }
+        if (half == "bottom")
+        {
+          x = df[1]
+          y = df[2]
+          if (y < x)
+          {
+            rect(xleft=x-.5*res, ybottom=y-.5*res, xright=x+.5*res, ytop=y+.5*res,col=col,border=NA)
+          }
+          if (y == x)
+          {
+            xs = c(x-.5*res,x+.5*res,x+.5*res,x-.5*res)
+            ys = c(y-.5*res,y+.5*res,y-.5*res,y-.5*res)
+            polygon (xs,ys,col=col,border=NA)
+          }
+        }
+        
       }
     }
     
@@ -178,11 +216,14 @@ plotHic2 <-
       hicregion = rbind(hicregion,setNames(hicregionrev,names(hicregion)))
       hicregion = hicregion[!duplicated(hicregion),]
       
-      # make an empty plot
-      plot(1,1,xlim=c(chromstart,chromend),ylim=c(chromstart,chromend),type='n',xaxs='i',yaxs='i',bty='n',xaxt='n',yaxt='n',xlab="",ylab="")
-
+      if (add == FALSE)
+      {
+        # make an empty plot
+        plot(1,1,xlim=c(chromstart,chromend),ylim=c(chromstart,chromend),type='n',xaxs='i',yaxs='i',bty='n',xaxt='n',yaxt='n',xlab="",ylab="")
+      }
+        
       # plot the polygons
-      apply(hicregion,1,drawpoly,res=resolution,flip=flip,plottype)
+      apply(hicregion,1,drawpoly,res=resolution,flip=flip,plottype,half=half)
     }
     
     # return color by range and palette
