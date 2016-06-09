@@ -9,6 +9,7 @@
 #' @param col single colors, vector of colors, or color palette for coloring points
 #' @param space the space in between each chromosome as a fraction of the width of the plot
 #' @param ymax fraction of max y value to set as height of plot.
+#' @param ylim numeric vector of length 2, giving the y coordinates range.
 #' @param ... Arguments to be passed to methods such as \code{\link{plot}}
 #' @export 
 #' @examples
@@ -28,7 +29,7 @@
 #' 
 #' 
 plotManhattan <-
-function(bedfile, chrom=NULL,chromstart=NULL,chromend=NULL,pvalues,genome=NULL,col=SushiColors(5),space=0.01,ymax=1.04,...)
+function(bedfile, chrom=NULL,chromstart=NULL,chromend=NULL,pvalues,genome=NULL,col=SushiColors(5),space=0.01,ymax=1.04,ylim=NULL,...)
 {
   if (is.null(genome) == FALSE)
   {
@@ -68,7 +69,11 @@ function(bedfile, chrom=NULL,chromstart=NULL,chromend=NULL,pvalues,genome=NULL,c
     spacer  = cumsums[length(cumsum(as.numeric(genome[,2])))] * space
     
     # make the plot
-    yrange = c(min(-log10(bedfile[,5])),max(-log10(bedfile[,5])) * ymax)
+    if (is.null(ylim) == TRUE)
+    {
+      yrange = c(min(-log10(bedfile[,5])),max(-log10(bedfile[,5])) * ymax)
+    }
+    yrange = ylim
     plot(bedfile[,2],-log10(bedfile[,5]),col=col[columbers],xlim=c(0,max(chromoffsets[,4])+spacer),ylim=yrange,pch=19,xaxt='n',xlab='',yaxt='n',ylab='',xaxs = 'i',yaxs='i',...) 
   }
   
