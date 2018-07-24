@@ -14,8 +14,14 @@ Detailed usage examples are available in the [Vignette](https://github.com/dphan
 
 ## Sushi Installation
 
+1. To install the latest version directly from github open R and run the following commands (requires the R package devtools which is available through CRAN):
 
-1. Install release verson with Bioconductor:
+```
+library("devtools")
+install_github("dphansti/Sushi")
+```
+
+2. Install release verson with Bioconductor:
 
  ```
  source("http://bioconductor.org/biocLite.R")
@@ -25,7 +31,7 @@ Detailed usage examples are available in the [Vignette](https://github.com/dphan
  Note: R 3.1 is required for installation via Bioconductor. The newest version of R can be downloaded at (www.r-project.org/).  Installation via Bioconductor also requires libcurl and libxml2 which may not be be standard with some Linux distributions and are available for download at (http://curl.haxx.se/libcurl/ and http://xmlsoft.org/, respectively.
 
 
-2. Install from source (for previous versions of R >= 2.10):
+3. Install from source (for previous versions of R >= 2.10):
 
  Download source code from http://www.bioconductor.org/packages/release/bioc/html/Sushi.html
 
@@ -33,7 +39,7 @@ Detailed usage examples are available in the [Vignette](https://github.com/dphan
  R CMD INSTALL Sushi_X.X.X.tar.gz
  ```
 
-3. The development version of Sushi can be downloaded via Bioconductor
+4. The development version of Sushi can be downloaded via Bioconductor
 
  ```
  source("http://bioconductor.org/biocLite.R")
