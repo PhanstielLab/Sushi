@@ -9,7 +9,7 @@ function(genome)
   data_nochr[,1] = gsub("chr", "", data_nochr[,1])
   
   # sort the data
-  numericvalues = suppressWarnings(as.numeric(data_nochr$V1))
+  numericvalues = suppressWarnings(as.numeric(data_nochr[,1]))
   
   # sort the numeric ones
   data_nochr_num = data_nochr[which(is.na(numericvalues) == FALSE),]

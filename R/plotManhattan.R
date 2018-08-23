@@ -60,7 +60,7 @@ function(bedfile, chrom=NULL,chromstart=NULL,chromend=NULL,pvalues,genome=NULL,c
         columber = 1
       }
 
-      rowsofinterest = which(bedfile[,1] == chromoffsets[i,1])
+      rowsofinterest = which(as.character(bedfile[,1]) == as.character(chromoffsets[i,1]))
       bedfile[rowsofinterest,2] =  bedfile[rowsofinterest,2] + chromoffsets[i,3]
       columbers[rowsofinterest] = columber
     }
