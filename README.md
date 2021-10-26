@@ -1,6 +1,15 @@
 # Sushi
-
+<!-- badges: start -->
+[![Lifecycle: deprecated](https://img.shields.io/badge/lifecycle-deprecated-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+<!-- badges: end -->
+  
 Tools for visualizing genomics data
+
+## Deprecation Notice
+
+This package has been deprecated and will no longer be maintained. For an
+actively maintained genomic data visualization package, please take a look at
+[plotgardener](https://github.com/PhanstielLab/plotgardener).
 
 ## Citation
 
@@ -18,10 +27,10 @@ Detailed usage examples are available in the [Vignette](https://github.com/dphan
 
 ```
 library("devtools")
-install_github("dphansti/Sushi")
+install_github("PhanstielLab/Sushi")
 ```
 
-2. Install release verson with Bioconductor:
+2. Install release version with Bioconductor:
 
  ```
  source("http://bioconductor.org/biocLite.R")
